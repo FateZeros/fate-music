@@ -1,5 +1,11 @@
 # Fate-Music
 
+![](https://img.shields.io/badge/react-javascript-brightgreen.svg)
+![](https://img.shields.io/badge/electron-web-brightgreen.svg)
+
+electron cross-platform desktop music application
+使用 JavaScript、HTML 和 CSS 构建跨平台的桌面应用
+
 Fate-Music 是一款仿照网易云 app 的跨品台桌面应用。
 
 ## 项目运行
