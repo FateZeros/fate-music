@@ -6,12 +6,24 @@ Fate-Music 是一款仿照网易云 app 的跨品台桌面应用。
 
 <strong>切记使用 `yarn` 来安装依赖，运行项目 & 打包</strong>
 
+1.web 项目
+
 ```bash
 // 安装依赖
 yarn
 
 // 运行项目
 yarn start
+```
+
+2.electron 项目
+
+```bash
+// 运行
+yarn electron
+
+// 打包
+yarn electronpack
 ```
 
 ## 参考

@@ -9,8 +9,8 @@
     "electron": "electron scripts/electron.js",
     "electronpack": "electron-builder --mac"
   },
+  "homepage": "./",
   "main": "./scripts/electron.js",
-  "homepage": ".",
   "build": {
     "appId": "com.electron.${name}",
     "files": [

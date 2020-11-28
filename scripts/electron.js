@@ -7,7 +7,6 @@ let win
 
 function createWindow() {
   // 创建浏览器窗口
-  // mainWindow = new BrowserWindow({ width: 1000, height: 670 })
   win = new BrowserWindow({
     width: 1000,
     // width: 1550,
@@ -24,7 +23,7 @@ function createWindow() {
   // 或加载本地HTML文件，用于项目打包
   win.loadURL(
     url.format({
-      pathname: path.join(__dirname, './build/index.html'),
+      pathname: path.join(__dirname, '../build/index.html'),
       protocol: 'file:',
       slashes: true
     })
