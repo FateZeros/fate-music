@@ -1,0 +1,29 @@
+{
+  "prettier.singleQuote": true,
+  "prettier.semi": false,
+  "editor.formatOnSave": true,
+  // Set the default
+  "editor.tabSize": 2,
+  // Enable per-language
+  "[javascript]": {
+    "editor.formatOnSave": true
+  },
+  "[markdown]": {
+    "editor.formatOnSave": true
+  },
+  "markdownlint.config": {
+    "MD045": false
+  },
+  "vetur.format.defaultFormatterOptions": {
+    "prettier": {
+      "semi": false,
+      "singleQuote": true
+    }
+  },
+  "vetur.format.defaultFormatter.html": "js-beautify-html",
+  "javascript.implicitProjectConfig.experimentalDecorators": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "editor.minimap.maxColumn": 200,
+  "window.zoomLevel": -1,
+  "editor.fontSize": 16
+}
