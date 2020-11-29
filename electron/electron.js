@@ -1,6 +1,7 @@
 // 创建本地浏览器窗口
 const { app, BrowserWindow } = require('electron')
 const path = require('path')
+// eslint-disable-next-line
 const url = require('url')
 
 let win
@@ -12,22 +13,27 @@ function createWindow() {
     // width: 1550,
     height: 670,
     resizable: false,
-    titleBarStyle: 'hidden'
+    // titleBarStyle: 'hidden',
+    icon: path.join(__dirname, './icons/favicon.icns'),
+    webPreferences: {
+      nodeIntegration: true,
+      webSecurity: true
+    }
   })
 
   // 加载远程URL,用于项目开发
-  // win.loadURL('http://localhost:3000/')
+  win.loadURL('http://localhost:3000/')
   // 打开开发者工具，默认不打开
-  // win.webContents.openDevTools()
+  win.webContents.openDevTools()
 
   // 或加载本地HTML文件，用于项目打包
-  win.loadURL(
-    url.format({
-      pathname: path.join(__dirname, '../build/index.html'),
-      protocol: 'file:',
-      slashes: true
-    })
-  )
+  // win.loadURL(
+  //   url.format({
+  //     pathname: path.join(__dirname, '../build/index.html'),
+  //     protocol: 'file:',
+  //     slashes: true
+  //   })
+  // )
 
   // 窗口是否可以拖动
   win.setMovable(true)
@@ -36,6 +42,9 @@ function createWindow() {
   win.on('closed', function() {
     win = null
   })
+
+  // const electronIcon = new Tray(path.join(__dirname, 'electron.png'))
+  // electronIcon.setToolTip('Fate Music App')
 }
 
 // 当 Electron 完成初始化，创建浏览器窗口

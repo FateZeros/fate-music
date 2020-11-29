@@ -6,7 +6,7 @@
 electron cross-platform desktop music application
 使用 JavaScript、HTML 和 CSS 构建跨平台的桌面应用
 
-`Fate-Music` 是一款仿照网易云 app 的跨品台桌面应用。
+`Fate-Music` 是一款仿照网易云 app 的跨品台桌面应用。仿[网易云音乐](https://music.163.com/)
 
 ## 项目运行
 
