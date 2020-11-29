@@ -3,7 +3,7 @@ const { app, BrowserWindow } = require('electron')
 const path = require('path')
 // eslint-disable-next-line
 const url = require('url')
-console.log(process.env.REACT_APP_NODE_ENV)
+// console.log(process.env.REACT_APP_NODE_ENV)
 // 是否开发环境
 const isDev = process.env.REACT_APP_NODE_ENV === 'development'
 let win

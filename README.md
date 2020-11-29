@@ -4,9 +4,9 @@
 ![](https://img.shields.io/badge/electron-web-brightgreen.svg)
 
 electron cross-platform desktop music application
-使用 JavaScript、HTML 和 CSS 构建跨平台的桌面应用
+使用 JavaScript、HTML 和 CSS 构建跨平台的桌面应用。
 
-`Fate-Music` 是一款仿照网易云 app 的跨品台桌面应用。仿[网易云音乐](https://music.163.com/)
+`Fate-Music` 是一款仿网易云 app 的跨品台桌面应用。仿[网易云音乐](https://music.163.com/)
 
 ## 项目运行
 
@@ -29,8 +29,26 @@ yarn start
 yarn electron
 
 // 打包
-yarn electronpack
+yarn electron:pack
 ```
+
+## 项目体验地址
+
+![高仿网易云音乐播放器]()
+
+## 功能列表
+
+- [x] 登录/登出
+
+## 技术栈
+
+## API 接口
+
+使用网易云音乐公开的 [Node API](https://github.com/Binaryify/NeteaseCloudMusicApi)
+
+## 播放器的相关截图
+
+![01_发现音乐页]()
 
 ## 参考
 

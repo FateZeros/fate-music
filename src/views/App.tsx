@@ -1,11 +1,12 @@
 import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
 
+import Layout from 'components/layout'
+
 const App = () => {
   return (
     <BrowserRouter>
-      {process.env.NODE_ENV}
-      {process.env.REACT_APP_NODE_ENV}
+      <Layout />
     </BrowserRouter>
   )
 }
