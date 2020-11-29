@@ -6,7 +6,10 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "electron": "electron electron/electron.js",
+    "build:env": "dotenv -e .env.development node scripts/build.js",
+    "build:test": "dotenv -e .env.test node scripts/build.js",
+    "build:prod": "dotenv -e .env.production node scripts/build.js",
+    "electron": "dotenv -e .env.development electron electron/electron.js",
     "electron:pack": "electron-builder --mac"
   },
   "homepage": "./",
