@@ -1,7 +1,19 @@
 import React from 'react'
+import Header from './header'
+import Sidebar from './sidebar'
+
+import styles from './index.module.scss'
 
 const Layout: React.FC = ({ children }) => {
-  return <div>Layout</div>
+  return (
+    <div>
+      <Header />
+      <div>
+        <Sidebar />
+        <div className={styles.content}>{children}</div>
+      </div>
+    </div>
+  )
 }
 
 export default Layout
