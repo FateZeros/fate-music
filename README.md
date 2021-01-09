@@ -52,6 +52,7 @@ yarn electron:pack
 
 ## 参考
 
+[React](https://zh-hans.reactjs.org/) </br>
 [electron](https://electronjs.org/)</br>
 [create-react-app](https://github.com/facebook/create-react-app)</br>
 [electron-quick-start](https://github.com/electron/electron-quick-start)</br>
