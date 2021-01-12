@@ -11,6 +11,16 @@ body {
   padding: 0;
 }
 
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+
+  li {
+    text-decoration: none;
+  }
+}
+
 button {
   outline: none !important;
 }

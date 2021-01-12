@@ -1,4 +1,7 @@
 .siderBar {
   width: 200px;
+  height: 100%;
   background: $theme-grey;
+  display: flex;
+  flex-direction: column;
 }

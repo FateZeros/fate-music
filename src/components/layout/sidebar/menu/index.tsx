@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
-import ROUTES from '../../../../constants/routes'
+import { useHistory, useLocation } from 'react-router-dom'
+import ROUTES from 'constants/routes'
 import styles from './index.module.scss'
 
 interface IMenuItems {
@@ -75,21 +76,32 @@ const MENU: IMenu[] = [
 ]
 
 const Menu = () => {
+  const history = useHistory()
+  const { pathname } = useLocation()
+
+  const handleMenuItemClick = (route: string) => {
+    history.push(route)
+  }
+
   return (
     <Fragment>
       {MENU.map(({ id, title, items }) => {
         return (
           <div className={styles['menu-wrap']} key={id}>
             {title && <div className={styles['menu-title']}>{title}</div>}
-            <div className={styles['menu-item']}>
+            <ul className={styles['menu-item']}>
               {items.map(({ icon, label, route }) => {
                 return (
-                  <div key={route} className={styles['menu-item-row']}>
+                  <li
+                    key={route}
+                    className={styles['menu-item-row']}
+                    onClick={() => handleMenuItemClick(route)}
+                  >
                     {label}
-                  </div>
+                  </li>
                 )
               })}
-            </div>
+            </ul>
           </div>
         )
       })}
