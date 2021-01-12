@@ -2,9 +2,6 @@
   width: 100%;
   min-width: 1200px;
   height: 50px;
-  background-color: rgba(248, 248, 248, 0.95);
-  position: fixed;
-  top: 0;
+  background: $theme-red;
   display: flex;
-  z-index: 10;
 }
