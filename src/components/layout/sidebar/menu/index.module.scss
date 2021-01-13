@@ -1,3 +1,18 @@
+@mixin menu-icon($iconName, $isActive, $bgSize: 15px) {
+  width: 36px;
+  height: 100%;
+  @if $isActive {
+    background: url('../../../../assets/image/menu/icon-#{$iconName}-active.png')
+      no-repeat
+      center;
+  } @else {
+    background: url('../../../../assets/image/menu/icon-#{$iconName}.png')
+      no-repeat
+      center;
+  }
+  background-size: $bgSize;
+}
+
 .menu-wrap {
   width: 100%;
   height: auto;
@@ -6,6 +21,9 @@
     width: 100%;
     height: 30px;
     line-height: 30px;
+    font-size: 12px;
+    color: $theme-menu-active;
+    padding-left: 8px;
   }
 
   .menu-item {
@@ -13,10 +31,60 @@
 
     .menu-item-row {
       width: 100%;
-      height: 30px;
-      line-height: 30px;
+      height: 36px;
+      line-height: 36px;
       font-size: 14px;
+      color: #505050;
+      font-weight: 400;
       cursor: pointer;
+      display: flex;
+
+      &:hover {
+        background: #e3e3e3;
+      }
+    }
+
+    .menu-row-active {
+      color: $theme-red;
+      background: #dedede !important;
+    }
+
+    @each $iconName
+      in (
+        music,
+        fm,
+        video,
+        friends,
+        itunes,
+        download,
+        'my-cloud',
+        'my-fm',
+        'my-collect'
+      )
+    {
+      .menu-icon-#{$iconName} {
+        @if ($iconName == 'video') {
+          @include menu-icon($iconName, false, 22px);
+        } @else if ($iconName == 'friends') {
+          @include menu-icon($iconName, false, 20px);
+        } @else if ($iconName == 'download') {
+          @include menu-icon($iconName, false, 20px);
+        } @else {
+          @include menu-icon($iconName, false);
+        }
+      }
+
+      .menu-icon-#{$iconName}-active {
+        @if ($iconName == 'video') {
+          @include menu-icon($iconName, true, 22px);
+        } @else if ($iconName == 'friends') {
+          @include menu-icon($iconName, true, 20px);
+        } @else if ($iconName == 'download') {
+          @include menu-icon($iconName, true, 20px);
+        } @else {
+          @include menu-icon($iconName, true);
+        }
+      }
     }
   }
 }

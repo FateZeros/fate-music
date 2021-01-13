@@ -1,0 +1,36 @@
+.user-wrap {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  padding-left: 8px;
+  padding-right: 12px;
+
+  .user-img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #d9d9d9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  .user-name {
+    max-width: 100px;
+    line-height: 60px;
+    font-size: 14px;
+    margin-left: 8px;
+    background: url('../../../../assets/image/right-arrow.png') no-repeat center
+      right;
+    background-size: 16px 16px;
+    padding-right: 16px;
+    cursor: pointer;
+    @extend .text-over-hidden;
+  }
+}
