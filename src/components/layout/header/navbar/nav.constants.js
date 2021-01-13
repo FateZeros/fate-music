@@ -88,5 +88,10 @@ export const NAVBAR = {
       label: '专栏',
       route: ROUTES.MY_COLLECT_COLUMNS
     }
+  ],
+  [ROUTES.SETTING]: [
+    {
+      label: '设置'
+    }
   ]
 }

@@ -1,8 +1,95 @@
 .header {
   width: 100%;
   min-width: 1200px;
-  height: 50px;
+  height: $headerHeight;
   background: $theme-red;
   display: flex;
   position: relative;
+  padding-right: 20px;
+
+  .setting-wrap,
+  .message-wrap,
+  .theme-wrap,
+  .fold-wrap {
+    width: 40px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  .setting-icon {
+    width: 30px;
+    height: 30px;
+    background: url('../../../assets/image/icon-setting.png') no-repeat center;
+    background-size: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+
+    &:hover {
+      background: #c03738 url('../../../assets/image/icon-setting.png')
+        no-repeat center;
+      background-size: 20px;
+    }
+  }
+
+  .message-icon {
+    width: 30px;
+    height: 30px;
+    background: url('../../../assets/image/icon-message.png') no-repeat center;
+    background-size: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+
+    &:hover {
+      background: #c03738 url('../../../assets/image/icon-message.png')
+        no-repeat center;
+      background-size: 20px;
+    }
+  }
+
+  .message-num {
+    position: absolute;
+    width: 20px;
+    height: 14px;
+    line-height: 14px;
+    text-align: center;
+    font-size: 12px;
+    background: #fff;
+    border-radius: 7px;
+    color: $theme-red;
+    right: 0px;
+    top: 12px;
+  }
+
+  .theme-icon {
+    width: 30px;
+    height: 30px;
+    background: url('../../../assets/image/icon-theme.png') no-repeat center;
+    background-size: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+
+    &:hover {
+      background: #c03738 url('../../../assets/image/icon-theme.png') no-repeat
+        center;
+      background-size: 20px;
+    }
+  }
+
+  .fold-icon {
+    width: 30px;
+    height: 30px;
+    background: url('../../../assets/image/icon-fold.png') no-repeat center;
+    background-size: 16px;
+    border-radius: 50%;
+    cursor: pointer;
+
+    &:hover {
+      background: #c03738 url('../../../assets/image/icon-fold.png') no-repeat
+        center;
+      background-size: 16px;
+    }
+  }
 }

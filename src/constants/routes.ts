@@ -42,6 +42,8 @@ const MY_COLLECT_SINGERS = `${MY_COLLECT}/singers`
 const MY_COLLECT_VIDEOS = `${MY_COLLECT}/videos`
 const MY_COLLECT_COLUMNS = `${MY_COLLECT}/columns`
 
+const SETTING = '/setting'
+
 const ROUTES = {
   ROOT,
   DISCOVERY,
@@ -67,7 +69,8 @@ const ROUTES = {
   MY_COLLECT_ALBUM,
   MY_COLLECT_SINGERS,
   MY_COLLECT_VIDEOS,
-  MY_COLLECT_COLUMNS
+  MY_COLLECT_COLUMNS,
+  SETTING
 }
 
 export default ROUTES

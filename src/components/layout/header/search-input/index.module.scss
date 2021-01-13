@@ -1,0 +1,27 @@
+.search-input {
+  width: 160px;
+  height: 30px;
+  margin-top: 10px;
+  display: flex;
+  background: #d45758;
+  border-radius: 15px;
+  margin-right: 8px;
+
+  .search-icon {
+    width: 30px;
+    background: url('../../../../assets/image/icon-search.png') no-repeat center;
+    background-size: 15px;
+  }
+
+  input {
+    border: none;
+    outline: none;
+    background: #d45758;
+    flex: 1;
+    color: #fff;
+
+    &::placeholder {
+      color: $theme-grey;
+    }
+  }
+}

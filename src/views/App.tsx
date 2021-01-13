@@ -15,6 +15,7 @@ const Download = lazy(() => import('views/download'))
 const MyCloud = lazy(() => import('views/my-cloud'))
 const MyFM = lazy(() => import('views/my-fm'))
 const MyCollect = lazy(() => import('views/my-collect'))
+const Setting = lazy(() => import('views/setting'))
 
 const App = () => {
   return (
@@ -31,6 +32,7 @@ const App = () => {
             <Route path={ROUTES.MY_CLOUD} component={MyCloud} />
             <Route path={ROUTES.MY_FM} component={MyFM} />
             <Route path={ROUTES.MY_COLLECT} component={MyCollect} />
+            <Route path={ROUTES.SETTING} component={Setting} />
             <Redirect from={ROUTES.ROOT} to={ROUTES.DISCOVERY} />
           </Switch>
         </Suspense>

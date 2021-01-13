@@ -1,5 +1,23 @@
 .navbar-wrap {
   flex: 1;
-  height: 100%;
+  height: $headerHeight;
   margin-left: 30px;
+  display: flex;
+
+  .navbar-item {
+    font-size: 15px;
+    line-height: $headerHeight;
+    padding: 0 20px 0 0;
+    color: #edbabb;
+    cursor: pointer;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+
+  .active-route {
+    color: #fff;
+    font-weight: 500;
+  }
 }

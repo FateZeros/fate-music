@@ -5,7 +5,7 @@
 
   .action-arrows {
     width: 60px;
-    height: 40px;
+    height: $headerHeight;
     position: absolute;
     right: 0;
     bottom: 0;
@@ -14,7 +14,7 @@
 
   .action-left {
     flex: 1;
-    height: 40px;
+    height: 100%;
     background: url('../../../../assets/image/action/action-left-active.png')
       no-repeat center;
     background-size: 20px;
@@ -23,7 +23,7 @@
 
   .action-right {
     flex: 1;
-    height: 40px;
+    height: 100%;
     background: url('../../../../assets/image/action/action-right-active.png')
       no-repeat center;
     background-size: 20px;
