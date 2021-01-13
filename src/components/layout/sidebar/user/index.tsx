@@ -7,7 +7,7 @@ const User = () => {
   return (
     <div className={styles['user-wrap']}>
       <div className={styles['user-img']}>
-        <img src={defaultUser} />
+        <img src={defaultUser} alt="" />
       </div>
       <div className={styles['user-name']}>未登录</div>
     </div>

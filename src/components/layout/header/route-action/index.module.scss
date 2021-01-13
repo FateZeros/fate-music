@@ -1,0 +1,32 @@
+.action-wrap {
+  width: $sideWidth;
+  height: 100%;
+  position: relative;
+
+  .action-arrows {
+    width: 60px;
+    height: 40px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    display: flex;
+  }
+
+  .action-left {
+    flex: 1;
+    height: 40px;
+    background: url('../../../../assets/image/action/action-left-active.png')
+      no-repeat center;
+    background-size: 20px;
+    cursor: pointer;
+  }
+
+  .action-right {
+    flex: 1;
+    height: 40px;
+    background: url('../../../../assets/image/action/action-right-active.png')
+      no-repeat center;
+    background-size: 20px;
+    cursor: pointer;
+  }
+}
