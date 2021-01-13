@@ -1,4 +1,4 @@
-import { FATE_MUSIC_VALID_DAY } from 'constants'
+import { FATE_MUSIC_VALID_DAY } from 'constants/constants'
 
 function setExpirseDate() {
   const nowDate = new Date().getTime()
