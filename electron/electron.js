@@ -24,7 +24,7 @@ function createWindow() {
 
   if (isDev) {
     // 加载远程URL,用于项目开发
-    win.loadURL('http://localhost:3000/')
+    win.loadURL('http://localhost:1221/')
     // 打开开发者工具，默认不打开
     win.webContents.openDevTools()
   } else {

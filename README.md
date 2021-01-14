@@ -44,7 +44,9 @@ yarn electron:pack
 
 ## API 接口
 
-使用网易云音乐公开的 [Node API](https://github.com/Binaryify/NeteaseCloudMusicApi)
+使用网易云音乐公开的 [Node API](https://github.com/Binaryify/NeteaseCloudMusicApi) </br>
+
+[网易云接口文档](https://binaryify.github.io/NeteaseCloudMusicApi/#/?id=neteasecloudmusicapi)
 
 ## 播放器的相关截图
 
@@ -59,3 +61,4 @@ yarn electron:pack
 [React + electron 搭建一个桌面应用](https://juejin.im/post/5a6a91276fb9a01cbd58ce32) </br>
 [打造跳跃音波播音乐放器 Electron+Nodejs+React](https://juejin.im/post/5af02453518825672c00dfd4) </br>
 [Blueprint UI](https://blueprintjs.com/docs/) </br>
+[TypeScript 文档](https://www.tslang.cn/docs/handbook/basic-types.html)
