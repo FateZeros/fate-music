@@ -2,16 +2,23 @@ import request from 'utils/request'
 
 import { ILoginCellphoneRequest, ILoginCellphoneResponse } from './types/login'
 
-type LoginCellphoneFn = (
+// 手机号码登录
+const loginCellphone = (
   params: ILoginCellphoneRequest
-) => Promise<ILoginCellphoneResponse>
-
-const loginCellphone: LoginCellphoneFn = payload => {
+): Promise<ILoginCellphoneResponse> => {
   return request({
     url: '/login/cellphone',
     method: 'post',
-    data: payload
+    data: params
   })
 }
 
-export default { loginCellphone }
+// 退出登录
+const loginOut = () => {
+  return request({
+    url: '/loginout',
+    method: 'post'
+  })
+}
+
+export { loginCellphone, loginOut }

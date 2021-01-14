@@ -12,37 +12,35 @@ if (process.env.REACT_APP_NODE_ENV === 'development') {
   baseURL = process.env.REACT_APP_BASE_URL || ''
 }
 
-const createInstance = () => {
-  console.log(baseURL, process.env.REACT_APP_BASE_URL, 1212)
-  const instance = axios.create({
-    baseURL,
-    withCredentials: true,
-    timeout: TIME_OUT,
-    responseType: MIME_TYPE.JSON
-  })
+const service = axios.create({
+  baseURL,
+  withCredentials: true,
+  timeout: TIME_OUT,
+  responseType: MIME_TYPE.JSON
+})
 
-  instance.interceptors.response.use(handleResponse, handleError)
+service.interceptors.request.use(
+  (config: AxiosRequestConfig) => {
+    return config
+  },
+  (error: any) => {
+    return Promise.reject(error)
+  }
+)
 
-  return instance
-}
-
-const handleResponse = (response: any) => {
-  return response.data
-}
-
-const handleError = (error: any) => {
-  const { response, message } = error
-  return Promise.reject(
-    response && response.data
-      ? new Error(response.data.message || message)
-      : error
-  )
-}
+service.interceptors.response.use(
+  (response: any) => {
+    return response
+  },
+  (error: any) => {
+    return Promise.reject(error)
+  }
+)
 
 interface Instance extends AxiosInstance {
   (config: AxiosRequestConfig): Promise<any>
 }
 
-const request: Instance = createInstance()
+const request: Instance = service
 
 export default request

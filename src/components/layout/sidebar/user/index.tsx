@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-// import loginApis from 'apis/login'
+// import * as loginApis from 'apis/login'
 import styles from './index.module.scss'
 import defaultUser from 'assets/image/default-user.png'
 
