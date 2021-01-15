@@ -30,11 +30,11 @@ service.interceptors.request.use(
 
 service.interceptors.response.use(
   (response: any) => {
-    if (response.data.code === 200) {
-      return response.data
-    } else {
-      return Promise.reject(response.data.message || '接口错误～')
-    }
+    // if (response.data.code === 200) {
+    return response.data
+    // } else {
+    //   return Promise.reject(response.data.message || '接口错误～')
+    // }
   },
   (error: any) => {
     const { response } = error

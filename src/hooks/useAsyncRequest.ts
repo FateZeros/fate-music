@@ -50,6 +50,7 @@ export default function useAsyncRequest<
 
     return fn(...args)
       .then(value => {
+        // console.log(value, '=== 接口 200 返回 ===')
         const callback = args[args.length - 1]
 
         if (isMounted() && callId === lastCallId.current) {
