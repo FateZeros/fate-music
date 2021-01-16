@@ -1,9 +1,10 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom'
+import dayjs from 'dayjs'
 
 import * as recommendApis from 'apis/recommendation'
 import useAsyncRequest from 'hooks/useAsyncRequest'
 import LinkTitle from 'components/link-title'
+import RecommendSongItem from 'components/recommend-song-item'
 import ROUTES from 'constants/routes'
 
 import styles from './index.module.scss'
@@ -14,8 +15,6 @@ const { useEffect } = React
  * 发现 - 推荐歌单
  */
 const RecommendSongs = () => {
-  const history = useHistory()
-
   const [state, getRecommendResource] = useAsyncRequest(
     recommendApis.getRecommendResource
   )
@@ -26,18 +25,22 @@ const RecommendSongs = () => {
     getRecommendResource()
   }, [])
 
+  const currentDay = dayjs().format('DD')
+
   return (
     <div className={styles['songs-wrap']}>
       <LinkTitle title="推荐歌单" route={ROUTES.DISCOVERY_SONGLIST} />
       <div className={styles['recommend-songs']}>
-        <div className={styles['daliy-recommend-songs']}>17</div>
+        <div className={styles['daily-recommend-songs']}>
+          <div className={styles['daily-date']}>
+            <div className={styles['daily-day']}>{currentDay}</div>
+            <div className={styles['daily-play-icon']} />
+          </div>
+          <div className={styles['daily-tip']}>每日歌曲推荐</div>
+        </div>
         {recommendSongs.map((item, index) => {
           return (
-            index < 7 && (
-              <div key={item.id} className={styles['song-item']}>
-                <img src={item.picUrl} loading="lazy" alt="" />
-              </div>
-            )
+            index < 9 && <RecommendSongItem key={item.id} songItem={item} />
           )
         })}
       </div>

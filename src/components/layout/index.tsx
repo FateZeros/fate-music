@@ -7,7 +7,7 @@ import styles from './index.module.scss'
 
 const Layout: React.FC = ({ children }) => {
   return (
-    <div>
+    <div className={styles['fate-music']}>
       <Header />
       <div className={styles['music-container']}>
         <Sidebar />

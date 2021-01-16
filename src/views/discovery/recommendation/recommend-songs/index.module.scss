@@ -1,23 +1,71 @@
 .songs-wrap {
   width: 100%;
-  height: 480px;
   margin-top: 12px;
-  border: 1px solid;
 
   .recommend-songs {
     width: 100%;
-    height: 450px;
     display: flex;
+    justify-content: space-between;
     flex-wrap: wrap;
-    margin-top: 12px;
+    padding: 12px 0;
 
-    .song-item {
+    .daily-recommend-songs {
       width: 200px;
-      height: 200px;
-      margin-right: 2%;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
 
-      img {
+      .daily-date {
         width: 100%;
+        height: 200px;
+        border-radius: 5px;
+        background: url('../../../../assets/image/daily-bg.png') no-repeat
+          center;
+        background-size: cover;
+        font-size: 30px;
+        text-align: center;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+
+        .daily-day {
+          width: 120px;
+          height: 120px;
+          line-height: 150px;
+          background: url('../../../../assets/image/daily-calendar-bg.png')
+            no-repeat center;
+          background-size: 120px;
+        }
+
+        &:hover {
+          .daily-play-icon {
+            display: inline-block;
+          }
+        }
+      }
+
+      .daily-tip {
+        width: 100%;
+        height: 40px;
+        font-size: 13px;
+        color: #666;
+        margin-top: 4px;
+      }
+
+      .daily-play-icon {
+        width: 30px;
+        height: 30px;
+        background: rgba(255, 255, 255, 0.6)
+          url('../../../../assets/image/play.png') no-repeat center;
+        background-size: 15px;
+        position: absolute;
+        right: 12px;
+        bottom: 12px;
+        display: none;
+        border-radius: 50%;
       }
     }
   }
