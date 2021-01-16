@@ -12,4 +12,14 @@ export interface IBannerRequest {
 export interface IBannerResponse {
   pic: string
   typeTitle: string
+  targetId: number
+  targetType: number
+}
+
+export interface IRecommendResponse {
+  id: string
+  type: number
+  copywriter: string
+  playcount: number
+  picUrl: string
 }

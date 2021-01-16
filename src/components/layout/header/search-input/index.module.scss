@@ -2,23 +2,30 @@
   width: 160px;
   height: 30px;
   margin-top: 10px;
-  display: flex;
+  // display: flex;
   background: #d45758;
   border-radius: 15px;
   margin-right: 8px;
+  overflow: hidden;
+  position: relative;
 
   .search-icon {
     width: 30px;
+    height: 100%;
     background: url('../../../../assets/image/icon-search.png') no-repeat center;
     background-size: 15px;
+    position: absolute;
+    left: 0;
+    top: 0;
   }
 
   input {
     border: none;
     outline: none;
     background: #d45758;
-    flex: 1;
+    width: 100%;
     color: #fff;
+    padding-left: 30px;
 
     &::placeholder {
       color: $theme-grey;
