@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
+import { HashRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 
 import Layout from 'components/layout'
 import ROUTES from 'constants/routes'
@@ -19,7 +19,7 @@ const Setting = lazy(() => import('views/setting'))
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <Router>
       <Layout>
         <Suspense fallback={<div>加载中...</div>}>
           <Switch>
@@ -37,7 +37,7 @@ const App = () => {
           </Switch>
         </Suspense>
       </Layout>
-    </BrowserRouter>
+    </Router>
   )
 }
 

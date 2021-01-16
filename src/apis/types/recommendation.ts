@@ -23,3 +23,25 @@ export interface IRecommendResponse {
   playcount: number
   picUrl: string
 }
+
+export interface ITopPlayMusicCreator {
+  userId: number
+  nickname: string
+  avatarUrl: string
+}
+
+export interface ITopPlayListRespose {
+  id: number
+  name: string
+  playCount: number
+  coverImgUrl: string
+  description: string
+  creator: ITopPlayMusicCreator
+}
+
+export interface IOneHighqualityResponse {
+  name?: string
+  id?: number
+  copywriter?: string
+  coverImgUrl?: string
+}

@@ -1,0 +1,78 @@
+.song-list-wrap {
+  width: 100%;
+  max-width: 1100px;
+  height: auto;
+  margin: 0 auto;
+  padding-bottom: $musicPlayerHeight + 14px;
+
+  .highquality-song-wrap {
+    width: 100%;
+    height: 175px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+
+    .highquality-song-row {
+      width: 100%;
+      height: 140px;
+      display: flex;
+      padding: 0 20px;
+
+      img {
+        height: 100%;
+      }
+
+      .highquality-song-info {
+        flex: 1;
+        height: 100%;
+        margin-left: 12px;
+        display: flex;
+        flex-direction: column;
+        padding: 15px 0;
+        overflow: hidden;
+
+        .highquality-tag {
+          width: 120px;
+          height: 30px;
+          line-height: 30px;
+          color: #df9948;
+          border: 1px solid #df9948;
+          border-radius: 15px;
+          padding-left: 30px;
+          background: url('../../../assets/image/crown-icon.png') no-repeat left
+            12px center;
+          background-size: 16px;
+        }
+
+        .highquality-name {
+          width: 100%;
+          height: 30px;
+          line-height: 30px;
+          font-size: 16px;
+          color: #fff;
+          margin-top: 16px;
+          @extend .text-over-hidden;
+        }
+
+        .highquality-tip {
+          width: 100%;
+          height: 20px;
+          line-height: 20px;
+          font-size: 12px;
+          color: #e3e3e3;
+          margin-top: 4px;
+          @extend .text-over-hidden;
+        }
+      }
+    }
+  }
+
+  .song-cont {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 12px 0;
+  }
+}
