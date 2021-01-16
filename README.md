@@ -54,7 +54,7 @@ yarn electron:pack
 
 ## 播放器的相关截图
 
-![01_发现音乐页]('./rescoures/fate-music1.png')
+![01_发现音乐页](./rescoures/fate-music1.png)
 
 ## 参考
 
