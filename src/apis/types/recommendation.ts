@@ -1,3 +1,5 @@
+import { IArtist } from './common'
+
 enum BannerType {
   PC = 0,
   Andriod = 1,
@@ -51,4 +53,16 @@ export interface IPrivateContentRepose {
   picUrl: string
   type: number
   name: string
+}
+
+export interface IMuiscSong {
+  artists?: IArtist[]
+}
+
+export interface IPersonalizedNewsongs {
+  id: string
+  type: number
+  name: string
+  picUrl: string
+  song: IMuiscSong
 }

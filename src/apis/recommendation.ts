@@ -5,7 +5,8 @@ import {
   IRecommendResponse,
   ITopPlayListRespose,
   IOneHighqualityResponse,
-  IPrivateContentRepose
+  IPrivateContentRepose,
+  IPersonalizedNewsongs
 } from './types/recommendation'
 
 // 获取 banner
@@ -63,10 +64,20 @@ const getPrivatecontentEnter = async (): Promise<IPrivateContentRepose[]> => {
   return response.result
 }
 
+// 推荐新音乐
+const getPersonalizedNewsongs = async (): Promise<IPersonalizedNewsongs[]> => {
+  const response = await request({
+    url: '/personalized/newsong',
+    method: 'get'
+  })
+  return response.result
+}
+
 export {
   getBannerList,
   getRecommendResource,
   getTopPlayList,
   getOneHighquality,
-  getPrivatecontentEnter
+  getPrivatecontentEnter,
+  getPersonalizedNewsongs
 }
