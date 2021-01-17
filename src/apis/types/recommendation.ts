@@ -45,3 +45,10 @@ export interface IOneHighqualityResponse {
   copywriter?: string
   coverImgUrl?: string
 }
+
+export interface IPrivateContentRepose {
+  id: number
+  picUrl: string
+  type: number
+  name: string
+}

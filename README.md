@@ -6,8 +6,8 @@
 electron cross-platform desktop music application
 使用 JavaScript、HTML 和 CSS 构建跨平台的桌面应用。
 
-`Fate-Music` 是一款仿网易云 app 的跨平台桌面应用。仿[网易云音乐](https://music.163.com/)
-使用技术栈 `React`, `React Hooks`
+> `Fate-Music` 是一款仿网易云 app 的跨平台桌面应用。仿[网易云音乐](https://music.163.com/)。使用技术栈 `React + React Hooks + typescript + Electron`。
+> 主要是强化技术栈的使用，打造一个优秀的项目实践。
 
 ## 项目运行
 

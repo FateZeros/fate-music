@@ -4,7 +4,8 @@ import {
   IBannerResponse,
   IRecommendResponse,
   ITopPlayListRespose,
-  IOneHighqualityResponse
+  IOneHighqualityResponse,
+  IPrivateContentRepose
 } from './types/recommendation'
 
 // 获取 banner
@@ -53,9 +54,19 @@ const getOneHighquality = async (): Promise<IOneHighqualityResponse> => {
   return response.playlists[0]
 }
 
+// 独家放送 - 入口
+const getPrivatecontentEnter = async (): Promise<IPrivateContentRepose[]> => {
+  const response = await request({
+    url: '/personalized/privatecontent',
+    method: 'get'
+  })
+  return response.result
+}
+
 export {
   getBannerList,
   getRecommendResource,
   getTopPlayList,
-  getOneHighquality
+  getOneHighquality,
+  getPrivatecontentEnter
 }

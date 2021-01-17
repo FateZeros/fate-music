@@ -4,14 +4,14 @@ import { IRecommendResponse } from 'apis/types/recommendation'
 import PlayCount from 'components/play-count'
 import styles from './index.module.scss'
 
-interface Iprops {
+interface IProps {
   songItem: IRecommendResponse
 }
 
 /*
  * 个性推荐 - 推荐歌曲 - item
  */
-const RecommendSongItem: React.FC<Iprops> = ({ songItem }) => {
+const RecommendSongItem: React.FC<IProps> = ({ songItem }) => {
   const { picUrl, copywriter, playcount } = songItem
 
   return (
