@@ -56,7 +56,8 @@ export interface IPrivateContentRepose {
 }
 
 export interface IMuiscSong {
-  artists?: IArtist[]
+  artists: IArtist[]
+  duration: number
 }
 
 export interface IPersonalizedNewsongs {

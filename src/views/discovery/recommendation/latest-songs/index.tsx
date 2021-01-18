@@ -27,8 +27,10 @@ const LatestSongs = () => {
     <div className={styles.wrap}>
       <LinkTitle title="最新音乐" route={ROUTES.DISCOVERY_LATEST_SONGS} />
       <div className={styles['latest-songs']}>
-        {newSongs.map(item => {
-          return <LatestSongitem key={item.id} songItem={item} />
+        {newSongs.map((item, index) => {
+          return (
+            <LatestSongitem key={item.id} songItem={item} sortNum={index + 1} />
+          )
         })}
       </div>
     </div>

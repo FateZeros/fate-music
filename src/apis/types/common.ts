@@ -1,6 +1,6 @@
 export interface IArtist {
   albumSize: number
   id: number
-  name: number
+  name: string
   picUrl: string
 }
