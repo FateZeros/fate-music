@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { IPersonalizedNewsongs } from 'apis/types/recommendation'
+import { ReducerContext } from 'reducers'
 import styles from './index.module.scss'
 
 interface IProps {
@@ -16,11 +17,20 @@ const LatestSongItem: React.FC<IProps> = ({ songItem, sortNum }) => {
   })
   songArtistName = songArtistName.substr(0, songArtistName.length - 1)
 
+  const [state, dispatch] = useContext(ReducerContext)
+
+  const handlePlayMusic = () => {
+    dispatch({ type: 'TEST' })
+  }
+
   return (
     <div className={styles.wrap}>
       <div className={styles['wrap-img']}>
         <img src={picUrl} loading="lazy" alt="" />
-        <div className={styles['play-icon']} />
+        <div
+          className={styles['play-icon']}
+          onClick={() => handlePlayMusic()}
+        />
       </div>
       <div className={styles['wrap-item-num']}> {sortNum}</div>
       <div className={styles['wrap-item-info']}>

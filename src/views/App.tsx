@@ -3,8 +3,9 @@ import { HashRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 
 import Layout from 'components/layout'
 import ROUTES from 'constants/routes'
+import { ReducerContext, reducers, initState } from 'reducers'
 
-const { lazy, Suspense } = React
+const { lazy, Suspense, useReducer } = React
 
 const Discovery = lazy(() => import('views/discovery'))
 const FM = lazy(() => import('views/fm'))
@@ -18,25 +19,29 @@ const MyCollect = lazy(() => import('views/my-collect'))
 const Setting = lazy(() => import('views/setting'))
 
 const App = () => {
+  const reducer = useReducer(reducers, initState)
+
   return (
     <Router>
-      <Layout>
-        <Suspense fallback={<div>加载中...</div>}>
-          <Switch>
-            <Route path={ROUTES.DISCOVERY} component={Discovery} />
-            <Route path={ROUTES.FM} component={FM} />
-            <Route path={ROUTES.VIDEOS} component={Video} />
-            <Route path={ROUTES.FIRENDS} component={Friends} />
-            <Route path={ROUTES.ITUNES} component={Itunes} />
-            <Route path={ROUTES.DOWNLOAD} component={Download} />
-            <Route path={ROUTES.MY_CLOUD} component={MyCloud} />
-            <Route path={ROUTES.MY_FM} component={MyFM} />
-            <Route path={ROUTES.MY_COLLECT} component={MyCollect} />
-            <Route path={ROUTES.SETTING} component={Setting} />
-            <Redirect from={ROUTES.ROOT} to={ROUTES.DISCOVERY} />
-          </Switch>
-        </Suspense>
-      </Layout>
+      <ReducerContext.Provider value={reducer}>
+        <Layout>
+          <Suspense fallback={<div>加载中...</div>}>
+            <Switch>
+              <Route path={ROUTES.DISCOVERY} component={Discovery} />
+              <Route path={ROUTES.FM} component={FM} />
+              <Route path={ROUTES.VIDEOS} component={Video} />
+              <Route path={ROUTES.FIRENDS} component={Friends} />
+              <Route path={ROUTES.ITUNES} component={Itunes} />
+              <Route path={ROUTES.DOWNLOAD} component={Download} />
+              <Route path={ROUTES.MY_CLOUD} component={MyCloud} />
+              <Route path={ROUTES.MY_FM} component={MyFM} />
+              <Route path={ROUTES.MY_COLLECT} component={MyCollect} />
+              <Route path={ROUTES.SETTING} component={Setting} />
+              <Redirect from={ROUTES.ROOT} to={ROUTES.DISCOVERY} />
+            </Switch>
+          </Suspense>
+        </Layout>
+      </ReducerContext.Provider>
     </Router>
   )
 }
