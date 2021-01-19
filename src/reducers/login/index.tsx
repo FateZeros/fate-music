@@ -11,4 +11,4 @@ const loginReducer = (state = loginState, action) => {
   }
 }
 
-export { loginState, loginReducer }
+export default loginReducer

@@ -2,7 +2,7 @@
  * [redux combineReducers](https://github.com/reduxjs/redux/blob/master/src/combineReducers.ts)
  */
 import React from 'react'
-import { loginState, loginReducer } from './login'
+import loginReducer from './login'
 
 const combineReducer = reducers => {
   const reducerKeys = Object.keys(reducers)
@@ -16,7 +16,7 @@ const combineReducer = reducers => {
     objInitState[key] = initState
   })
 
-  return (_, action) => {
+  return (state?: any, action?: any) => {
     if (action) {
       reducerKeys.forEach(key => {
         const previousState = objInitState[key]
@@ -33,10 +33,6 @@ const reducers = combineReducer({
   login: loginReducer
 })
 
-const initState = {
-  login: loginState
-}
-
 const ReducerContext = React.createContext<any>({})
 
-export { ReducerContext, reducers, initState }
+export { ReducerContext, reducers }

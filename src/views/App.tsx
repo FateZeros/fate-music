@@ -3,7 +3,7 @@ import { HashRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 
 import Layout from 'components/layout'
 import ROUTES from 'constants/routes'
-import { ReducerContext, reducers, initState } from 'reducers'
+import { ReducerContext, reducers } from 'reducers'
 
 const { lazy, Suspense, useReducer } = React
 
@@ -19,6 +19,7 @@ const MyCollect = lazy(() => import('views/my-collect'))
 const Setting = lazy(() => import('views/setting'))
 
 const App = () => {
+  const initState = reducers()
   const reducer = useReducer(reducers, initState)
 
   return (
