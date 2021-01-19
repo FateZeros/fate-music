@@ -1,5 +1,6 @@
 /**
  * [redux combineReducers](https://github.com/reduxjs/redux/blob/master/src/combineReducers.ts)
+ * https://github.com/StringLiu2/hooks-useReducer-integration
  */
 import React from 'react'
 import loginReducer from './login'
