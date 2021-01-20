@@ -18,11 +18,13 @@ const ExclusiveSongs = () => {
     recommendApis.getPrivatecontentEnter
   )
   const { value: privatecontent = [] } = state
-  console.log(privatecontent)
 
-  useEffect(() => {
-    getPrivatecontentEnter()
-  }, [])
+  useEffect(
+    () => {
+      getPrivatecontentEnter()
+    },
+    [getPrivatecontentEnter]
+  )
 
   return (
     <div className={styles['songs-wrap']}>

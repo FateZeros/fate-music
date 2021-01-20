@@ -21,10 +21,13 @@ const SongList = () => {
   )
   const { value: recommendSongs = [] } = state
 
-  useEffect(() => {
-    getOneHighquality()
-    getRecommendResource()
-  }, [])
+  useEffect(
+    () => {
+      getOneHighquality()
+      getRecommendResource()
+    },
+    [getOneHighquality, getRecommendResource]
+  )
 
   return (
     <div className={styles['song-list-wrap']}>

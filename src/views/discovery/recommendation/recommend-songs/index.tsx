@@ -1,5 +1,6 @@
 import React from 'react'
 import dayjs from 'dayjs'
+import { useHistory } from 'react-router-dom'
 
 import * as recommendApis from 'apis/recommendation'
 import useAsyncRequest from 'hooks/useAsyncRequest'
@@ -15,15 +16,20 @@ const { useEffect } = React
  * 发现 - 推荐歌单
  */
 const RecommendSongs = () => {
+  const history = useHistory()
+
   const [state, getRecommendResource] = useAsyncRequest(
     recommendApis.getRecommendResource
   )
   const { value: recommendSongs = [], loading: getRecommendLoading } = state
   console.log(recommendSongs, getRecommendLoading)
 
-  useEffect(() => {
-    getRecommendResource()
-  }, [])
+  useEffect(
+    () => {
+      getRecommendResource()
+    },
+    [getRecommendResource]
+  )
 
   const currentDay = dayjs().format('DD')
 
@@ -32,7 +38,10 @@ const RecommendSongs = () => {
       <LinkTitle title="推荐歌单" route={ROUTES.DISCOVERY_SONGLIST} />
       <div className={styles['recommend-songs']}>
         <div className={styles['daily-recommend-songs']}>
-          <div className={styles['daily-date']}>
+          <div
+            className={styles['daily-date']}
+            onClick={() => history.push(ROUTES.DAILY_SONGS)}
+          >
             <div className={styles['daily-day']}>{currentDay}</div>
             <div className={styles['daily-play-icon']} />
           </div>

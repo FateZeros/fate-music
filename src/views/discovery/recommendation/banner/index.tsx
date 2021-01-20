@@ -17,10 +17,13 @@ const Banner = () => {
   const { value: banners = [], loading: getBannerLoading } = state
   console.log(getBannerLoading)
 
-  useEffect(() => {
-    const postData = { type: 1 }
-    getBannerList(postData)
-  }, [])
+  useEffect(
+    () => {
+      const postData = { type: 1 }
+      getBannerList(postData)
+    },
+    [getBannerList]
+  )
 
   const bannersClassName = useMemo(
     () => {

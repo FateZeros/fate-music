@@ -17,6 +17,7 @@ const MyCloud = lazy(() => import('views/my-cloud'))
 const MyFM = lazy(() => import('views/my-fm'))
 const MyCollect = lazy(() => import('views/my-collect'))
 const Setting = lazy(() => import('views/setting'))
+const DailySongs = lazy(() => import('views/daily-songs'))
 
 const App = () => {
   const initState = reducers()
@@ -38,6 +39,7 @@ const App = () => {
               <Route path={ROUTES.MY_FM} component={MyFM} />
               <Route path={ROUTES.MY_COLLECT} component={MyCollect} />
               <Route path={ROUTES.SETTING} component={Setting} />
+              <Route path={ROUTES.DAILY_SONGS} component={DailySongs} />
               <Redirect from={ROUTES.ROOT} to={ROUTES.DISCOVERY} />
             </Switch>
           </Suspense>

@@ -63,7 +63,7 @@ export default function useAsyncRequest<
         return value
       })
       .catch(error => {
-        console.log(error, '=== useAsyncRequest ===')
+        console.log(error, '=== useAsyncRequest error ===')
         if (isMounted() && callId === lastCallId.current) {
           errorHandler && errorHandler(error)
           set({ error, loading: false })

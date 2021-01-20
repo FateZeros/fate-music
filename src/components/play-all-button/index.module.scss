@@ -1,0 +1,37 @@
+.wrap {
+  width: 150px;
+  height: 32px;
+  line-height: 32px;
+  background-image: linear-gradient(
+    to bottom right,
+    rgba(255, 0, 0, 0.6),
+    #cc3a3b
+  );
+  border-radius: 16px;
+  font-size: 14px;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  margin-right: 20px;
+
+  .wrap-play {
+    width: 34px;
+    height: 100%;
+    background: url('../../assets/image/player/pouse-white.png') no-repeat
+      center;
+    background-size: 20px;
+  }
+
+  .wrap-word {
+    flex: 1;
+    height: 100%;
+  }
+
+  .wrap-add {
+    width: 40px;
+    height: 100%;
+    background: url('../../assets/image/add-white.png') no-repeat center;
+    background-size: 12px;
+    border-left: 1px solid #eee;
+  }
+}

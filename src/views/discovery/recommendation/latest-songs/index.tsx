@@ -17,11 +17,13 @@ const LatestSongs = () => {
     recommendApis.getPersonalizedNewsongs
   )
   const { value: newSongs = [] } = state
-  console.log(newSongs)
 
-  useEffect(() => {
-    getPersonalizedNewsongs()
-  }, [])
+  useEffect(
+    () => {
+      getPersonalizedNewsongs()
+    },
+    [getPersonalizedNewsongs]
+  )
 
   return (
     <div className={styles.wrap}>

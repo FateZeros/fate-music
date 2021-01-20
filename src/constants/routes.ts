@@ -44,6 +44,9 @@ const MY_COLLECT_COLUMNS = `${MY_COLLECT}/columns`
 
 const SETTING = '/setting'
 
+// 每日推荐歌单
+const DAILY_SONGS = '/daily-songs'
+
 const ROUTES = {
   ROOT,
   DISCOVERY,
@@ -70,7 +73,8 @@ const ROUTES = {
   MY_COLLECT_SINGERS,
   MY_COLLECT_VIDEOS,
   MY_COLLECT_COLUMNS,
-  SETTING
+  SETTING,
+  DAILY_SONGS
 }
 
 export default ROUTES
