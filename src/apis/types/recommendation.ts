@@ -67,3 +67,8 @@ export interface IPersonalizedNewsongs {
   picUrl: string
   song: IMuiscSong
 }
+
+export interface IRecommendSongsResponse {
+  name: string
+  id: number
+}

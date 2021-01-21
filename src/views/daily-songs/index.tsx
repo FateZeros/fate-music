@@ -3,6 +3,8 @@ import dayjs from 'dayjs'
 
 import PlayAllButton from 'components/play-all-button'
 import CollectButton from 'components/collect-button'
+import TableSingleSong from 'components/table-single-song'
+import ROUTES from 'constants/routes'
 
 import styles from './index.module.scss'
 
@@ -24,6 +26,7 @@ const DailySongs = () => {
         <PlayAllButton />
         <CollectButton />
       </div>
+      <TableSingleSong from={ROUTES.DAILY_SONGS} />
     </div>
   )
 }

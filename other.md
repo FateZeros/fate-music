@@ -18,6 +18,16 @@ cd project_name/.git
 vi config
 ```
 
+## charles 使用
+
+[](https://blog.csdn.net/weixin_42428631/article/details/80642436)
+[](https://blog.csdn.net/crdzg_Amy/article/details/100084297)
+
+```bash
+Registered Name: https://zhile.io
+License Key: 48891cf209c6d32bf4
+```
+
 ## 启动网易云 api
 
 [NeteaseCloudMusicApi](https://github.com/Binaryify/NeteaseCloudMusicApi)

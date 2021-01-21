@@ -6,7 +6,8 @@ import {
   ITopPlayListRespose,
   IOneHighqualityResponse,
   IPrivateContentRepose,
-  IPersonalizedNewsongs
+  IPersonalizedNewsongs,
+  IRecommendSongsResponse
 } from './types/recommendation'
 
 // 获取 banner
@@ -28,6 +29,15 @@ const getRecommendResource = async (): Promise<IRecommendResponse[]> => {
     method: 'get'
   })
   return response.recommend
+}
+
+// 每日推荐歌曲
+const getRecommendSongs = async (): Promise<IRecommendSongsResponse[]> => {
+  const response = await request({
+    url: '/recommend/songs',
+    method: 'get'
+  })
+  return response.dailySongs
 }
 
 // 歌单
@@ -79,5 +89,6 @@ export {
   getTopPlayList,
   getOneHighquality,
   getPrivatecontentEnter,
-  getPersonalizedNewsongs
+  getPersonalizedNewsongs,
+  getRecommendSongs
 }

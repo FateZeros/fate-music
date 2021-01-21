@@ -8,6 +8,9 @@ interface IProps {
   sortNum: number
 }
 
+/**
+ * 发现 - 最新音乐 - item
+ */
 const LatestSongItem: React.FC<IProps> = ({ songItem, sortNum }) => {
   const { name, picUrl, song } = songItem
 
@@ -17,7 +20,7 @@ const LatestSongItem: React.FC<IProps> = ({ songItem, sortNum }) => {
   })
   songArtistName = songArtistName.substr(0, songArtistName.length - 1)
 
-  const [state, dispatch] = useContext(ReducerContext)
+  const [, dispatch] = useContext(ReducerContext)
 
   const handlePlayMusic = () => {
     dispatch({ type: 'TEST' })

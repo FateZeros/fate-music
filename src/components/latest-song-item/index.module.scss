@@ -3,8 +3,13 @@
   height: 75px;
   margin-right: 2%;
   display: flex;
-  border-top: 1px solid #e3e3e3;
+  border-top: 1px solid #f5f5f5;
   padding: 10px;
+  border-radius: 5px;
+
+  &:hover {
+    background: #e6e6e6;
+  }
 
   .wrap-img {
     width: 75px;
