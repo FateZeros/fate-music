@@ -12,17 +12,44 @@
     width: 100px;
     height: 100%;
     color: #c6c6c6;
+    display: flex;
+    align-items: center;
+
+    .song-num {
+      width: 30px;
+      height: 100%;
+    }
+
+    .song-collect {
+      width: 32px;
+      height: 32px;
+      background: url('../../assets/image/player/collect.png') no-repeat center;
+      background-size: 16px;
+      cursor: pointer;
+    }
+
+    .song-download {
+      width: 32px;
+      height: 32px;
+      background: url('../../assets/image/menu/icon-download.png') no-repeat
+        center;
+      background-size: 20px;
+      cursor: pointer;
+    }
   }
 
   .item-title {
     flex: 1;
     height: 100%;
     @extend .text-over-hidden;
+    margin-left: 8px;
   }
 
   .item-col {
-    width: 150px;
+    width: 200px;
     height: 100%;
+    @extend .text-over-hidden;
+    margin-right: 8px;
   }
 
   .item-time {

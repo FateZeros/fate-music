@@ -4,7 +4,6 @@ import cn from 'classnames'
 import * as recommendApis from 'apis/recommendation'
 import useAsyncRequest from 'hooks/useAsyncRequest'
 import ROUTES from 'constants/routes'
-import { IRecommendSongsResponse } from 'interfaces/recommendation'
 import { formatNum, formatSongTime } from 'utils'
 
 import styles from './index.module.scss'
@@ -44,10 +43,28 @@ const TableSingleSong: React.FC<IProps> = props => {
     [props, getRecommendSongs]
   )
 
-  let songs: IRecommendSongsResponse[] = []
+  let songs: any[] = []
   switch (props.from) {
-    case ROUTES.DAILY_SONGS:
-      songs = recommendSongs
+    case ROUTES.DAILY_SONGS: {
+      recommendSongs.forEach(item => {
+        const songItem = {
+          arName: ''
+        }
+        if (Array.isArray(item.ar)) {
+          let arNames: string[] = []
+          item.ar.forEach(itemAr => {
+            arNames.push(itemAr.name)
+          })
+          songItem.arName = arNames.join('/')
+        }
+        songs.push({
+          ...item,
+          ...songItem
+        })
+      })
+      break
+    }
+    default:
       break
   }
 
@@ -69,10 +86,14 @@ const TableSingleSong: React.FC<IProps> = props => {
             )}
             key={itemSong.id}
           >
-            <div className={styles['item-sort']}>{formatNum(index + 1)}</div>
+            <div className={styles['item-sort']}>
+              <div className={styles['song-num']}>{formatNum(index + 1)}</div>
+              <div className={styles['song-collect']} />
+              <div className={styles['song-download']} />
+            </div>
             <div className={styles['item-title']}>{itemSong.name}</div>
-            <div className={styles['item-col']}>歌手</div>
-            <div className={styles['item-col']}>专辑</div>
+            <div className={styles['item-col']}>{itemSong.arName}</div>
+            <div className={styles['item-col']}>{itemSong.al.name}</div>
             <div className={styles['item-time']}>
               {formatSongTime(itemSong.dt)}
             </div>

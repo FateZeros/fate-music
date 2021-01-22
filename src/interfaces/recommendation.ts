@@ -77,6 +77,6 @@ export interface IRecommendSongsResponse {
   id: number
   name: string
   ar: IArtist[]
-  al: IAlbum[]
+  al: IAlbum
   dt: number
 }
