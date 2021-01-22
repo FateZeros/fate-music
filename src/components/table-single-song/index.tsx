@@ -1,6 +1,11 @@
 import React, { Fragment } from 'react'
+import cn from 'classnames'
 
+import * as recommendApis from 'apis/recommendation'
+import useAsyncRequest from 'hooks/useAsyncRequest'
 import ROUTES from 'constants/routes'
+import { IRecommendSongsResponse } from 'interfaces/recommendation'
+import { formatNum, formatSongTime } from 'utils'
 
 import styles from './index.module.scss'
 
@@ -17,22 +22,34 @@ const { useEffect } = React
  * ...
  */
 const TableSingleSong: React.FC<IProps> = props => {
+  const [state, getRecommendSongs] = useAsyncRequest(
+    recommendApis.getRecommendSongs
+  )
+  const { value: recommendSongs = [] } = state
+
   useEffect(
     () => {
       const getTableSongList = () => {
-        console.log(props, '===')
         switch (props.from) {
-          case ROUTES.DAILY_SONGS:
-            console.log(1)
+          case ROUTES.DAILY_SONGS: {
+            getRecommendSongs()
             break
+          }
           default:
             break
         }
       }
       getTableSongList()
     },
-    [props]
+    [props, getRecommendSongs]
   )
+
+  let songs: IRecommendSongsResponse[] = []
+  switch (props.from) {
+    case ROUTES.DAILY_SONGS:
+      songs = recommendSongs
+      break
+  }
 
   return (
     <Fragment>
@@ -43,6 +60,25 @@ const TableSingleSong: React.FC<IProps> = props => {
         <div className={styles['item-col']}>专辑</div>
         <div className={styles['item-time']}>时长</div>
       </div>
+      {songs.map((itemSong, index) => {
+        return (
+          <div
+            className={cn(
+              index % 2 === 0 && styles['table-even-row'],
+              styles['wrap-table-song']
+            )}
+            key={itemSong.id}
+          >
+            <div className={styles['item-sort']}>{formatNum(index + 1)}</div>
+            <div className={styles['item-title']}>{itemSong.name}</div>
+            <div className={styles['item-col']}>歌手</div>
+            <div className={styles['item-col']}>专辑</div>
+            <div className={styles['item-time']}>
+              {formatSongTime(itemSong.dt)}
+            </div>
+          </div>
+        )
+      })}
     </Fragment>
   )
 }

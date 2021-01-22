@@ -8,7 +8,7 @@ import {
   IPrivateContentRepose,
   IPersonalizedNewsongs,
   IRecommendSongsResponse
-} from './types/recommendation'
+} from 'interfaces/recommendation'
 
 // 获取 banner
 const getBannerList = async (
@@ -37,7 +37,7 @@ const getRecommendSongs = async (): Promise<IRecommendSongsResponse[]> => {
     url: '/recommend/songs',
     method: 'get'
   })
-  return response.dailySongs
+  return response.data && response.data.dailySongs
 }
 
 // 歌单

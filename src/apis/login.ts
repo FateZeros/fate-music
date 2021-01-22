@@ -1,6 +1,9 @@
 import request from 'utils/request'
 
-import { ILoginCellphoneRequest, ILoginCellphoneResponse } from './types/login'
+import {
+  ILoginCellphoneRequest,
+  ILoginCellphoneResponse
+} from 'interfaces/login'
 
 // 手机号码登录
 const loginCellphone = (

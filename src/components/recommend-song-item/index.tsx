@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { IRecommendResponse } from 'apis/types/recommendation'
+import { IRecommendResponse } from 'interfaces/recommendation'
 import PlayCount from 'components/play-count'
 import styles from './index.module.scss'
 

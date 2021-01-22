@@ -11,11 +11,13 @@
   .item-sort {
     width: 100px;
     height: 100%;
+    color: #c6c6c6;
   }
 
   .item-title {
     flex: 1;
     height: 100%;
+    @extend .text-over-hidden;
   }
 
   .item-col {
@@ -24,7 +26,30 @@
   }
 
   .item-time {
-    width: 40px;
+    width: 80px;
     height: 100%;
   }
+}
+
+.wrap-table-song {
+  @extend .wrap-table-title;
+  border-top: none;
+  margin-top: 0;
+  font-size: 13px;
+
+  .item-title {
+    color: #333;
+  }
+
+  .item-time {
+    color: #c6c6c6;
+  }
+
+  &:hover {
+    background: #f1f1f2;
+  }
+}
+
+.table-even-row {
+  background: #fafafa;
 }

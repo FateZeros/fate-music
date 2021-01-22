@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { IPrivateContentRepose } from 'apis/types/recommendation'
+import { IPrivateContentRepose } from 'interfaces/recommendation'
 import styles from './index.module.scss'
 
 interface IProps {

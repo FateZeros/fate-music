@@ -16,6 +16,27 @@ export const formatPlayCount = (num = 0) => {
   return result
 }
 
+/**
+ * @param num
+ * @param n
+ */
+export const formatNum = (num: number | string, n = 2) => {
+  let len = num.toString().length
+  while (len < n) {
+    num = '0' + num
+    len++
+  }
+  return num
+}
+
+// 歌曲时长 毫秒
+export const formatSongTime = (duration?: number) => {
+  const durationSec = Math.floor(duration || 0)
+  const minute = formatNum(Math.floor(durationSec / 1000 / 60))
+  const second = formatNum(Math.floor(durationSec / 1000) % 60)
+  return `${minute}:${second}`
+}
+
 // 生成 ID
 export const getKey = (): number => {
   const id = (function*() {

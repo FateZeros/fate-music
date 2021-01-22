@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { IPersonalizedNewsongs } from 'apis/types/recommendation'
+import { IPersonalizedNewsongs } from 'interfaces/recommendation'
 import { ReducerContext } from 'reducers'
 import styles from './index.module.scss'
 
