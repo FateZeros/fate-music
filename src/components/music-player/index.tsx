@@ -1,41 +1,29 @@
 import React, { Fragment } from 'react'
 
-import CurrentPlaySongs from './current-play-songs'
+import CurrentPlayList from './current-play-list'
+import CurrentPlaySong from './current-play-song'
 import PlayerMode from './player-mode'
 import PlayerVolume from './player-volume'
 
 import styles from './index.module.scss'
-import defaultMusicImg from 'assets/image/player/default-music.png'
 
 const { useState, useCallback } = React
 
 const MusicPlayer = () => {
-  const [currentPlaySongsVisible, setCurrentPlaySongs] = useState(false)
+  const [currentPlayListVisible, setCurrentPlayList] = useState(false)
 
   const handleShowCurrentPlaySongs = useCallback(
     () => {
-      setCurrentPlaySongs(!currentPlaySongsVisible)
+      setCurrentPlayList(!currentPlayListVisible)
     },
-    [currentPlaySongsVisible, setCurrentPlaySongs]
+    [currentPlayListVisible, setCurrentPlayList]
   )
 
   return (
     <Fragment>
       <div className={styles['music-player-wrap']}>
         <div className={styles['music-play-progress']} />
-        <div className={styles['music-info-wrap']}>
-          <div className={styles['music-info-img']}>
-            <img src={defaultMusicImg} alt="" />
-            <div className={styles['music-fold-screen']} />
-          </div>
-          <div className={styles['music-info-rows']}>
-            <div className={styles['music-info']}>
-              <div className={styles['music-name']}>Open your eye</div>
-              <div className={styles['music-author']}>- Ausoorrhe / Kaye</div>
-            </div>
-            <div className={styles['music-time']}>03:00 / 05:22</div>
-          </div>
-        </div>
+        <CurrentPlaySong />
         <div className={styles['music-action-wrap']}>
           <div className={styles['music-action-collect']} />
           <div className={styles['music-play-wrap']}>
@@ -56,7 +44,10 @@ const MusicPlayer = () => {
           <PlayerVolume />
         </div>
       </div>
-      <CurrentPlaySongs visible={currentPlaySongsVisible} />
+      <CurrentPlayList
+        visible={currentPlayListVisible}
+        onClickAway={() => setCurrentPlayList(false)}
+      />
     </Fragment>
   )
 }

@@ -8,8 +8,7 @@
   background: #fff;
   transition: transform 0.3s ease;
   transform: translateX(100%);
-
-  border: 1px solid;
+  box-shadow: 0 2px 7px 0 rgba(29, 29, 33, 0.12);
 }
 
 .play-wrap-show {

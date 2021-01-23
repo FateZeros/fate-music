@@ -67,6 +67,7 @@ const TableSingleSong: React.FC<IProps> = props => {
     default:
       break
   }
+  console.log('table songs')
 
   return (
     <Fragment>

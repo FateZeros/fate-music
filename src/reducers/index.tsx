@@ -18,7 +18,7 @@ const combineReducer = reducers => {
     objInitState[key] = initState
   })
 
-  return (action?: any) => {
+  return (state?: any, action?: any) => {
     if (action) {
       reducerKeys.forEach(key => {
         const previousState = objInitState[key]

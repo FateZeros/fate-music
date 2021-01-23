@@ -1,0 +1,20 @@
+.login-wrap {
+  width: 350px;
+  height: 528px;
+  background: #fff;
+  border: 1px solid #eee;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 200px;
+  margin: 0 auto;
+  z-index: $loginIndex;
+  transition: all 1s ease;
+  opacity: 0;
+  border-radius: 5px;
+  box-shadow: 0 2px 7px 0 rgba(29, 29, 33, 0.12);
+}
+
+.show-login-wrap {
+  opacity: 1;
+}
