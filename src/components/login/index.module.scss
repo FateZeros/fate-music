@@ -6,15 +6,57 @@
   position: fixed;
   left: 0;
   right: 0;
-  top: 200px;
+  top: 180px;
   margin: 0 auto;
   z-index: $loginIndex;
-  transition: all 1s ease;
+  transition: all 0.6s ease;
   opacity: 0;
   border-radius: 5px;
   box-shadow: 0 2px 7px 0 rgba(29, 29, 33, 0.12);
+  padding: 8px 8px 50px 8px;
+  display: flex;
+  flex-direction: column;
 }
 
 .show-login-wrap {
   opacity: 1;
+}
+
+.login-close-row {
+  width: 100%;
+  height: 20px;
+  position: relative;
+
+  .login-close {
+    width: 20px;
+    height: 20px;
+    background: url('../../assets/image/close.png') no-repeat center;
+    background-size: 14px;
+    left: 0;
+    top: 0;
+    position: absolute;
+    cursor: pointer;
+  }
+}
+
+.login-content {
+  width: 100%;
+  flex: 1;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-type-row {
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  font-size: 12px;
+  color: #707070;
+  display: flex;
+  justify-content: center;
+
+  .login-type-change {
+    cursor: pointer;
+  }
 }

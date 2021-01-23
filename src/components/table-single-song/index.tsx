@@ -40,7 +40,7 @@ const TableSingleSong: React.FC<IProps> = props => {
       }
       getTableSongList()
     },
-    [props, getRecommendSongs]
+    [props.from, getRecommendSongs]
   )
 
   let songs: any[] = []
@@ -67,7 +67,6 @@ const TableSingleSong: React.FC<IProps> = props => {
     default:
       break
   }
-  console.log('table songs')
 
   return (
     <Fragment>

@@ -1,22 +1,30 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 
 import { ReducerContext } from 'reducers'
 
-// import * as loginApis from 'apis/login'
 import styles from './index.module.scss'
 import defaultUser from 'assets/image/default-user.png'
 
 const User = () => {
-  const [, dispatch] = useContext(ReducerContext)
-  // componentDidMount() {
-  // loginApis.loginCellphone({
-  //   phone: '18627715406',
-  //   password: 'yjf490293266'
-  // })
-  // }
+  const [state, dispatch] = useContext(ReducerContext)
+  const { showLoginModal } = state.login
+
+  const [showLoginVisible, setShowLogin] = useState(false)
+
   const handleShowLogin = () => {
-    dispatch({ type: 'SHOW_LOGIN' })
+    if (showLoginVisible) {
+      dispatch({ type: 'HIDE_LOGIN' })
+    } else {
+      dispatch({ type: 'SHOW_LOGIN' })
+    }
   }
+
+  useEffect(
+    () => {
+      setShowLogin(showLoginModal)
+    },
+    [showLoginModal]
+  )
 
   return (
     <div className={styles['user-wrap']}>

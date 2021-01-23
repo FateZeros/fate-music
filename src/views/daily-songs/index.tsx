@@ -10,7 +10,6 @@ import styles from './index.module.scss'
 
 const DailySongs = () => {
   const currentDay = dayjs().format('DD')
-  console.log(11212)
   return (
     <div className={styles.wrap}>
       <div className={styles['wrap-title']}>
