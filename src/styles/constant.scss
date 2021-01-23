@@ -14,3 +14,7 @@ $theme-menu-active: #707070;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+// z-index
+$musicPlayerIndex: 99;
+$currentPlaySongsIndex: 98;

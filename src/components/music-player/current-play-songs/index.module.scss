@@ -1,0 +1,17 @@
+.play-wrap {
+  width: 40%;
+  height: 100%;
+  position: fixed;
+  right: 0;
+  top: $headerHeight;
+  z-index: $currentPlaySongsIndex;
+  background: #fff;
+  transition: transform 0.3s ease;
+  transform: translateX(100%);
+
+  border: 1px solid;
+}
+
+.play-wrap-show {
+  transform: translateX(0);
+}

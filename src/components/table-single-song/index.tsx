@@ -76,6 +76,9 @@ const TableSingleSong: React.FC<IProps> = props => {
         <div className={styles['item-col']}>歌手</div>
         <div className={styles['item-col']}>专辑</div>
         <div className={styles['item-time']}>时长</div>
+        {props.from === ROUTES.ITUNES && (
+          <div className={styles['item-size']}>大小</div>
+        )}
       </div>
       {songs.map((itemSong, index) => {
         return (

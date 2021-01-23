@@ -44,7 +44,7 @@ export const NAVBAR = {
   ],
   [ROUTES.ITUNES]: [
     {
-      label: 'ITUNES'
+      label: 'Itunes音乐'
     }
   ],
   [ROUTES.DOWNLOAD]: [

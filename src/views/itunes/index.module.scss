@@ -1,0 +1,11 @@
+.wrap {
+  width: 100%;
+  height: 100%;
+
+  .wrap-row {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+  }
+}
