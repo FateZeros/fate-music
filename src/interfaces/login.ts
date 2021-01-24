@@ -23,6 +23,9 @@ export interface ILoginQrkeyRes {
     code: number
     unikey: string
   }
-  code?: number
-  unikey?: string
+}
+
+export interface ILoginQrRes {
+  qrimg?: string
+  qrurl?: string
 }
