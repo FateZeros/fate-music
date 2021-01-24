@@ -7,7 +7,7 @@ import useClickAway from 'hooks/useClickAway'
 import QrLogin from './qr-login'
 import styles from './index.module.scss'
 
-const { useContext, useRef, useState } = React
+const { useContext, useRef, useState, useEffect } = React
 
 const Login = () => {
   const loginRef = useRef<HTMLDivElement | null>(null)
@@ -16,7 +16,16 @@ const Login = () => {
   const [state, dispatch] = useContext(ReducerContext)
   const { showLoginModal } = state.login
 
-  const [loginType, setLoginType] = useState('qrLogin')
+  const [loginType, setLoginType] = useState('')
+
+  useEffect(
+    () => {
+      if (showLoginModal) {
+        setLoginType('qrLogin')
+      }
+    },
+    [showLoginModal]
+  )
 
   const handleChangeLoginType = () => {
     setLoginType('phoneLogin')

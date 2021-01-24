@@ -19,10 +19,8 @@ export interface ILoginCellphoneResponse {
 }
 
 export interface ILoginQrkeyRes {
-  data: {
-    code: number
-    unikey: string
-  }
+  code: number
+  unikey: string
 }
 
 export interface ILoginQrRes {

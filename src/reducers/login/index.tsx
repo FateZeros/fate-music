@@ -17,6 +17,11 @@ const loginReducer = (state = loginState, action) => {
         ...state,
         showLoginModal: false
       }
+    case 'SET_LOGIN_USERINFO':
+      return {
+        ...state,
+        showLoginModal: false
+      }
     default:
       return state
   }
