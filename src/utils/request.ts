@@ -14,6 +14,7 @@ if (process.env.REACT_APP_NODE_ENV === 'development') {
 
 const service = axios.create({
   baseURL,
+  // 允许携带cookie
   withCredentials: true,
   timeout: TIME_OUT,
   responseType: MIME_TYPE.JSON
