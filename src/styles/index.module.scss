@@ -28,6 +28,15 @@ img {
   border-radius: 5px;
 }
 
+input {
+  width: 100%;
+  border: none;
+
+  &:focus {
+    outline: none;
+  }
+}
+
 /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
 ::-webkit-scrollbar {
   width: 4px;

@@ -12,10 +12,12 @@ export interface ILoginCellphoneResponse {
     userName: string
   }
   profile: {
+    userId: number
     nickname: string
     avatarUrl: string
     signature: string
   }
+  cookie: string
 }
 
 export interface ILoginQrkeyRes {

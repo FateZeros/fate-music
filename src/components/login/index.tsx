@@ -37,39 +37,37 @@ const Login = () => {
   }
 
   return (
-    showLoginModal && (
-      <div
-        className={cn(
-          showLoginModal && styles['show-login-wrap'],
-          styles['login-wrap']
-        )}
-        ref={ref => (loginRef.current = ref)}
-      >
-        <div className={styles['login-close-row']}>
-          <div className={styles['login-close']} onClick={handleCloseLogin} />
-        </div>
-        <div className={styles['login-content']}>
+    <div
+      className={cn(
+        showLoginModal && styles['show-login-wrap'],
+        styles['login-wrap']
+      )}
+      ref={ref => (loginRef.current = ref)}
+    >
+      <div className={styles['login-close-row']}>
+        <div className={styles['login-close']} onClick={handleCloseLogin} />
+      </div>
+      <div className={styles['login-content']}>
+        {
+          {
+            qrLogin: <QrLogin />,
+            phoneLogin: <PhoneLogin />
+          }[loginType]
+        }
+      </div>
+      <div className={styles['login-type-row']}>
+        <div
+          className={styles['login-type-change']}
+          onClick={() => handleChangeLoginType()}
+        >
           {
             {
-              qrLogin: <QrLogin />,
-              phoneLogin: <PhoneLogin />
+              qrLogin: '选择其他登录方式'
             }[loginType]
           }
         </div>
-        <div className={styles['login-type-row']}>
-          <div
-            className={styles['login-type-change']}
-            onClick={() => handleChangeLoginType()}
-          >
-            {
-              {
-                qrLogin: '选择其他登录方式'
-              }[loginType]
-            }
-          </div>
-        </div>
       </div>
-    )
+    </div>
   )
 }
 

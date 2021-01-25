@@ -1,12 +1,13 @@
 const loginState = {
-  userName: 'Fate',
+  account: {},
+  bindings: [],
+  profile: {},
+  token: '',
   showLoginModal: false
 }
 
 const loginReducer = (state = loginState, action) => {
   switch (action.type) {
-    case 'TEST':
-      return { userName: '121' }
     case 'SHOW_LOGIN':
       return {
         ...state,
@@ -17,11 +18,16 @@ const loginReducer = (state = loginState, action) => {
         ...state,
         showLoginModal: false
       }
-    case 'SET_LOGIN_USERINFO':
+    case 'SET_LOGIN_USERINFO': {
+      const payload = action.payload
       return {
-        ...state,
+        account: payload.account,
+        bindings: payload.bindings,
+        profile: payload.profile,
+        token: payload.token,
         showLoginModal: false
       }
+    }
     default:
       return state
   }
