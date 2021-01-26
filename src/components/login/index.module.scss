@@ -8,8 +8,8 @@
   right: 0;
   top: 180px;
   margin: 0 auto;
-  z-index: $loginIndex;
-  transition: all 1s ease 0;
+  z-index: -1;
+  transition: all 0.5s ease 0.1s;
   opacity: 0;
   border-radius: 5px;
   box-shadow: 0 2px 7px 0 rgba(29, 29, 33, 0.12);

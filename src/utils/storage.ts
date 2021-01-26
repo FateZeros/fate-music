@@ -2,11 +2,11 @@ import { FATE_MUSIC_VALID_DAY } from 'constants/constants'
 
 interface IExpirseLocalStorageParams<T> {
   key: string
-  value: string
+  info?: T
 }
 
 interface IExpirseLocalStorageReturn<T> {
-  setItem: (value: T) => void
+  setItem: (info: T) => void
   getItem: () => T
   removeItem: () => void
 }
@@ -22,11 +22,11 @@ const setExpirseDate = (): number => {
 export const expirseLocalStorage = <T>(
   params: IExpirseLocalStorageParams<T>
 ): IExpirseLocalStorageReturn<T> => {
-  const { key, value } = params
+  const { key } = params
 
-  const setItem = () => {
+  const setItem = (info: T) => {
     const data: Object = {
-      value,
+      value: info,
       expirse: setExpirseDate()
     }
     window.localStorage.setItem(key, JSON.stringify(data))

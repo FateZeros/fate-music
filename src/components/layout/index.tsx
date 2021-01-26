@@ -4,6 +4,7 @@ import Sidebar from './sidebar'
 
 import MusicPlayer from 'components/music-player'
 import LoginModal from 'components/login'
+import UserInfoModal from 'components/user-info'
 
 import styles from './index.module.scss'
 
@@ -17,6 +18,7 @@ const Layout: React.FC = ({ children }) => {
       </div>
       <MusicPlayer />
       <LoginModal />
+      <UserInfoModal />
     </div>
   )
 }

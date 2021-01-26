@@ -1,0 +1,17 @@
+import { expirseLocalStorage } from './storage'
+
+enum PLAYER_KEYS {
+  PLAYER_HISTORY = 'FATA_MUSIC_PLAYER_HISTORY',
+  PLAYER_LIST = 'FATE_MUSIC_PLAYER_LIST',
+  PLAYER_MODE = 'FATE_MUSIC_PLAYER_MODE'
+}
+
+enum PLAYER_MODE {
+  PLAY_ORDER = 'FATE_MUSIC_PLAY_ORDER',
+  PLAY_SINGLE = 'FATE_MUSIC_PLAY_SINGLE',
+  PLAY_SHUFFLE = 'FATE_MUSIC_PLAY_'
+}
+
+export const musicPlayerHistory = expirseLocalStorage({
+  key: PLAYER_KEYS.PLAYER_HISTORY
+})

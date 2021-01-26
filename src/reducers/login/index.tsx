@@ -1,9 +1,12 @@
+import { setUserInfo } from 'utils/auth'
+
 const loginState = {
   account: {},
   bindings: [],
   profile: {},
   token: '',
-  showLoginModal: false
+  showLoginModal: false,
+  showUserInfoModal: false
 }
 
 const loginReducer = (state = loginState, action) => {
@@ -20,6 +23,8 @@ const loginReducer = (state = loginState, action) => {
       }
     case 'SET_LOGIN_USERINFO': {
       const payload = action.payload
+      console.log(payload, '=== 登录信息 ===')
+      setUserInfo(payload)
       return {
         account: payload.account,
         bindings: payload.bindings,
@@ -28,6 +33,16 @@ const loginReducer = (state = loginState, action) => {
         showLoginModal: false
       }
     }
+    case 'SHOW_USER_INFO':
+      return {
+        ...state,
+        showUserInfoModal: true
+      }
+    case 'HIDE_USER_INFO':
+      return {
+        ...state,
+        showUserInfoModal: false
+      }
     default:
       return state
   }

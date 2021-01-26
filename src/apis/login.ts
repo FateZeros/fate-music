@@ -61,9 +61,9 @@ const loginCellphone = (
 }
 
 // 退出登录
-const loginOut = () => {
+const logout = () => {
   return request({
-    url: '/loginout',
+    url: '/logout',
     method: 'post'
   })
 }
@@ -85,6 +85,6 @@ export {
   loginQrCreate,
   loginQrCheck,
   loginCellphone,
-  loginOut,
+  logout,
   getLoginStatus
 }
