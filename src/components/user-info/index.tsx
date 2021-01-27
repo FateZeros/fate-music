@@ -25,8 +25,8 @@ const UserInfo = () => {
   const handleLogout = async () => {
     const res = await logout()
     if (res.code === 200) {
+      dispatch({ type: 'LOG_OUT' })
       removeUserInfo()
-      dispatch({ type: 'HIDE_USER_INFO' })
     }
   }
 

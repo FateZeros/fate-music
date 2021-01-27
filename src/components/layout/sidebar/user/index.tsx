@@ -15,7 +15,7 @@ const User = () => {
   const [showLoginVisible, setShowLogin] = useState(false)
   // 用户是否已登录
   const [userLogged, setUserLogged] = useState(false)
-  const userInfo: any = getUserInfo() || {}
+  const userInfo: any = getUserInfo()
 
   const handleShowLogin = () => {
     if (userLogged) {
@@ -32,11 +32,13 @@ const User = () => {
   useEffect(
     () => {
       setShowLogin(showLoginModal)
-      if (token || userInfo.token) {
+      if (userInfo.token || token) {
         setUserLogged(true)
+      } else {
+        setUserLogged(false)
       }
     },
-    [showLoginModal, token]
+    [showLoginModal, token, userInfo.token]
   )
 
   return (
