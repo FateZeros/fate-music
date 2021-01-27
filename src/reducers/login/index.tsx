@@ -43,6 +43,12 @@ const loginReducer = (state = loginState, action) => {
         ...state,
         showUserInfoModal: false
       }
+    case 'LOG_OUT': {
+      return {
+        ...state,
+        token: ''
+      }
+    }
     default:
       return state
   }

@@ -1,5 +1,11 @@
 import { FATE_MUSIC_VALID_DAY } from 'constants/constants'
 
+// export const DEFAULT_VALUE = {
+//   ARRAY: '[]',
+//   OBJECT: '{}',
+//   STRING: '',
+// }
+
 interface IExpirseLocalStorageParams<T> {
   key: string
   info?: T
