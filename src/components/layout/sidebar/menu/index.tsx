@@ -1,14 +1,31 @@
 import React, { Fragment } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
 import cn from 'classnames'
+
 import ROUTES from 'constants/routes'
+import { getUserInfo } from 'utils/auth'
+
 import styles from './index.module.scss'
+/**
+ * 音乐 APP 角色
+ * T 游客，M 会员
+ */
+enum RoleType {
+  T = 'tourist',
+  M = 'member'
+}
+
+interface IMeta {
+  role: RoleType
+  pageTitle?: string
+}
 
 interface IMenuItems {
   icon: String
   label: string
   active?: boolean
   route: string
+  meta?: IMeta
 }
 
 interface IMenu {
@@ -60,17 +77,26 @@ const MENU: IMenu[] = [
       {
         icon: 'my-cloud',
         label: '我的音乐云盘',
-        route: ROUTES.MY_CLOUD
+        route: ROUTES.MY_CLOUD,
+        meta: {
+          role: RoleType.T
+        }
       },
       {
         icon: 'my-fm',
         label: '我的电台',
-        route: ROUTES.MY_FM
+        route: ROUTES.MY_FM,
+        meta: {
+          role: RoleType.T
+        }
       },
       {
         icon: 'my-collect',
         label: '我的收藏',
-        route: ROUTES.MY_COLLECT
+        route: ROUTES.MY_COLLECT,
+        meta: {
+          role: RoleType.T
+        }
       }
     ]
   }
@@ -79,6 +105,8 @@ const MENU: IMenu[] = [
 const Menu = () => {
   const history = useHistory()
   const { pathname } = useLocation()
+
+  const userInfo: any = getUserInfo() || {}
 
   const handleMenuItemClick = (route: string) => {
     history.push(route)
@@ -91,8 +119,14 @@ const Menu = () => {
           <div className={styles['menu-wrap']} key={id}>
             {title && <div className={styles['menu-title']}>{title}</div>}
             <ul className={styles['menu-item']}>
-              {items.map(({ icon, label, route }) => {
+              {items.map(({ icon, label, route, meta }) => {
+                // 是否已激活
                 const isActiveRoute = pathname.startsWith(route)
+                // 是否需要登录
+                if (meta && meta.role === RoleType.T && !userInfo.token) {
+                  return null
+                }
+
                 return (
                   <li
                     key={route}

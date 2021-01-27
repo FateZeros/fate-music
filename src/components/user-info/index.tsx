@@ -5,10 +5,11 @@ import * as loginApis from 'apis/login'
 import useAsyncRequest from 'hooks/useAsyncRequest'
 import { ReducerContext } from 'reducers'
 import useClickAway from 'hooks/useClickAway'
+import { removeUserInfo } from 'utils/auth'
 
 import styles from './index.module.scss'
 
-const { useEffect, useContext, useRef } = React
+const { useContext, useRef } = React
 /**
  * 登录后 - 个人信息展示
  */
@@ -23,7 +24,10 @@ const UserInfo = () => {
 
   const handleLogout = async () => {
     const res = await logout()
-    console.log(res, '退出登录')
+    if (res.code === 200) {
+      removeUserInfo()
+      dispatch({ type: 'HIDE_USER_INFO' })
+    }
   }
 
   return (
