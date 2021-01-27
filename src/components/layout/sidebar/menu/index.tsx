@@ -99,6 +99,11 @@ const MENU: IMenu[] = [
         }
       }
     ]
+  },
+  {
+    id: 3,
+    title: '创建的歌单',
+    items: []
   }
 ]
 
@@ -109,7 +114,9 @@ const Menu = () => {
   const userInfo: any = getUserInfo() || {}
 
   const handleMenuItemClick = (route: string) => {
-    history.push(route)
+    if (pathname !== route) {
+      history.push(route)
+    }
   }
 
   return (

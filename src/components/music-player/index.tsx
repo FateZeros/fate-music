@@ -7,17 +7,16 @@ import PlayerVolume from './player-volume'
 
 import styles from './index.module.scss'
 
-const { useState, useCallback } = React
+const { useState } = React
 
 const MusicPlayer = () => {
   const [currentPlayListVisible, setCurrentPlayList] = useState(false)
 
-  const handleShowCurrentPlaySongs = useCallback(
-    () => {
-      setCurrentPlayList(!currentPlayListVisible)
-    },
-    [currentPlayListVisible, setCurrentPlayList]
-  )
+  const handleShowCurrentPlaySongs = () => {
+    setCurrentPlayList(!currentPlayListVisible)
+  }
+
+  console.log(currentPlayListVisible, '---------')
 
   return (
     <Fragment>
@@ -38,7 +37,7 @@ const MusicPlayer = () => {
           <PlayerMode />
           <div
             className={styles['music-setting-song-list']}
-            onClick={handleShowCurrentPlaySongs}
+            onClick={() => handleShowCurrentPlaySongs()}
           />
           <div className={styles['music-setting-lyrics']} />
           <PlayerVolume />
@@ -46,7 +45,7 @@ const MusicPlayer = () => {
       </div>
       <CurrentPlayList
         visible={currentPlayListVisible}
-        onClickAway={() => setCurrentPlayList(false)}
+        onCloseCurrentPlayList={() => setCurrentPlayList(false)}
       />
     </Fragment>
   )

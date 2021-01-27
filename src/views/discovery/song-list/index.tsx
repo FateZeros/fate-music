@@ -3,6 +3,7 @@ import React from 'react'
 import * as recommendApis from 'apis/recommendation'
 import useAsyncRequest from 'hooks/useAsyncRequest'
 import RecommendSongItem from 'components/recommend-song-item'
+import { getUserInfo } from 'utils/auth'
 
 import styles from './index.module.scss'
 
@@ -11,6 +12,8 @@ const { useEffect } = React
  * 发现 - 歌单
  */
 const SongList = () => {
+  const userInfo: any = getUserInfo() || {}
+
   const [oneHighqualityState, getOneHighquality] = useAsyncRequest(
     recommendApis.getOneHighquality
   )
@@ -24,9 +27,11 @@ const SongList = () => {
   useEffect(
     () => {
       getOneHighquality()
-      getRecommendResource()
+      if (userInfo.token) {
+        getRecommendResource()
+      }
     },
-    [getOneHighquality, getRecommendResource]
+    [getOneHighquality, getRecommendResource, userInfo.token]
   )
 
   return (

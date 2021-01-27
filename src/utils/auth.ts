@@ -20,7 +20,7 @@ export const removeUserInfo = () => {
 
 // 清除 cookie
 const removeCookie = (): void => {
-  const keys = document.cookie.match(/[^ =;]+(?=\=)/g)
+  const keys = document.cookie.match(/[^ =;]+(?==)/g)
   if (keys) {
     keys.forEach(item => {
       document.cookie = `${item}=0;expires=0`

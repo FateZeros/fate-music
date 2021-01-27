@@ -7,6 +7,7 @@ import useAsyncRequest from 'hooks/useAsyncRequest'
 import LinkTitle from 'components/link-title'
 import RecommendSongItem from 'components/recommend-song-item'
 import ROUTES from 'constants/routes'
+import { getUserInfo } from 'utils/auth'
 
 import styles from './index.module.scss'
 
@@ -21,14 +22,17 @@ const RecommendSongs = () => {
   const [state, getRecommendResource] = useAsyncRequest(
     recommendApis.getRecommendResource
   )
-  const { value: recommendSongs = [], loading: getRecommendLoading } = state
-  console.log(recommendSongs, getRecommendLoading)
+  const { value: recommendSongs = [] } = state
+
+  const userInfo: any = getUserInfo() || {}
 
   useEffect(
     () => {
-      getRecommendResource()
+      if (userInfo.token) {
+        getRecommendResource()
+      }
     },
-    [getRecommendResource]
+    [getRecommendResource, userInfo.token]
   )
 
   const currentDay = dayjs().format('DD')

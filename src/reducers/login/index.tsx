@@ -23,7 +23,7 @@ const loginReducer = (state = loginState, action) => {
       }
     case 'SET_LOGIN_USERINFO': {
       const payload = action.payload
-      console.log(payload, '=== 登录信息 ===')
+      // console.log(payload, '=== 登录信息 ===')
       setUserInfo(payload)
       return {
         account: payload.account,

@@ -15,7 +15,7 @@ const Navbar = () => {
   const secondRoutes = NAVBAR[currentFirstRoute] || []
 
   const handleRouteChange = route => {
-    if (route) history.push(route)
+    if (route && pathname !== route) history.push(route)
   }
 
   return (
