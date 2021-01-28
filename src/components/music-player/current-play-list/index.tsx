@@ -1,17 +1,12 @@
 import React from 'react'
 import cn from 'classnames'
 
+import { ReducerContext } from 'reducers'
 import useClickAway from 'hooks/useClickAway'
-import { getMusicPlayerList } from 'utils/music-player'
 
 import styles from './index.module.scss'
 import CurrentList from './current-list'
 import HistoryList from './history-list'
-
-interface IProps {
-  visible: boolean
-  onCloseCurrentPlayList: () => void
-}
 
 enum activeType {
   /** 播放列表 */
@@ -20,27 +15,35 @@ enum activeType {
   HISTORY_LIST = 'HISTORY_LIST'
 }
 
-const { useState, useRef } = React
+const { useState, useRef, Fragment, useContext } = React
 /**
  * 当前播放列表
  * 1. 播放列表 & 2.历史记录
  */
-const CurrentPlayList: React.FC<IProps> = ({
-  visible,
-  onCloseCurrentPlayList
-}) => {
+const CurrentPlayList = () => {
   const currentPlayListRef = useRef<HTMLDivElement | null>(null)
-  useClickAway(currentPlayListRef, () => onCloseCurrentPlayList())
+  const [state, dispatch] = useContext(ReducerContext)
+  const { currentPlayListVisible } = state.musicPlayer
+
+  useClickAway(currentPlayListRef, () =>
+    dispatch({
+      type: 'SET_CURRENT_PLAY_LIST',
+      payload: {
+        visible: false
+      }
+    })
+  )
 
   const [activeTab, setActiveTab] = useState<activeType>(
     activeType.CURRENT_LIST
   )
 
-  console.log(getMusicPlayerList(), '== 当前播放列表 ==')
-
   return (
     <div
-      className={cn(visible && styles['play-wrap-show'], styles['play-wrap'])}
+      className={cn(
+        currentPlayListVisible && styles['play-wrap-show'],
+        styles['play-wrap']
+      )}
       ref={ref => (currentPlayListRef.current = ref)}
     >
       <div className={styles['play-list-title-row']}>
@@ -65,14 +68,14 @@ const CurrentPlayList: React.FC<IProps> = ({
           </div>
         </div>
       </div>
-      <div className={styles['music-list-wrap']}>
+      <Fragment>
         {
           {
             [activeType.CURRENT_LIST]: <CurrentList />,
             [activeType.HISTORY_LIST]: <HistoryList />
           }[activeTab]
         }
-      </div>
+      </Fragment>
     </div>
   )
 }

@@ -14,8 +14,7 @@ const Banner = () => {
   const [currentMid, setCurrentMid] = useState(0)
 
   const [state, getBannerList] = useAsyncRequest(recommendApis.getBannerList)
-  const { value: banners = [], loading: getBannerLoading } = state
-  console.log(getBannerLoading)
+  const { value: banners = [] } = state
 
   useEffect(
     () => {

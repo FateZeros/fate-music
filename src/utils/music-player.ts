@@ -27,3 +27,7 @@ export const getMusicPlayerList = () => {
 export const musicPlayerHistory = expirseLocalStorage({
   key: PLAYER_KEYS.PLAYER_HISTORY
 })
+
+export const getMusicHistoryList = () => {
+  return musicPlayerHistory.getItem()
+}

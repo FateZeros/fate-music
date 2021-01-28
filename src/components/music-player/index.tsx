@@ -1,22 +1,30 @@
-import React, { Fragment } from 'react'
+import React from 'react'
+
+import { ReducerContext } from 'reducers'
 
 import CurrentPlayList from './current-play-list'
 import CurrentPlaySong from './current-play-song'
 import PlayerMode from './player-mode'
 import PlayerVolume from './player-volume'
-
 import styles from './index.module.scss'
 
-const { useState } = React
+const { Fragment, useContext, useState } = React
 
 const MusicPlayer = () => {
-  const [currentPlayListVisible, setCurrentPlayList] = useState(false)
+  const [state, dispatch] = useContext(ReducerContext)
+  const { currentPlayListVisible } = state.musicPlayer
+
+  const [currentVisible, setCurrentVisible] = useState(false)
 
   const handleShowCurrentPlaySongs = () => {
-    setCurrentPlayList(!currentPlayListVisible)
+    dispatch({
+      type: 'SET_CURRENT_PLAY_LIST',
+      payload: {
+        visible: !currentVisible
+      }
+    })
+    setCurrentVisible(!currentVisible)
   }
-
-  console.log(currentPlayListVisible, '---------')
 
   return (
     <Fragment>
@@ -37,16 +45,13 @@ const MusicPlayer = () => {
           <PlayerMode />
           <div
             className={styles['music-setting-song-list']}
-            onClick={() => handleShowCurrentPlaySongs()}
+            onClick={handleShowCurrentPlaySongs}
           />
           <div className={styles['music-setting-lyrics']} />
           <PlayerVolume />
         </div>
       </div>
-      <CurrentPlayList
-        visible={currentPlayListVisible}
-        onCloseCurrentPlayList={() => setCurrentPlayList(false)}
-      />
+      <CurrentPlayList />
     </Fragment>
   )
 }

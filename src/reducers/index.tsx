@@ -5,6 +5,7 @@
  */
 import React from 'react'
 import loginReducer from './login'
+import musicPlayerReducder from './music-player'
 
 const combineReducer = reducers => {
   const reducerKeys = Object.keys(reducers)
@@ -32,7 +33,8 @@ const combineReducer = reducers => {
 
 // combineReducer 合并 reducer
 const reducers = combineReducer({
-  login: loginReducer
+  login: loginReducer,
+  musicPlayer: musicPlayerReducder
 })
 
 const ReducerContext = React.createContext<any>({})
