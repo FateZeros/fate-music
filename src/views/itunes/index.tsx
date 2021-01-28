@@ -13,7 +13,7 @@ const Itunes = () => {
   return (
     <div className={styles.wrap}>
       <div className={styles['wrap-row']}>
-        <PlayAllButton />
+        <PlayAllButton songs={[]} />
       </div>
       <TableSingleSong from={ROUTES.ITUNES} />
     </div>

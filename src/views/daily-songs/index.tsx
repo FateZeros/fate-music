@@ -1,6 +1,8 @@
 import React from 'react'
 import dayjs from 'dayjs'
 
+import * as recommendApis from 'apis/recommendation'
+import useAsyncRequest from 'hooks/useAsyncRequest'
 import PlayAllButton from 'components/play-all-button'
 import CollectButton from 'components/collect-button'
 import TableSingleSong from 'components/table-single-song'
@@ -8,8 +10,41 @@ import ROUTES from 'constants/routes'
 
 import styles from './index.module.scss'
 
+const { useEffect } = React
+
 const DailySongs = () => {
   const currentDay = dayjs().format('DD')
+
+  const [state, getRecommendSongs] = useAsyncRequest(
+    recommendApis.getRecommendSongs
+  )
+  const { value: recommendSongs = [] } = state
+
+  useEffect(
+    () => {
+      getRecommendSongs()
+    },
+    [getRecommendSongs]
+  )
+
+  let songs: any[] = []
+  recommendSongs.forEach(item => {
+    const songItem = {
+      arName: ''
+    }
+    if (Array.isArray(item.ar)) {
+      let arNames: string[] = []
+      item.ar.forEach(itemAr => {
+        arNames.push(itemAr.name)
+      })
+      songItem.arName = arNames.join('/')
+    }
+    songs.push({
+      ...item,
+      ...songItem
+    })
+  })
+
   return (
     <div className={styles.wrap}>
       <div className={styles['wrap-title']}>
@@ -22,10 +57,10 @@ const DailySongs = () => {
         </div>
       </div>
       <div className={styles['wrap-row']}>
-        <PlayAllButton />
+        <PlayAllButton songs={songs} />
         <CollectButton />
       </div>
-      <TableSingleSong from={ROUTES.DAILY_SONGS} />
+      <TableSingleSong from={ROUTES.DAILY_SONGS} songs={songs} />
     </div>
   )
 }

@@ -1,8 +1,6 @@
 import React, { Fragment } from 'react'
 import cn from 'classnames'
 
-import * as recommendApis from 'apis/recommendation'
-import useAsyncRequest from 'hooks/useAsyncRequest'
 import ROUTES from 'constants/routes'
 import { formatNum, formatSongTime } from 'utils'
 
@@ -10,9 +8,8 @@ import styles from './index.module.scss'
 
 interface IProps {
   from: string
+  songs?: any
 }
-
-const { useEffect } = React
 
 /**
  * 歌曲列表
@@ -20,54 +17,7 @@ const { useEffect } = React
  * 2. 我喜欢的音乐
  * ...
  */
-const TableSingleSong: React.FC<IProps> = props => {
-  const [state, getRecommendSongs] = useAsyncRequest(
-    recommendApis.getRecommendSongs
-  )
-  const { value: recommendSongs = [] } = state
-
-  useEffect(
-    () => {
-      const getTableSongList = () => {
-        switch (props.from) {
-          case ROUTES.DAILY_SONGS: {
-            getRecommendSongs()
-            break
-          }
-          default:
-            break
-        }
-      }
-      getTableSongList()
-    },
-    [props.from, getRecommendSongs]
-  )
-
-  let songs: any[] = []
-  switch (props.from) {
-    case ROUTES.DAILY_SONGS: {
-      recommendSongs.forEach(item => {
-        const songItem = {
-          arName: ''
-        }
-        if (Array.isArray(item.ar)) {
-          let arNames: string[] = []
-          item.ar.forEach(itemAr => {
-            arNames.push(itemAr.name)
-          })
-          songItem.arName = arNames.join('/')
-        }
-        songs.push({
-          ...item,
-          ...songItem
-        })
-      })
-      break
-    }
-    default:
-      break
-  }
-
+const TableSingleSong: React.FC<IProps> = ({ from, songs }) => {
   return (
     <Fragment>
       <div className={styles['wrap-table-title']}>
@@ -76,7 +26,7 @@ const TableSingleSong: React.FC<IProps> = props => {
         <div className={styles['item-col']}>歌手</div>
         <div className={styles['item-col']}>专辑</div>
         <div className={styles['item-time']}>时长</div>
-        {props.from === ROUTES.ITUNES && (
+        {from === ROUTES.ITUNES && (
           <div className={styles['item-size']}>大小</div>
         )}
       </div>
