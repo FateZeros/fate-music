@@ -15,12 +15,14 @@ interface IProps {
  * 歌曲列表
  * 1. 推荐 DAILY_SONGS
  * 2. 我喜欢的音乐
+ * 3. 正在播放的音乐: current_play_list
  * ...
  */
 const TableSingleSong: React.FC<IProps> = ({ from, songs }) => {
   // 展示通用 Header
   const commonFrom = [ROUTES.DAILY_SONGS, ROUTES.ITUNES]
   const showCommon = commonFrom.includes(from)
+  console.log(from, '=== TableSingleSong ===')
 
   return (
     <Fragment>
@@ -52,9 +54,23 @@ const TableSingleSong: React.FC<IProps> = ({ from, songs }) => {
                 <div className={styles['song-download']} />
               </div>
             )}
-            <div className={styles['item-title']}>{itemSong.name}</div>
-            <div className={styles['item-col']}>{itemSong.arName}</div>
-            <div className={styles['item-col']}>{itemSong.al.name}</div>
+            <div className={styles['item-title-row']}>
+              {from === 'current_play_list' && index === 0 && (
+                <div className={styles['item-play']} />
+              )}
+              <div className={styles['item-title']}>{itemSong.name}</div>
+            </div>
+            <div
+              className={cn(
+                from === 'current_play_list' && styles.wd100,
+                styles['item-col']
+              )}
+            >
+              {itemSong.arName}
+            </div>
+            {showCommon && (
+              <div className={styles['item-col']}>{itemSong.al.name}</div>
+            )}
             <div className={styles['item-time']}>
               {formatSongTime(itemSong.dt)}
             </div>
