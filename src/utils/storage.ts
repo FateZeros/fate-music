@@ -1,18 +1,20 @@
 import { FATE_MUSIC_VALID_DAY } from 'constants/constants'
 
-// export const DEFAULT_VALUE = {
-//   ARRAY: '[]',
-//   OBJECT: '{}',
-//   STRING: '',
-// }
+export const DEFAULT_VALUE = {
+  ARRAY: '[]',
+  OBJECT: '{}',
+  STRING: ''
+}
 
 interface IExpirseLocalStorageParams<T> {
   key: string
-  info?: T
+  defaultValue: string
+  serializer?: (value: T) => string
+  deserializer?: (value: string) => T
 }
 
 interface IExpirseLocalStorageReturn<T> {
-  setItem: (info: T) => void
+  setItem: (value: T) => void
   getItem: () => T
   removeItem: () => void
 }
@@ -28,27 +30,29 @@ const setExpirseDate = (): number => {
 export const expirseLocalStorage = <T>(
   params: IExpirseLocalStorageParams<T>
 ): IExpirseLocalStorageReturn<T> => {
-  const { key } = params
+  const {
+    key,
+    defaultValue,
+    serializer = JSON.stringify,
+    deserializer = JSON.parse
+  } = params
 
-  const setItem = (info: T) => {
-    const data: Object = {
-      value: info,
+  const setItem = (value: T) => {
+    const data = serializer({
+      info: value,
       expirse: setExpirseDate()
-    }
-    window.localStorage.setItem(key, JSON.stringify(data))
+    }) as string
+    window.localStorage.setItem(key, data || defaultValue)
   }
 
   const getItem = () => {
-    const data = window.localStorage.getItem(key) || null
-    if (data !== null) {
-      const { value, expirse } = JSON.parse(data)
-      if (expirse !== null && expirse < new Date().getTime()) {
-        window.localStorage.removeItem(key)
-      } else {
-        return value
-      }
+    const data = window.localStorage.getItem(key) || defaultValue
+    const { info, expirse } = deserializer(data)
+    if (expirse !== null && expirse < new Date().getTime()) {
+      window.localStorage.removeItem(key)
+      return defaultValue
     }
-    return null
+    return info || defaultValue
   }
 
   const removeItem = () => {

@@ -7,8 +7,7 @@ import { getMusicHistoryList } from 'utils/music-player'
 import styles from './index.module.scss'
 
 const HistoryList = () => {
-  const songs = getMusicHistoryList()
-  console.log(songs, 'hist')
+  const songs = getMusicHistoryList() || []
 
   return (
     <div className={styles['wrap']}>

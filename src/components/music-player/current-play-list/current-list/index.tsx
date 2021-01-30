@@ -6,7 +6,7 @@ import { getMusicPlayerList } from 'utils/music-player'
 import styles from './index.module.scss'
 
 const CurrentList = () => {
-  const songs = getMusicPlayerList()
+  const songs = getMusicPlayerList() || []
 
   return (
     <div className={styles['wrap']}>

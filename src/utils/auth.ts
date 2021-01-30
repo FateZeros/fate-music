@@ -1,8 +1,9 @@
-import { expirseLocalStorage } from './storage'
+import { expirseLocalStorage, DEFAULT_VALUE } from './storage'
 import { ILoginCellphoneResponse } from 'interfaces/login'
 
 export const userInfoStorage = expirseLocalStorage({
-  key: 'FATA_MUSIC_USER_INFO'
+  key: 'FATA_MUSIC_USER_INFO',
+  defaultValue: DEFAULT_VALUE.OBJECT
 })
 
 export const setUserInfo = (userInfo: ILoginCellphoneResponse) => {

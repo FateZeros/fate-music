@@ -22,7 +22,6 @@ const TableSingleSong: React.FC<IProps> = ({ from, songs }) => {
   // 展示通用 Header
   const commonFrom = [ROUTES.DAILY_SONGS, ROUTES.ITUNES]
   const showCommon = commonFrom.includes(from)
-  console.log(from, '=== TableSingleSong ===')
 
   return (
     <Fragment>
@@ -38,7 +37,7 @@ const TableSingleSong: React.FC<IProps> = ({ from, songs }) => {
           )}
         </div>
       )}
-      {songs.map((itemSong, index) => {
+      {/* {songs.map((itemSong, index) => {
         return (
           <div
             className={cn(
@@ -76,7 +75,7 @@ const TableSingleSong: React.FC<IProps> = ({ from, songs }) => {
             </div>
           </div>
         )
-      })}
+      })} */}
     </Fragment>
   )
 }

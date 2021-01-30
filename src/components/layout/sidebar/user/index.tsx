@@ -32,13 +32,13 @@ const User = () => {
   useEffect(
     () => {
       setShowLogin(showLoginModal)
-      if (userInfo.token || token) {
+      if ((userInfo && userInfo.token) || token) {
         setUserLogged(true)
       } else {
         setUserLogged(false)
       }
     },
-    [showLoginModal, token, userInfo.token]
+    [showLoginModal, token]
   )
 
   return (

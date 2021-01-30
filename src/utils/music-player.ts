@@ -1,4 +1,4 @@
-import { expirseLocalStorage } from './storage'
+import { expirseLocalStorage, DEFAULT_VALUE } from './storage'
 
 enum PLAYER_KEYS {
   PLAYER_LIST = 'FATE_MUSIC_PLAYER_LIST',
@@ -13,7 +13,8 @@ enum PLAYER_MODE {
 }
 
 export const musicPlayerList = expirseLocalStorage({
-  key: PLAYER_KEYS.PLAYER_LIST
+  key: PLAYER_KEYS.PLAYER_LIST,
+  defaultValue: DEFAULT_VALUE.ARRAY
 })
 
 export const setMusicPlayerList = (list: []) => {
@@ -25,7 +26,8 @@ export const getMusicPlayerList = () => {
 }
 
 export const musicPlayerHistory = expirseLocalStorage({
-  key: PLAYER_KEYS.PLAYER_HISTORY
+  key: PLAYER_KEYS.PLAYER_HISTORY,
+  defaultValue: DEFAULT_VALUE.ARRAY
 })
 
 export const getMusicHistoryList = () => {
