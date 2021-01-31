@@ -87,6 +87,9 @@ export interface IPersonalizedMVsResponse {
   name: string
   copywriter: string
   picUrl: string
+  artistId: number
   artistName: string
+  playCount: number
+  duration: number
   artists: IArtist[]
 }
