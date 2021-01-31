@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
-import { IPersonalizedNewsongs } from 'interfaces/recommendation'
+import { IPersonalizedNewsongsResponse } from 'interfaces/recommendation'
 import { ReducerContext } from 'reducers'
 import styles from './index.module.scss'
 
 interface IProps {
-  songItem: IPersonalizedNewsongs
+  songItem: IPersonalizedNewsongsResponse
   sortNum: number
 }
 

@@ -1,0 +1,10 @@
+.wrap {
+  width: 100%;
+  margin-top: 12px;
+
+  .recomment-mvs {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}

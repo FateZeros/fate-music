@@ -37,7 +37,7 @@ const TableSingleSong: React.FC<IProps> = ({ from, songs }) => {
           )}
         </div>
       )}
-      {/* {songs.map((itemSong, index) => {
+      {songs.map((itemSong, index) => {
         return (
           <div
             className={cn(
@@ -75,7 +75,7 @@ const TableSingleSong: React.FC<IProps> = ({ from, songs }) => {
             </div>
           </div>
         )
-      })} */}
+      })}
     </Fragment>
   )
 }

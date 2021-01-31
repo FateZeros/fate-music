@@ -60,7 +60,7 @@ export interface IMuiscSong {
   duration: number
 }
 
-export interface IPersonalizedNewsongs {
+export interface IPersonalizedNewsongsResponse {
   id: string
   type: number
   name: string
@@ -79,4 +79,14 @@ export interface IRecommendSongsResponse {
   ar: IArtist[]
   al: IAlbum
   dt: number
+}
+
+export interface IPersonalizedMVsResponse {
+  id: number
+  type: string
+  name: string
+  copywriter: string
+  picUrl: string
+  artistName: string
+  artists: IArtist[]
 }

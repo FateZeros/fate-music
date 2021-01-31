@@ -7,8 +7,9 @@ import {
   ITopPlayListRespose,
   IOneHighqualityResponse,
   IPrivateContentRepose,
-  IPersonalizedNewsongs,
-  IRecommendSongsResponse
+  IPersonalizedNewsongsResponse,
+  IRecommendSongsResponse,
+  IPersonalizedMVsResponse
 } from 'interfaces/recommendation'
 
 // 获取 banner
@@ -76,9 +77,20 @@ const getPrivatecontentEnter = async (): Promise<IPrivateContentRepose[]> => {
 }
 
 // 推荐新音乐
-const getPersonalizedNewsongs = async (): Promise<IPersonalizedNewsongs[]> => {
+const getPersonalizedNewsongs = async (): Promise<
+  IPersonalizedNewsongsResponse[]
+> => {
   const response = await request({
     url: '/personalized/newsong',
+    method: 'get'
+  })
+  return response.result
+}
+
+// 推荐 MV
+const getPersonalizedMVs = async (): Promise<IPersonalizedMVsResponse[]> => {
+  const response = await request({
+    url: '/personalized/mv',
     method: 'get'
   })
   return response.result
@@ -91,5 +103,6 @@ export {
   getOneHighquality,
   getPrivatecontentEnter,
   getPersonalizedNewsongs,
-  getRecommendSongs
+  getRecommendSongs,
+  getPersonalizedMVs
 }
