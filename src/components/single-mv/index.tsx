@@ -16,15 +16,21 @@ interface IProps {
   mvItem: IMvItem
   /* 一行显示的 item 个数*/
   rowItem: number
+  showPlayIcon?: boolean
 }
 /**
  * MV - item
  */
-const SingleMV: React.FC<IProps> = ({ mvItem, rowItem }) => {
+const SingleMV: React.FC<IProps> = ({
+  mvItem,
+  rowItem,
+  showPlayIcon = false
+}) => {
   return (
     <div className={styles[`item-wd${rowItem}`]}>
       <div className={styles['mv-img']}>
         <img src={mvItem.picUrl || mvItem.cover} loading="lazy" alt="" />
+        {showPlayIcon && <div className={styles['mv-play-icon']} />}
       </div>
       <div className={styles['mv-name']}>{mvItem.name}</div>
       <div className={styles['mv-artist-name']}>{mvItem.artistName}</div>

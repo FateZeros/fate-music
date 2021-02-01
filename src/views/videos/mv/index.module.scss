@@ -1,5 +1,6 @@
 .wrap {
   width: 100%;
+  height: auto;
 
   .latest-mv-title {
     width: 100%;
@@ -8,7 +9,7 @@
   }
 }
 
-.latest-mvs {
+.mv-list {
   width: 100%;
   height: auto;
   display: flex;

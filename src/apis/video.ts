@@ -14,4 +14,14 @@ const getMvFirst = async (
   return response.data
 }
 
-export { getMvFirst }
+// 网易出品
+const getExclusiveRcmd = async (params): Promise<IMvFirstResponse[]> => {
+  const response = await request({
+    url: 'mv/exclusive/rcmd',
+    method: 'get',
+    params
+  })
+  return response.data
+}
+
+export { getMvFirst, getExclusiveRcmd }

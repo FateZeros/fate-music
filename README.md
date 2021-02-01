@@ -42,6 +42,7 @@ yarn electron:pack
 - [x] 账号密码登录/二维码登录/登出
 - [] 音乐播放器
 - [x] 发现音乐 / 个性推荐
+- [x] 视频 / MV
 
 ## 技术栈
 
@@ -54,6 +55,7 @@ yarn electron:pack
 ## 播放器的相关截图
 
 ![01_发现音乐页](https://github.com/FateZeros/fate-music/blob/main/resources/fate-music1.png)
+![02_视频MV页](https://github.com/FateZeros/fate-music/blob/main/resources/fate-music2.png)
 
 ## 参考
 

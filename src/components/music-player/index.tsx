@@ -8,23 +8,29 @@ import PlayerMode from './player-mode'
 import PlayerVolume from './player-volume'
 import styles from './index.module.scss'
 
-const { Fragment, useContext, useState } = React
+const { Fragment, useContext } = React
 
 const MusicPlayer = () => {
   const [state, dispatch] = useContext(ReducerContext)
   const { currentPlayListVisible } = state.musicPlayer
 
-  const [currentVisible, setCurrentVisible] = useState(false)
-
   const handleShowCurrentPlaySongs = () => {
     dispatch({
       type: 'SET_CURRENT_PLAY_LIST',
       payload: {
-        visible: !currentVisible
+        visible: !currentPlayListVisible
       }
     })
-    setCurrentVisible(!currentVisible)
   }
+
+  // useEffect(
+  //   () => {
+  //     if (currentPlayListVisible) {
+  //       setIconClose(true)
+  //     }
+  //   },
+  //   [currentPlayListVisible]
+  // )
 
   return (
     <Fragment>
