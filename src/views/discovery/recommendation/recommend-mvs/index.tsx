@@ -17,7 +17,6 @@ const RecommendMVs = () => {
     recommendApis.getPersonalizedMVs
   )
   const { value: recommendMVs = [] } = state
-  console.log(recommendMVs, '======')
 
   useEffect(
     () => {

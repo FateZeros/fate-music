@@ -17,6 +17,8 @@ const VIDEOS = '/videos'
 const VIDEOS_LIST = `${VIDEOS}/list`
 const VIDEOS_MV = `${VIDEOS}/mv`
 
+const ALL_MVS = '/all-mvs'
+
 // 朋友
 const FIRENDS = '/firends'
 
@@ -74,7 +76,8 @@ const ROUTES = {
   MY_COLLECT_VIDEOS,
   MY_COLLECT_COLUMNS,
   SETTING,
-  DAILY_SONGS
+  DAILY_SONGS,
+  ALL_MVS
 }
 
 export default ROUTES

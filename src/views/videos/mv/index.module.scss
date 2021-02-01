@@ -1,0 +1,18 @@
+.wrap {
+  width: 100%;
+
+  .latest-mv-title {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+}
+
+.latest-mvs {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 20px;
+}

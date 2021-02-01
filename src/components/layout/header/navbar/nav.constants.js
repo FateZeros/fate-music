@@ -93,5 +93,10 @@ export const NAVBAR = {
     {
       label: '设置'
     }
+  ],
+  [ROUTES.ALL_MVS]: [
+    {
+      label: '全部MV'
+    }
   ]
 }

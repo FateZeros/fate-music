@@ -17,3 +17,16 @@ export interface IAlbum {
   pic: number
   picUrl: string
 }
+
+/**
+ * mv-item
+ */
+export interface IMv {
+  id: number
+  name: string
+  playCount: number
+  artistName: string
+  artistId: number
+  artists: IArtist[]
+  duration: number
+}

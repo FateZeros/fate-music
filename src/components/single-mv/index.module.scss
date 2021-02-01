@@ -59,3 +59,14 @@
     @extend .text-over-hidden;
   }
 }
+
+.item-wd3 {
+  width: 30%;
+  height: 180px;
+  @extend .item-wd4;
+  margin-bottom: 40px;
+
+  .mv-img {
+    height: 135px;
+  }
+}

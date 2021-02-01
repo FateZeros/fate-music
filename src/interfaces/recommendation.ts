@@ -1,4 +1,4 @@
-import { IArtist, IAlbum } from './common'
+import { IArtist, IAlbum, IMv } from './common'
 
 enum BannerType {
   PC = 0,
@@ -81,15 +81,8 @@ export interface IRecommendSongsResponse {
   dt: number
 }
 
-export interface IPersonalizedMVsResponse {
-  id: number
+export interface IPersonalizedMVsResponse extends IMv {
   type: string
-  name: string
   copywriter: string
   picUrl: string
-  artistId: number
-  artistName: string
-  playCount: number
-  duration: number
-  artists: IArtist[]
 }
