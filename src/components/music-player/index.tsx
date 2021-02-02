@@ -8,11 +8,13 @@ import PlayerMode from './player-mode'
 import PlayerVolume from './player-volume'
 import styles from './index.module.scss'
 
-const { Fragment, useContext } = React
+const { Fragment, useContext, useRef } = React
 
 const MusicPlayer = () => {
   const [state, dispatch] = useContext(ReducerContext)
   const { currentPlayListVisible } = state.musicPlayer
+
+  const openPlayListIconRef = useRef<HTMLDivElement | null>(null)
 
   const handleShowCurrentPlaySongs = () => {
     dispatch({
@@ -22,15 +24,6 @@ const MusicPlayer = () => {
       }
     })
   }
-
-  // useEffect(
-  //   () => {
-  //     if (currentPlayListVisible) {
-  //       setIconClose(true)
-  //     }
-  //   },
-  //   [currentPlayListVisible]
-  // )
 
   return (
     <Fragment>
@@ -52,12 +45,13 @@ const MusicPlayer = () => {
           <div
             className={styles['music-setting-song-list']}
             onClick={handleShowCurrentPlaySongs}
+            ref={ref => (openPlayListIconRef.current = ref)}
           />
           <div className={styles['music-setting-lyrics']} />
           <PlayerVolume />
         </div>
       </div>
-      <CurrentPlayList />
+      <CurrentPlayList openPlayListIconRef={openPlayListIconRef} />
     </Fragment>
   )
 }

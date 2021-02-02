@@ -15,26 +15,32 @@ enum activeType {
   HISTORY_LIST = 'HISTORY_LIST'
 }
 
-interface IProps {}
+interface IProps {
+  openPlayListIconRef: React.RefObject<HTMLDivElement>
+}
 
 const { useState, useRef, Fragment, useContext } = React
 /**
  * 当前播放列表
  * 1. 播放列表 & 2.历史记录
  */
-const CurrentPlayList: React.FC<IProps> = () => {
+const CurrentPlayList: React.FC<IProps> = ({ openPlayListIconRef }) => {
   const currentPlayListRef = useRef<HTMLDivElement | null>(null)
   const [state, dispatch] = useContext(ReducerContext)
   const { currentPlayListVisible } = state.musicPlayer
 
-  useClickAway(currentPlayListRef, () => {
-    dispatch({
-      type: 'SET_CURRENT_PLAY_LIST',
-      payload: {
-        visible: false
-      }
-    })
-  })
+  useClickAway(
+    currentPlayListRef,
+    () => {
+      dispatch({
+        type: 'SET_CURRENT_PLAY_LIST',
+        payload: {
+          visible: false
+        }
+      })
+    },
+    openPlayListIconRef
+  )
 
   const [activeTab, setActiveTab] = useState<activeType>(
     activeType.CURRENT_LIST
