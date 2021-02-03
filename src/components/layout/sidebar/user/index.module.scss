@@ -1,10 +1,15 @@
 .user-wrap {
-  width: 100%;
+  width: $sideWidth;
   height: 60px;
   display: flex;
   align-items: center;
   padding-left: 8px;
   padding-right: 12px;
+  position: fixed;
+  left: 0;
+  top: $headerHeight;
+  background: $theme-grey;
+  z-index: 2;
 
   .user-img {
     width: 40px;

@@ -1,7 +1,54 @@
 .siderBar {
   width: $sideWidth;
-  height: 100%;
+  height: auto;
   background: $theme-grey;
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
+  padding-bottom: $musicPlayerHeight + 50px;
+  position: relative;
+  padding-top: 60px;
+}
+
+.create-song-list,
+.fav-song-list {
+  width: 100%;
+  height: 0;
+  transition: height 0.5s ease;
+  font-size: 13px;
+  color: #2f2f2f;
+  display: none;
+
+  .song-list-item {
+    width: 100%;
+    height: 35px;
+    line-height: 35px;
+    padding-left: 8px;
+    padding-right: 15px;
+    display: flex;
+    overflow: hidden;
+
+    &:hover {
+      background: #e3e3e3;
+    }
+
+    .item-img {
+      width: 30px;
+      height: 100%;
+      background: url('../../../assets/image/menu/icon-playlist.png') no-repeat
+        center;
+      background-size: 16px;
+    }
+
+    .item-name {
+      flex: 1;
+      height: 100%;
+      @extend .text-over-hidden;
+    }
+  }
+}
+
+.song-show {
+  height: auto;
+  display: inline-block;
 }

@@ -1,9 +1,11 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
 import cn from 'classnames'
 
 import ROUTES from 'constants/routes'
 import { getUserInfo } from 'utils/auth'
+import * as mySongApis from 'apis/mysong-list'
+import useAsyncRequest from 'hooks/useAsyncRequest'
 
 import styles from './index.module.scss'
 import FavSongList from '../fav-song-list'
@@ -118,11 +120,24 @@ const MENU: IMenu[] = [
 const Menu = () => {
   const history = useHistory()
   const { pathname } = useLocation()
+  const [state, getUserPlayList] = useAsyncRequest(mySongApis.getUserPlayList)
+  const { value: songList = [] } = state
+
+  const userInfo: any = getUserInfo() || {}
+  const userId = userInfo.account && userInfo.account.id
+
+  useEffect(
+    () => {
+      getUserPlayList({
+        uid: userId,
+        limit: 30
+      })
+    },
+    [getUserPlayList, userId]
+  )
 
   const [favSongVisible, setFavSong] = useState(false)
   const [createSongVisible, setCreateSong] = useState(false)
-
-  const userInfo: any = getUserInfo() || {}
 
   const handleMenuItemClick = (route: string) => {
     if (pathname !== route) {
@@ -209,8 +224,20 @@ const Menu = () => {
             )}
             {
               {
-                3: <CreateSongList visible={createSongVisible} />,
-                4: <FavSongList visible={favSongVisible} />
+                3: (
+                  <CreateSongList
+                    visible={createSongVisible}
+                    songList={songList}
+                    userId={userId}
+                  />
+                ),
+                4: (
+                  <FavSongList
+                    visible={favSongVisible}
+                    songList={songList}
+                    userId={userId}
+                  />
+                )
               }[id]
             }
           </div>
