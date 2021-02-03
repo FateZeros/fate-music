@@ -30,3 +30,17 @@ export interface IMv {
   artists: IArtist[]
   duration: number
 }
+
+/**
+ * 用户信息
+ */
+export interface IUser {
+  userId: number
+  nickname: string
+  avatarUrl: string
+  signature: string
+  gender: number
+  province: number
+  city: number
+  birthday: number
+}

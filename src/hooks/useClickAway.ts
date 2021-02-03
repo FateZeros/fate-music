@@ -9,7 +9,6 @@ export const off = (obj: any, ...args: any[]) =>
 const useClickAway = <E extends Event = Event>(
   ref: RefObject<HTMLElement | null>,
   onClickAway: (event: E) => void,
-  excludeRef?: RefObject<HTMLElement | null>,
   events: string[] = defaultEvents
 ) => {
   const savedCallback = useRef(onClickAway)
@@ -25,10 +24,7 @@ const useClickAway = <E extends Event = Event>(
     () => {
       const handler = (event: any) => {
         const { current: el } = ref
-        const { current: excludeEl } = excludeRef
-        if (!excludeEl) {
-          el && !el.contains(event.target) && savedCallback.current(event)
-        }
+        el && !el.contains(event.target) && savedCallback.current(event)
       }
 
       for (const eventName of events) {
@@ -41,7 +37,7 @@ const useClickAway = <E extends Event = Event>(
         }
       }
     },
-    [events, ref, excludeRef]
+    [events, ref]
   )
 }
 
