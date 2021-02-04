@@ -1,16 +1,18 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useHistory } from 'react-router-dom'
+
+import ROUTES from 'constants/routes'
+import { ReducerContext } from 'reducers'
 
 import RouteAction from './route-action'
 import Navbar from './navbar'
 import SearchInput from './search-input'
 import ThemeColorSelect from './theme-color-select'
-import ROUTES from 'constants/routes'
-
 import styles from './index.module.scss'
 
 const Header = () => {
   const history = useHistory()
+  const [, dispatch] = useContext(ReducerContext)
 
   const handleGoSetting = () => {
     history.push(ROUTES.SETTING)
@@ -21,7 +23,12 @@ const Header = () => {
   }
 
   const handleSelectThemeColor = () => {
-    console.log('select color')
+    dispatch({
+      type: 'SET_COLOR_SELECT_SHOW',
+      payload: {
+        colorSelectShow: true
+      }
+    })
   }
 
   const handleFoldClient = () => {

@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import cn from 'classnames'
 
 import { ThemeColor } from 'interfaces/common'
+import { ReducerContext } from 'reducers'
 
 import styles from './index.module.scss'
 
@@ -27,13 +29,43 @@ const themeColors = [
   }
 ]
 
-const ThemeColorSelect = () => {
+const ThemeColorSelect: React.FC = () => {
+  const [colorSelectState, dispatch] = useContext(ReducerContext)
+  const { colorSelectShow } = colorSelectState.theme
+
   const handleSelectThemeColor = themeColor => {
-    console.log(themeColor)
+    dispatch({
+      type: 'CHANGE_THEME_COLOR',
+      payload: {
+        themeColor
+      }
+    })
+    hideColorSelect()
+  }
+
+  const handleMouseLease = () => {
+    setTimeout(() => {
+      hideColorSelect()
+    }, 1000)
+  }
+
+  const hideColorSelect = () => {
+    dispatch({
+      type: 'SET_COLOR_SELECT_SHOW',
+      payload: {
+        colorSelectShow: false
+      }
+    })
   }
 
   return (
-    <div className={styles['color-select-wrap']}>
+    <div
+      className={cn(
+        styles['color-select-wrap'],
+        colorSelectShow && styles['show-color-select']
+      )}
+      onMouseLeave={handleMouseLease}
+    >
       <div className={styles['triangle']} />
       {themeColors.map(item => {
         return (

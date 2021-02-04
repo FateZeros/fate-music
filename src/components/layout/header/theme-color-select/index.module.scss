@@ -9,7 +9,9 @@
   top: $headerHeight + 5px;
   right: 20px;
   padding: 10px 15px;
-  display: flex;
+  transition: all 0.5s ease;
+  opacity: 0;
+  display: none;
 
   .triangle {
     width: 20px;
@@ -66,4 +68,9 @@
       color: #bbb;
     }
   }
+}
+
+.show-color-select {
+  opacity: 1;
+  display: flex;
 }
