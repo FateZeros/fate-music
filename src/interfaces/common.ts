@@ -44,3 +44,14 @@ export interface IUser {
   city: number
   birthday: number
 }
+
+/**
+ * 主题颜色
+ * 浅色、红色、深色、自动
+ */
+export enum ThemeColor {
+  THEME_WHITE = '#707070',
+  THEME_RED = '#cc3a3b',
+  THEME_BLACK = '#202020',
+  THEME_AUTO = '#707070'
+}

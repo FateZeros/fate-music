@@ -1,0 +1,69 @@
+.color-select-wrap {
+  width: auto;
+  height: 75px;
+  background: #fff;
+  box-shadow: 0 2px 7px 0 rgba(29, 29, 33, 0.12);
+  z-index: $themeColorSelectIndex;
+  border-radius: 6px;
+  position: absolute;
+  top: $headerHeight + 5px;
+  right: 20px;
+  padding: 10px 15px;
+  display: flex;
+
+  .triangle {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: -14px;
+    right: 50px;
+    background: url('../../../../assets/image/triangle-white.png') no-repeat
+      center;
+    background-size: cover;
+  }
+
+  .select-item {
+    width: 40px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .item-color {
+      width: 100%;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+
+      .item-circle {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+
+      .item-color-selected {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: url('../../../../assets/image/icon-selected.png') no-repeat
+          center;
+        background-size: 16px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        cursor: pointer;
+      }
+    }
+
+    .item-name {
+      width: 100%;
+      height: 20px;
+      line-height: 20px;
+      text-align: center;
+      font-size: 12px;
+      color: #bbb;
+    }
+  }
+}

@@ -28,8 +28,16 @@ const CreateSongList: React.FC<IProps> = ({ visible, songList, userId }) => {
       {createSongList.map(item => {
         return (
           <li key={item.id} className={styles['song-list-item']}>
-            <div className={styles['item-img']} />
-            <div className={styles['item-name']}>{item.name}</div>
+            <div
+              className={
+                item.specialType === 5
+                  ? styles['item-special-img']
+                  : styles['item-img']
+              }
+            />
+            <div className={styles['item-name']}>
+              {item.specialType === 5 ? '我喜欢的音乐' : item.name}
+            </div>
           </li>
         )
       })}

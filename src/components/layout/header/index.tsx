@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom'
 import RouteAction from './route-action'
 import Navbar from './navbar'
 import SearchInput from './search-input'
+import ThemeColorSelect from './theme-color-select'
 import ROUTES from 'constants/routes'
 
 import styles from './index.module.scss'
@@ -57,6 +58,7 @@ const Header = () => {
           onClick={() => handleFoldClient()}
         />
       </div>
+      <ThemeColorSelect />
     </div>
   )
 }
