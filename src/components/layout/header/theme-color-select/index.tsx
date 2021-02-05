@@ -3,6 +3,7 @@ import cn from 'classnames'
 
 import { ThemeColor } from 'interfaces/common'
 import { ReducerContext } from 'reducers'
+import { getThemeColor } from 'utils/theme'
 
 import styles from './index.module.scss'
 
@@ -58,6 +59,8 @@ const ThemeColorSelect: React.FC = () => {
     })
   }
 
+  const currentThemeColor = getThemeColor() || ThemeColor.THEME_RED
+
   return (
     <div
       className={cn(
@@ -78,7 +81,9 @@ const ThemeColorSelect: React.FC = () => {
                 className={styles['item-circle']}
                 style={{ background: item.color }}
               />
-              <div className={styles['item-color-selected']} />
+              {item.color === currentThemeColor && (
+                <div className={styles['item-color-selected']} />
+              )}
             </div>
             <div className={styles['item-name']}>{item.name}</div>
           </div>

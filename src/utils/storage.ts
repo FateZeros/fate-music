@@ -6,9 +6,19 @@ export const DEFAULT_VALUE = {
   STRING: ''
 }
 
+/**
+ * key localStorage中的 KEY
+ * defaultValue: 默认值
+ * setExpirseDateValue: 是否设置过期期限
+ * raw: 是否序列化
+ * serializer 序列化
+ * deserializer 反序列化
+ */
 interface IExpirseLocalStorageParams<T> {
   key: string
   defaultValue: string
+  setExpirseDateValue?: boolean
+  raw?: boolean
   serializer?: (value: T) => string
   deserializer?: (value: string) => T
 }
@@ -33,6 +43,8 @@ export const expirseLocalStorage = <T>(
   const {
     key,
     defaultValue,
+    setExpirseDateValue = true,
+    raw = true,
     serializer = JSON.stringify,
     deserializer = JSON.parse
   } = params
@@ -40,19 +52,23 @@ export const expirseLocalStorage = <T>(
   const setItem = (value: T) => {
     const data = serializer({
       info: value,
-      expirse: setExpirseDate()
+      expirse: setExpirseDateValue ? setExpirseDate() : null
     }) as string
     window.localStorage.setItem(key, data || defaultValue)
   }
 
   const getItem = () => {
-    const data = window.localStorage.getItem(key) || defaultValue
-    const { info, expirse } = deserializer(data)
-    if (expirse !== null && expirse < new Date().getTime()) {
-      window.localStorage.removeItem(key)
-      return defaultValue
+    const data = window.localStorage.getItem(key)
+    if (data) {
+      const { info, expirse } = deserializer(data)
+      if (expirse !== null && expirse < new Date().getTime()) {
+        window.localStorage.removeItem(key)
+        return raw ? deserializer(defaultValue) : defaultValue
+      } else {
+        return info
+      }
     }
-    return info || defaultValue
+    return raw ? deserializer(defaultValue) : defaultValue
   }
 
   const removeItem = () => {

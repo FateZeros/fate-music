@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom'
 
 import ROUTES from 'constants/routes'
 import { ReducerContext } from 'reducers'
+import { getThemeColor } from 'utils/theme'
 
 import RouteAction from './route-action'
 import Navbar from './navbar'
@@ -35,8 +36,13 @@ const Header = () => {
     console.log('fold client')
   }
 
+  const currentThemeColor = getThemeColor()
+
   return (
-    <div className={styles.header}>
+    <div
+      className={styles.header}
+      style={{ background: `${currentThemeColor}` }}
+    >
       <RouteAction />
       <Navbar />
       <SearchInput />

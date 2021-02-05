@@ -1,4 +1,5 @@
 import { ThemeColor } from 'interfaces/common'
+import { setThemeColor } from 'utils/theme'
 
 interface IThemeState {
   themeColor: ThemeColor
@@ -20,6 +21,7 @@ const themeReducer = (state = themeState, action) => {
       }
     }
     case 'CHANGE_THEME_COLOR':
+      setThemeColor(themeColor)
       return {
         themeColor
       }
