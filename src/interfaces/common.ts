@@ -50,7 +50,7 @@ export interface IUser {
  * 浅色、红色、深色、自动
  */
 export enum ThemeColor {
-  THEME_WHITE = '#707070',
+  THEME_WHITE = '#888889',
   THEME_RED = '#cc3a3b',
   THEME_BLACK = '#202020',
   THEME_AUTO = '#707070'

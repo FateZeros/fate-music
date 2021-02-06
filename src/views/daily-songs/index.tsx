@@ -4,7 +4,7 @@ import dayjs from 'dayjs'
 import * as recommendApis from 'apis/recommendation'
 import useAsyncRequest from 'hooks/useAsyncRequest'
 import PlayAllButton from 'components/play-all-button'
-import CollectButton from 'components/collect-button'
+import CommonButtonNum from 'components/common-button-num'
 import TableSingleSong from 'components/table-single-song'
 import ROUTES from 'constants/routes'
 
@@ -58,7 +58,7 @@ const DailySongs = () => {
       </div>
       <div className={styles['wrap-row']}>
         <PlayAllButton songs={songs} />
-        <CollectButton />
+        <CommonButtonNum name="collect-songs" word="收藏全部" />
       </div>
       <TableSingleSong from={ROUTES.DAILY_SONGS} songs={songs} />
     </div>

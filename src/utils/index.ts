@@ -1,7 +1,7 @@
 // 空方法
 export const noop = () => {}
 
-// 播放量
+// 数量格式化
 export const formatPlayCount = (num = 0) => {
   let result = ''
 

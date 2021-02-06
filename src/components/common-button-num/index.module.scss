@@ -1,0 +1,53 @@
+@mixin btn-name($iconName, $bgSize: 20px) {
+  width: auto;
+  height: 32px;
+  line-height: 32px;
+  border-radius: 16px;
+  border: 1px solid #666;
+  color: #666;
+  font-size: 14px;
+  padding: 0 20px 0 40px;
+  background: url('../../assets/image/common-btn/#{$iconName}.png') no-repeat
+    left 14px center;
+  background-size: $bgSize;
+  cursor: pointer;
+  display: flex;
+
+  &:hover {
+    background: #e6e6e6 url('../../assets/image/common-btn/#{$iconName}.png')
+      no-repeat left 14px center;
+    background-size: $bgSize;
+    color: #333;
+  }
+}
+
+@mixin disable-btn($iconName, $bgSize: 20px) {
+  pointer-events: none;
+  color: #b3b3b3;
+  border: 1px solid #e3e3e3;
+  background: url('../../assets/image/common-btn/#{$iconName}-disable.png')
+    no-repeat left 14px center;
+  background-size: $bgSize;
+}
+
+/* 
+* 收藏 collect-songs
+*/
+@each $iconName in ('collect-songs') {
+  .btn-name-#{$iconName} {
+    @include btn-name($iconName);
+  }
+
+  .disable-btn-#{$iconName} {
+    @include disable-btn($iconName);
+  }
+}
+
+.btn-name {
+  flex: 1;
+  height: 100%;
+}
+
+.btn-num {
+  margin-left: 4px;
+}

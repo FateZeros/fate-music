@@ -38,7 +38,7 @@ const User = () => {
         setUserLogged(false)
       }
     },
-    [showLoginModal, token]
+    [showLoginModal, token, userInfo]
   )
 
   return (
