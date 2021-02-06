@@ -1,11 +1,14 @@
 import React from 'react'
+import cn from 'classnames'
 
 import styles from './index.module.scss'
 
 interface IProps {
   name: string
   word: string
+  btnClickFunc: () => void
   showLeftLine?: boolean
+  disable?: boolean
 }
 
 /**
@@ -14,10 +17,18 @@ interface IProps {
 const CommonButton: React.FC<IProps> = ({
   name,
   word,
-  showLeftLine = false
+  btnClickFunc,
+  showLeftLine = false,
+  disable = false
 }) => {
   return (
-    <div className={styles[`common-btn-${name}`]}>
+    <div
+      className={cn(
+        styles[`common-btn-${name}`],
+        disable && styles[`disable-btn-${name}`]
+      )}
+      onClick={btnClickFunc}
+    >
       {showLeftLine && <div className={styles['btn-left-line']} />}
       {word}
     </div>

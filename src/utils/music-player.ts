@@ -17,12 +17,16 @@ export const musicPlayerList = expirseLocalStorage({
   defaultValue: DEFAULT_VALUE.ARRAY
 })
 
-export const setMusicPlayerList = (list: []) => {
+export const setMusicPlayerList = list => {
   musicPlayerList.setItem(list)
 }
 
 export const getMusicPlayerList = () => {
   return musicPlayerList.getItem()
+}
+
+export const removeMusicPlayerList = () => {
+  musicPlayerList.removeItem()
 }
 
 export const musicPlayerHistory = expirseLocalStorage({
@@ -32,4 +36,14 @@ export const musicPlayerHistory = expirseLocalStorage({
 
 export const getMusicHistoryList = () => {
   return musicPlayerHistory.getItem()
+}
+
+export const setMusicHistoryList = songItem => {
+  const historySongs: any = getMusicHistoryList()
+  const newHistorySongs = historySongs.push(songItem).reverse()
+  musicPlayerHistory.setItem(newHistorySongs)
+}
+
+export const removeMusicHistoryList = () => {
+  musicPlayerHistory.removeItem()
 }

@@ -12,6 +12,18 @@
     font-size: 12px;
     color: #bbb;
     display: flex;
+
+    .song-num {
+      flex: 1;
+      height: 100%;
+    }
+
+    .song-action {
+      width: auto;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
   }
 
   .current-songs {

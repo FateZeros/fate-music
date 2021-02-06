@@ -5,7 +5,7 @@ import * as loginApis from 'apis/login'
 import useAsyncRequest from 'hooks/useAsyncRequest'
 import { ReducerContext } from 'reducers'
 import useClickAway from 'hooks/useClickAway'
-import { removeUserInfo } from 'utils/auth'
+import { getUserInfo, removeUserInfo } from 'utils/auth'
 
 import styles from './index.module.scss'
 
@@ -22,6 +22,8 @@ const UserInfo = () => {
 
   const [, logout] = useAsyncRequest(loginApis.logout)
 
+  const userInfo: any = getUserInfo()
+
   const handleLogout = async () => {
     const res = await logout()
     if (res.code === 200) {
@@ -29,13 +31,38 @@ const UserInfo = () => {
       removeUserInfo()
     }
   }
+  console.log(userInfo)
 
   return (
     <div
       className={cn(showUserInfoModal && styles['show-user-info'], styles.wrap)}
       ref={ref => (userInfoRef.current = ref)}
     >
-      <div className={styles['info-circle']}>1</div>
+      <div className={styles['info-circle']}>
+        <ul className={styles['info-circle-row']}>
+          <li className={styles['circle-item']}>
+            <div className={styles['item-num']}>
+              {userInfo.profile && userInfo.profile.eventCount}
+            </div>
+            <div className={styles['item-word']}>动态</div>
+          </li>
+          <li className={styles['circle-item']}>
+            <div className={styles['item-num']}>
+              {userInfo.profile && userInfo.profile.follows}
+            </div>
+            <div className={styles['item-word']}>关注</div>
+          </li>
+          <li className={styles['circle-item']}>
+            <div className={styles['item-num']}>
+              {userInfo.profile && userInfo.profile.followeds}
+            </div>
+            <div className={styles['item-word']}>粉丝</div>
+          </li>
+        </ul>
+        <div className={styles['circle-signin-row']}>
+          <div className={styles['signin-btn']}>签到</div>
+        </div>
+      </div>
       <div className={styles['info-center']}>2</div>
       <div className={styles['info-self']}>3</div>
       <div className={styles['login-out']}>
