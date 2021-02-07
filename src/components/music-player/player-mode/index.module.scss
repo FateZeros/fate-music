@@ -1,7 +1,17 @@
+@mixin mode-img($modeName) {
+  background: url('../../../assets/image/player/mode-#{$modeName}.png')
+    no-repeat center;
+  background-size: 20px;
+}
+
 .music-play-mode {
   width: 20px;
   height: 20px;
-  background: url('../../../assets/image/player/setting-1.png') no-repeat center;
-  background-size: 20px;
   cursor: pointer;
+}
+
+@each $modeName in ('cycle', 'sort', 'one', 'random') {
+  .mode-img-#{$modeName} {
+    @include mode-img($modeName);
+  }
 }

@@ -1,14 +1,26 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
 import TableSingleSong from 'components/table-single-song'
 import CommonButton from 'components/common-button'
-import { getMusicPlayerList, removeMusicPlayerList } from 'utils/music-player'
+import { getMusicPlayerList } from 'utils/music-player'
 import EmptyList from 'components/empty-list'
+import { ReducerContext } from 'reducers'
 
 import styles from './index.module.scss'
 
 const CurrentList = () => {
-  const songs: any = getMusicPlayerList()
+  const [state, dispatch] = useContext(ReducerContext)
+  const { currentPlayList } = state.musicPlayer
+
+  /**
+   * 优先以 reducer 中的数据为展示数据
+   */
+  let songs: any = []
+  if (currentPlayList.length) {
+    songs = currentPlayList
+  } else {
+    songs = getMusicPlayerList()
+  }
   const hasSong: boolean = songs.length > 0
 
   const handleCollectAllSongs = () => {
@@ -16,7 +28,12 @@ const CurrentList = () => {
   }
 
   const handleClearCurrentPlayList = () => {
-    removeMusicPlayerList()
+    dispatch({
+      type: 'SET_CURRENT_PLAYER_LIST',
+      payload: {
+        songs: []
+      }
+    })
   }
 
   return (

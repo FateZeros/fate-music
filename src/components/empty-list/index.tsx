@@ -21,7 +21,7 @@ const EmptyList: React.FC<IProps> = ({
   const handleGoDiscovery = () => {
     history.push(route)
     dispatch({
-      type: 'SET_CURRENT_PLAY_LIST',
+      type: 'SHOW_CURRENT_PLAY_LIST',
       payload: {
         visible: false
       }

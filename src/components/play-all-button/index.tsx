@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
-import { setMusicPlayerList } from 'utils/music-player'
+import { ReducerContext } from 'reducers'
 
 import styles from './index.module.scss'
 
@@ -11,8 +11,15 @@ interface IProps {
  * 播放全部按钮
  */
 const PlayAllButton: React.FC<IProps> = ({ songs }) => {
+  const [, dispatch] = useContext(ReducerContext)
+
   const handlePlayAllSongs = () => {
-    setMusicPlayerList(songs)
+    dispatch({
+      type: 'SET_CURRENT_PLAYER_LIST',
+      payload: {
+        songs
+      }
+    })
   }
 
   return (

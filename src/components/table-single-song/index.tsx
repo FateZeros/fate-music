@@ -23,6 +23,10 @@ const TableSingleSong: React.FC<IProps> = ({ from, songs }) => {
   const commonFrom = [ROUTES.DAILY_SONGS, ROUTES.ITUNES]
   const showCommon = commonFrom.includes(from)
 
+  const handleSongNameClick = songItem => {
+    console.log(songItem, 'doubleClick')
+  }
+
   return (
     <Fragment>
       {showCommon && (
@@ -57,7 +61,12 @@ const TableSingleSong: React.FC<IProps> = ({ from, songs }) => {
               {from === 'current_play_list' && index === 0 && (
                 <div className={styles['item-play']} />
               )}
-              <div className={styles['item-title']}>{itemSong.name}</div>
+              <div
+                className={styles['item-title']}
+                onDoubleClick={() => handleSongNameClick(itemSong)}
+              >
+                {itemSong.name}
+              </div>
             </div>
             <div
               className={cn(

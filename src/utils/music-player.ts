@@ -2,14 +2,20 @@ import { expirseLocalStorage, DEFAULT_VALUE } from './storage'
 
 enum PLAYER_KEYS {
   PLAYER_LIST = 'FATE_MUSIC_PLAYER_LIST',
-  PLAYER_HISTORY = 'FATA_MUSIC_PLAYER_HISTORY',
-  PLAYER_MODE = 'FATE_MUSIC_PLAYER_MODE'
+  PLAYER_HISTORY = 'FATE_MUSIC_PLAYER_HISTORY',
+  PLAYER_MODE = 'FATE_MUSIC_PLAYER_MODE',
+  PLAYER_CURRENT_SONG = 'FATE_MUSIC_PLAYER_CURRENT_SONG'
 }
 
-enum PLAYER_MODE {
-  PLAY_ORDER = 'FATE_MUSIC_PLAY_ORDER',
-  PLAY_SINGLE = 'FATE_MUSIC_PLAY_SINGLE',
-  PLAY_SHUFFLE = 'FATE_MUSIC_PLAY_'
+export enum PLAYER_MODE {
+  // 顺序播放
+  PLAY_SORT = 'sort',
+  // 单曲循环
+  PLAY_ONE = 'one',
+  // 随机播放
+  PLAY_RANDOM = 'random',
+  // 列表循环
+  PLAY_CYCLE = 'cycle'
 }
 
 export const musicPlayerList = expirseLocalStorage({
@@ -23,10 +29,6 @@ export const setMusicPlayerList = list => {
 
 export const getMusicPlayerList = () => {
   return musicPlayerList.getItem()
-}
-
-export const removeMusicPlayerList = () => {
-  musicPlayerList.removeItem()
 }
 
 export const musicPlayerHistory = expirseLocalStorage({
@@ -44,6 +46,29 @@ export const setMusicHistoryList = songItem => {
   musicPlayerHistory.setItem(newHistorySongs)
 }
 
-export const removeMusicHistoryList = () => {
-  musicPlayerHistory.removeItem()
+export const musicPlayerMode = expirseLocalStorage({
+  key: PLAYER_KEYS.PLAYER_MODE,
+  defaultValue: DEFAULT_VALUE.STRING,
+  raw: false
+})
+
+export const setMusicPlayerMode = (mode: PLAYER_MODE) => {
+  musicPlayerMode.setItem(mode)
+}
+
+export const getMusicPlayerMode = () => {
+  return musicPlayerMode.getItem()
+}
+
+export const musicPlayerCurrentPlaySong = expirseLocalStorage({
+  key: PLAYER_KEYS.PLAYER_CURRENT_SONG,
+  defaultValue: DEFAULT_VALUE.OBJECT
+})
+
+export const setMusicPlayerCurrentSong = currentSong => {
+  musicPlayerCurrentPlaySong.setItem(currentSong)
+}
+
+export const getMusicPlayerCurrentSong = () => {
+  return musicPlayerCurrentPlaySong.getItem()
 }

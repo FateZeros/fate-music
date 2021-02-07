@@ -29,7 +29,7 @@ const CurrentPlayList: React.FC<IProps> = ({}) => {
 
   useClickAway(currentPlayListRef, () => {
     dispatch({
-      type: 'SET_CURRENT_PLAY_LIST',
+      type: 'SHOW_CURRENT_PLAY_LIST',
       payload: {
         visible: false
       }
