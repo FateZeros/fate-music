@@ -55,3 +55,25 @@ export enum ThemeColor {
   THEME_BLACK = '#202020',
   THEME_AUTO = '#707070'
 }
+
+/**
+ * 歌曲 URL
+ */
+export interface ISongUrlRes {
+  id: number
+  url: string
+  br: number
+  size: number
+  type: string
+  payed: number
+}
+
+/**
+ * 视频 URL
+ */
+export interface IVideoUrlRes {
+  id: number
+  url: string
+  r: number
+  size: number
+}

@@ -2,7 +2,8 @@ import {
   setMusicPlayerList,
   setMusicPlayerMode,
   setMusicPlayerCurrentSong,
-  PLAYER_MODE
+  PLAYER_MODE,
+  getMusicPlayerMode
 } from 'utils/music-player'
 import { randomNumber } from 'utils'
 
@@ -34,7 +35,7 @@ const musicPlayerReducer = (state = musicPlayerState, action) => {
       const { songs } = action.payload
       setMusicPlayerList(songs)
 
-      const playerMode = state.playerMode
+      const playerMode = state.playerMode || getMusicPlayerMode()
       const songsLen = songs.length
       let currentPlaySong: any = {}
       if (playerMode === PLAYER_MODE.PLAY_RANDOM && songsLen) {

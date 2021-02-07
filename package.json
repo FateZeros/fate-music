@@ -2,6 +2,27 @@
   "name": "fate-music",
   "version": "1.0.0",
   "private": true,
+  "keywords": [
+    "react",
+    "react hook",
+    "music",
+    "player",
+    "typescript",
+    "eslint",
+    "网易云",
+    "音乐",
+    "网易云音乐"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FateZeros/fate-music.git"
+  },
+  "author": "FateZeros",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FateZeros/fate-music/issues"
+  },
+  "description": "基于React、TypeScript的高仿网易云mac客户端播放器",
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",

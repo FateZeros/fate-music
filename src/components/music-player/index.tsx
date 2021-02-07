@@ -2,6 +2,8 @@ import React from 'react'
 
 import { ReducerContext } from 'reducers'
 
+import { getMusicPlayerCurrentSong } from 'utils/music-player'
+
 import CurrentPlayList from './current-play-list'
 import CurrentPlaySong from './current-play-song'
 import PlayerMode from './player-mode'
@@ -14,7 +16,13 @@ const MusicPlayer = () => {
   const musicAudioRef = useRef<HTMLElement | null>(null)
 
   const [state, dispatch] = useContext(ReducerContext)
-  const { currentPlayListVisible } = state.musicPlayer
+  const { currentPlayListVisible, currentPlaySong } = state.musicPlayer
+
+  // 当前正在播放的歌曲
+  let playingSong: any = currentPlaySong
+  if (!Number(currentPlaySong.id)) {
+    playingSong = getMusicPlayerCurrentSong()
+  }
 
   const handleShowCurrentPlaySongs = () => {
     dispatch({
@@ -30,7 +38,7 @@ const MusicPlayer = () => {
       <div className={styles['music-player-wrap']}>
         <div className={styles['music-play-progress']} />
         {/** player 当前播放的音乐 */}
-        <CurrentPlaySong />
+        <CurrentPlaySong playingSong={playingSong} />
         {/** player 控制台 */}
         <div className={styles['music-action-wrap']}>
           <div className={styles['music-action-collect']} />

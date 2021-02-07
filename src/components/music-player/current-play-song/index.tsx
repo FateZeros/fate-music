@@ -1,32 +1,26 @@
 import React, { useContext, Fragment } from 'react'
 
-import { getMusicPlayerCurrentSong } from 'utils/music-player'
-import { ReducerContext } from 'reducers'
 import { formatSongTime } from 'utils'
 
 import styles from './index.module.scss'
 import defaultMusicImg from 'assets/image/player/default-music.png'
+
+interface IProps {
+  playingSong: any
+}
+
 /**
  * 播放器 - 当前正在播放的音乐
  */
-const CurrentPlaySong = () => {
-  const [state] = useContext(ReducerContext)
-  const { currentPlaySong } = state.musicPlayer
-
-  // 当前正在播放的歌曲
-  let playSong: any = currentPlaySong
-  if (!Number(currentPlaySong.id)) {
-    playSong = getMusicPlayerCurrentSong()
-  }
-
+const CurrentPlaySong: React.FC<IProps> = ({ playingSong }) => {
   let songImg: any = defaultMusicImg
-  if (playSong.al) {
-    songImg = playSong.al.picUrl
+  if (playingSong.al) {
+    songImg = playingSong.al.picUrl
   }
 
   return (
     <div className={styles['music-info-wrap']}>
-      {Number(playSong.id) ? (
+      {Number(playingSong.id) ? (
         <Fragment>
           <div className={styles['music-info-img']}>
             <img src={songImg} alt="" loading="lazy" />
@@ -34,11 +28,11 @@ const CurrentPlaySong = () => {
           </div>
           <div className={styles['music-info-rows']}>
             <div className={styles['music-info']}>
-              <div className={styles['music-name']}>{playSong.name}</div>
-              <div className={styles['music-author']}>{playSong.arName}</div>
+              <div className={styles['music-name']}>{playingSong.name}</div>
+              <div className={styles['music-author']}>{playingSong.arName}</div>
             </div>
             <div className={styles['music-time']}>
-              {'03:00'} / {formatSongTime(playSong.dt)}
+              {'03:00'} / {formatSongTime(playingSong.dt)}
             </div>
           </div>
         </Fragment>

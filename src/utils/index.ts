@@ -39,7 +39,7 @@ export const formatSongTime = (duration?: number) => {
 
 // 取有范围的随机数
 export const randomNumber = (max: number = 1, min: number = 0) => {
-  if (min < max) {
+  if (min < 0) {
     return max
   }
   return Math.floor(Math.random() * (max - min) + min)
