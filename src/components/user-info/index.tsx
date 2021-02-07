@@ -6,7 +6,9 @@ import useAsyncRequest from 'hooks/useAsyncRequest'
 import { ReducerContext } from 'reducers'
 import useClickAway from 'hooks/useClickAway'
 import { getUserInfo, removeUserInfo } from 'utils/auth'
+import UserInfoRow from './userInfo.row'
 
+import { userInfoCenter, userInfoSelf } from './constants'
 import styles from './index.module.scss'
 
 const { useContext, useRef } = React
@@ -31,7 +33,6 @@ const UserInfo = () => {
       removeUserInfo()
     }
   }
-  console.log(userInfo)
 
   return (
     <div
@@ -63,14 +64,36 @@ const UserInfo = () => {
           <div className={styles['signin-btn']}>签到</div>
         </div>
       </div>
-      <div className={styles['info-center']}>2</div>
-      <div className={styles['info-self']}>3</div>
+      <div className={styles['info-center']}>
+        {userInfoCenter.map(item => {
+          return (
+            <UserInfoRow
+              key={item.id}
+              iconName={item.iconName}
+              title={item.title}
+              rightArrow={item.rightArrow}
+            />
+          )
+        })}
+      </div>
+      <div className={styles['info-self']}>
+        {userInfoSelf.map(item => {
+          return (
+            <UserInfoRow
+              key={item.id}
+              iconName={item.iconName}
+              title={item.title}
+              rightArrow={item.rightArrow}
+            />
+          )
+        })}
+      </div>
       <div className={styles['login-out']}>
-        <div className={styles['info-row']}>
-          <div className={styles['info-row-title']} onClick={handleLogout}>
-            退出登录
-          </div>
-        </div>
+        <UserInfoRow
+          iconName="user-logout"
+          title="退出登录"
+          onRowClick={handleLogout}
+        />
       </div>
     </div>
   )

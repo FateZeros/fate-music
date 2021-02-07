@@ -41,16 +41,16 @@ const User = () => {
     [showLoginModal, token, userInfo]
   )
 
+  const avatarUrl = userInfo.profile && userInfo.profile.avatarUrl
+  const nickname = userInfo.profile && userInfo.profile.nickname
+
   return (
     <div className={styles['user-wrap']}>
       <div className={styles['user-img']}>
-        <img
-          src={userLogged ? userInfo.profile.avatarUrl : defaultUser}
-          alt=""
-        />
+        <img src={userLogged ? avatarUrl : defaultUser} alt="" />
       </div>
       <div className={styles['user-name']} onClick={handleShowLogin}>
-        {userLogged ? userInfo.profile.nickname : '未登录'}
+        {userLogged ? nickname : '未登录'}
       </div>
     </div>
   )
