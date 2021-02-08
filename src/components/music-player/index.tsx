@@ -2,7 +2,11 @@ import React from 'react'
 import cn from 'classnames'
 
 import { ReducerContext } from 'reducers'
-import { getMusicPlayerCurrentSong } from 'utils/music-player'
+import {
+  getMusicPlayerCurrentSong,
+  getMusicPlayerMode,
+  getMusicPlayerVolume
+} from 'utils/music-player'
 import * as commonApis from 'apis/common'
 import useAsyncRequest from 'hooks/useAsyncRequest'
 
@@ -29,20 +33,45 @@ const MusicPlayer = () => {
 
   const [playingCurrentTime, setCurrentTime] = useState('00:00')
 
-  // 当前正在播放的歌曲
-  let playingSong: any = currentPlaySong
-  if (!Number(currentPlaySong.id)) {
-    playingSong = getMusicPlayerCurrentSong()
-  }
-
   useEffect(() => {
-    if (playingSong.id) {
-      getSongUrl({
-        id: playingSong.id
-      })
-    }
+    // 1. 初始化当前播放音乐
+    dispatch({
+      type: 'SET_CURRENT_PLAY_SONG',
+      payload: {
+        currentPlaySong: getMusicPlayerCurrentSong()
+      }
+    })
+    // 2. 初始化播放模式
+    dispatch({
+      type: 'SET_MUSIC_PLAYER_MODE',
+      payload: {
+        playerMode: getMusicPlayerMode()
+      }
+    })
+    // 3. 初始化播放音量
+    dispatch({
+      type: 'SET_MUSIC_PLAYER_VOLUME',
+      payload: {
+        playerVolume: getMusicPlayerVolume()
+      }
+    })
     // eslint-disable-next-line
   }, [])
+
+  useEffect(
+    () => {
+      if (currentPlaySong.id) {
+        getSongUrl({
+          id: currentPlaySong.id
+        }).then(() => {
+          // 每次切换歌曲 URL 则
+          console.log(1222)
+        })
+      }
+    },
+    // eslint-disable-next-line
+    [currentPlaySong]
+  )
 
   useEffect(
     () => {
@@ -75,8 +104,17 @@ const MusicPlayer = () => {
     })
   }
 
+  const handleChangePlayingSong = direction => {
+    dispatch({
+      type: 'CHANGE_CURRENT_PLAY_SONG',
+      payload: {
+        direction
+      }
+    })
+  }
+
   const handleAudioTimeUpdate = e => {
-    console.log(e.target.currentTime, 1212)
+    // console.log(e.target.currentTime, 1212)
     setCurrentTime(e.target.currentTime)
   }
 
@@ -86,14 +124,17 @@ const MusicPlayer = () => {
         <div className={styles['music-play-progress']} />
         {/** player 当前播放的音乐 */}
         <CurrentPlaySong
-          playingSong={playingSong}
+          playingSong={currentPlaySong}
           playingCurrentTime={playingCurrentTime}
         />
         {/** player 控制台 */}
         <div className={styles['music-action-wrap']}>
           <div className={styles['music-action-collect']} />
           <div className={styles['music-play-wrap']}>
-            <div className={styles['music-action-pre']} />
+            <div
+              className={styles['music-action-pre']}
+              onClick={() => handleChangePlayingSong('pre')}
+            />
             <div
               className={cn(
                 isPlayingSong
@@ -102,7 +143,10 @@ const MusicPlayer = () => {
               )}
               onClick={handleTogglePlaying}
             />
-            <div className={styles['music-action-next']} />
+            <div
+              className={styles['music-action-next']}
+              onClick={() => handleChangePlayingSong('next')}
+            />
           </div>
           <div className={styles['music-action-share']} />
         </div>

@@ -1,5 +1,6 @@
 import { expirseLocalStorage, DEFAULT_VALUE } from './storage'
 
+// 播放器主题色
 export const themeColorStorage = expirseLocalStorage({
   key: 'FATE_MUSIC_THEME',
   defaultValue: DEFAULT_VALUE.STRING,

@@ -2,8 +2,10 @@ import {
   setMusicPlayerList,
   setMusicPlayerMode,
   setMusicPlayerCurrentSong,
+  setMusicPlayerVolume,
   PLAYER_MODE,
-  getMusicPlayerMode
+  getMusicPlayerMode,
+  getMusicPlayerList
 } from 'utils/music-player'
 import { randomNumber } from 'utils'
 
@@ -18,7 +20,9 @@ const musicPlayerState = {
   // 当前正在播放的音乐
   currentPlaySong: {},
   // 是否正在播放音乐
-  isPlayingSong: false
+  isPlayingSong: false,
+  // 音乐播放器的音量 默认50%
+  playerVolume: 50
 }
 
 const musicPlayerReducer = (state = musicPlayerState, action) => {
@@ -69,11 +73,35 @@ const musicPlayerReducer = (state = musicPlayerState, action) => {
         currentPlaySong
       }
     }
+    case 'CHANGE_CURRENT_PLAY_SONG': {
+      const { currentPlaySong, currentPlayList, playerMode } = state
+      const songsLen = currentPlayList.length
+      const { direction } = action.payload
+      let changePlaySong = {}
+      if (playerMode === PLAYER_MODE.PLAY_RANDOM) {
+        const randomIndex = randomNumber(songsLen, 0)
+        changePlaySong = currentPlayList[randomIndex]
+      } else {
+        console.log(currentPlayList, '11111')
+        // const currentPlaySongIndex = currentPlayList.findIndex(item => item.id === currentPlaySong.id)
+        // if (direction === 'pre') {
+        // } else {
+        // }
+      }
+    }
     case 'TOGGLE_PLAYING_SONG': {
       const { isPlayingSong } = action.payload
       return {
         ...state,
         isPlayingSong
+      }
+    }
+    case 'SET_MUSIC_PLAYER_VOLUME': {
+      const { playerVolume } = action.payload
+      setMusicPlayerVolume(playerVolume)
+      return {
+        ...state,
+        playerVolume
       }
     }
     default:
