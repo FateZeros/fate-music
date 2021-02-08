@@ -1,4 +1,4 @@
-import React, { useContext, Fragment } from 'react'
+import React, { Fragment } from 'react'
 
 import { formatSongTime } from 'utils'
 
@@ -7,12 +7,16 @@ import defaultMusicImg from 'assets/image/player/default-music.png'
 
 interface IProps {
   playingSong: any
+  playingCurrentTime: string
 }
 
 /**
  * 播放器 - 当前正在播放的音乐
  */
-const CurrentPlaySong: React.FC<IProps> = ({ playingSong }) => {
+const CurrentPlaySong: React.FC<IProps> = ({
+  playingSong,
+  playingCurrentTime
+}) => {
   let songImg: any = defaultMusicImg
   if (playingSong.al) {
     songImg = playingSong.al.picUrl
@@ -32,7 +36,7 @@ const CurrentPlaySong: React.FC<IProps> = ({ playingSong }) => {
               <div className={styles['music-author']}>{playingSong.arName}</div>
             </div>
             <div className={styles['music-time']}>
-              {'03:00'} / {formatSongTime(playingSong.dt)}
+              {playingCurrentTime} / {formatSongTime(playingSong.dt)}
             </div>
           </div>
         </Fragment>

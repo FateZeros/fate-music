@@ -48,11 +48,19 @@
         cursor: pointer;
       }
 
-      .music-action-play {
-        width: 30px;
-        height: 30px;
+      .music-action-pouse {
+        width: 36px;
+        height: 36px;
         background: url('../../assets/image/player/pouse.png') no-repeat center;
-        background-size: 30px;
+        background-size: 36px;
+        cursor: pointer;
+      }
+
+      .music-action-play {
+        width: 36px;
+        height: 36px;
+        background: url('../../assets/image/player/play.png') no-repeat center;
+        background-size: 36px;
         cursor: pointer;
       }
 

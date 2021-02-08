@@ -16,7 +16,9 @@ const musicPlayerState = {
   // 音乐播放器模式
   playerMode: '',
   // 当前正在播放的音乐
-  currentPlaySong: {}
+  currentPlaySong: {},
+  // 是否正在播放音乐
+  isPlayingSong: false
 }
 
 const musicPlayerReducer = (state = musicPlayerState, action) => {
@@ -65,6 +67,13 @@ const musicPlayerReducer = (state = musicPlayerState, action) => {
       return {
         ...state,
         currentPlaySong
+      }
+    }
+    case 'TOGGLE_PLAYING_SONG': {
+      const { isPlayingSong } = action.payload
+      return {
+        ...state,
+        isPlayingSong
       }
     }
     default:
