@@ -4,4 +4,59 @@
   background: url('../../../assets/image/player/sound.png') no-repeat center;
   background-size: 20px;
   cursor: pointer;
+  position: relative;
+
+  .setting-volume-wrap {
+    width: 30px;
+    height: 100px;
+    position: absolute;
+    left: -5px;
+    top: -120px;
+    background: #fff;
+    box-shadow: 0 2px 7px 0 rgba(29, 29, 33, 0.12);
+    border-radius: 5px;
+    z-index: $musicPlayerIndex;
+    display: flex;
+    padding: 10px 0;
+    justify-content: center;
+
+    .setting-volume-line {
+      width: 4px;
+      height: 100%;
+      background: #e6e6e6;
+      border-radius: 2px;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .setting-volume {
+      width: 4px;
+      background: $theme-red;
+      border-radius: 2px;
+      position: relative;
+      z-index: 2;
+
+      .setting-volume-dot {
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        border-radius: 50%;
+        background: $theme-red;
+        top: 0px;
+        left: 50%;
+        margin-left: -5px;
+      }
+    }
+  }
+
+  .settting-arrow {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    bottom: -12px;
+    right: 5px;
+    background: url('../../../assets/image/triangle-white.png') no-repeat center;
+    background-size: cover;
+    transform: rotate(180deg);
+  }
 }
