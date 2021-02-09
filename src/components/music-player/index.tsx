@@ -14,6 +14,7 @@ import CurrentPlayList from './current-play-list'
 import CurrentPlaySong from './current-play-song'
 import PlayerMode from './player-mode'
 import PlayerVolume from './player-volume'
+import CurrentPlayBar from './current-play-bar'
 import styles from './index.module.scss'
 
 const { Fragment, useContext, useEffect, useRef, useState } = React
@@ -31,7 +32,7 @@ const MusicPlayer = () => {
   const [songValue, getSongUrl] = useAsyncRequest(commonApis.getSongUrl)
   const { value: songUrlValue } = songValue
 
-  const [playingCurrentTime, setCurrentTime] = useState('00:00')
+  const [playingCurrentTime, setCurrentTime] = useState(0)
 
   useEffect(() => {
     // 1. 初始化当前播放音乐
@@ -60,21 +61,6 @@ const MusicPlayer = () => {
 
   useEffect(
     () => {
-      if (currentPlaySong.id) {
-        getSongUrl({
-          id: currentPlaySong.id
-        }).then(() => {
-          // 每次切换歌曲 URL 则
-          console.log(1222)
-        })
-      }
-    },
-    // eslint-disable-next-line
-    [currentPlaySong]
-  )
-
-  useEffect(
-    () => {
       if (musicAudioRef.current) {
         if (isPlayingSong) {
           musicAudioRef.current.play()
@@ -84,6 +70,18 @@ const MusicPlayer = () => {
       }
     },
     [musicAudioRef, isPlayingSong]
+  )
+
+  useEffect(
+    () => {
+      if (currentPlaySong.id) {
+        getSongUrl({
+          id: currentPlaySong.id
+        })
+      }
+    },
+    // eslint-disable-next-line
+    [currentPlaySong]
   )
 
   const handleShowCurrentPlaySongs = () => {
@@ -114,14 +112,16 @@ const MusicPlayer = () => {
   }
 
   const handleAudioTimeUpdate = e => {
-    // console.log(e.target.currentTime, 1212)
-    setCurrentTime(e.target.currentTime)
+    setCurrentTime(e.target.currentTime * 1000)
   }
 
   return (
     <Fragment>
       <div className={styles['music-player-wrap']}>
-        <div className={styles['music-play-progress']} />
+        <CurrentPlayBar
+          playingCurrentTime={playingCurrentTime}
+          playingSong={currentPlaySong}
+        />
         {/** player 当前播放的音乐 */}
         <CurrentPlaySong
           playingSong={currentPlaySong}

@@ -7,7 +7,7 @@ import defaultMusicImg from 'assets/image/player/default-music.png'
 
 interface IProps {
   playingSong: any
-  playingCurrentTime: string
+  playingCurrentTime: number
 }
 
 /**
@@ -36,7 +36,10 @@ const CurrentPlaySong: React.FC<IProps> = ({
               <div className={styles['music-author']}>{playingSong.arName}</div>
             </div>
             <div className={styles['music-time']}>
-              {playingCurrentTime} / {formatSongTime(playingSong.dt)}
+              {playingCurrentTime > 0
+                ? formatSongTime(playingCurrentTime)
+                : '00:00'}
+              / {formatSongTime(playingSong.dt)}
             </div>
           </div>
         </Fragment>

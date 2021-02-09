@@ -18,7 +18,9 @@ const musicPlayerState = {
   // 音乐播放器模式
   playerMode: '',
   // 当前正在播放的音乐
-  currentPlaySong: {},
+  currentPlaySong: {
+    id: 0
+  },
   // 是否正在播放音乐
   isPlayingSong: false,
   // 音乐播放器的音量 默认50%
@@ -75,18 +77,38 @@ const musicPlayerReducer = (state = musicPlayerState, action) => {
     }
     case 'CHANGE_CURRENT_PLAY_SONG': {
       const { currentPlaySong, currentPlayList, playerMode } = state
-      const songsLen = currentPlayList.length
+      const playList: any = currentPlayList.length
+        ? currentPlayList
+        : getMusicPlayerList()
+      const songsLen = playList.length
       const { direction } = action.payload
       let changePlaySong = {}
       if (playerMode === PLAYER_MODE.PLAY_RANDOM) {
         const randomIndex = randomNumber(songsLen, 0)
-        changePlaySong = currentPlayList[randomIndex]
+        changePlaySong = playList[randomIndex]
       } else {
-        console.log(currentPlayList, '11111')
-        // const currentPlaySongIndex = currentPlayList.findIndex(item => item.id === currentPlaySong.id)
-        // if (direction === 'pre') {
-        // } else {
-        // }
+        const currentPlaySongIndex = playList.findIndex(
+          item => item.id === currentPlaySong.id
+        )
+        let changePlaySongIndex = 0
+        if (direction === 'pre') {
+          changePlaySongIndex = currentPlaySongIndex - 1
+          if (changePlaySongIndex < 0) {
+            changePlaySongIndex = songsLen - 1
+          }
+        } else {
+          changePlaySongIndex = currentPlaySongIndex + 1
+          if (changePlaySongIndex > songsLen) {
+            changePlaySongIndex = 0
+          }
+        }
+        changePlaySong = playList[changePlaySongIndex]
+      }
+      setMusicPlayerCurrentSong(changePlaySong)
+      return {
+        ...state,
+        isPlayingSong: false,
+        currentPlaySong: changePlaySong
       }
     }
     case 'TOGGLE_PLAYING_SONG': {
