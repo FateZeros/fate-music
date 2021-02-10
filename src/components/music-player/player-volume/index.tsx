@@ -15,17 +15,17 @@ const PlayerVolume = () => {
 
   const playerVolume = 50
 
-  const handleVolumeDotDown = useCallback(
+  const handleVolumeInnerLineDown = useCallback(
     e => {
       if (volumeInnerLineRef.current) {
-        setVolumeInnerLineStartY(e.pageY - volumeInnerLineRef.current.offsetTop)
+        setVolumeInnerLineStartY(e.pageY)
         setVolumeInnerLineDrag(true)
       }
     },
     [volumeInnerLineRef]
   )
 
-  const handleVolumeDotMove = useCallback(
+  const handleVolumeInnerLineMove = useCallback(
     e => {
       const volumeLineEle = volumeLineRef.current
       const volumeInnerLineEle = volumeInnerLineRef.current
@@ -36,7 +36,7 @@ const PlayerVolume = () => {
 
           let heightY = 0
           if (innerLineHeight < lineHeight) {
-            heightY = e.pageY - volumeInnerLineStartY
+            heightY = e.clientY - volumeInnerLineStartY
           }
           console.log(heightY, 222)
         }
@@ -45,7 +45,7 @@ const PlayerVolume = () => {
     [volumeInnerLineDrag, volumeLineRef, volumeInnerLineRef]
   )
 
-  const handleVolumeDotUp = () => {
+  const handleVolumeInnerLineUp = () => {
     setVolumeInnerLineDrag(false)
   }
 
@@ -60,11 +60,16 @@ const PlayerVolume = () => {
             className={styles['setting-volume']}
             style={{ height: `${playerVolume}%` }}
             ref={ref => (volumeInnerLineRef.current = ref)}
-            onMouseDown={e => handleVolumeDotDown(e)}
-            onMouseMove={e => handleVolumeDotMove(e)}
-            onMouseUp={() => handleVolumeDotUp()}
+            onMouseDown={e => handleVolumeInnerLineDown(e)}
+            onMouseMove={e => handleVolumeInnerLineMove(e)}
+            onMouseUp={() => handleVolumeInnerLineUp()}
           >
-            <div className={styles['setting-volume-dot']} />
+            <div
+              className={styles['setting-volume-dot']}
+              onMouseDown={e => handleVolumeInnerLineDown(e)}
+              onMouseMove={e => handleVolumeInnerLineMove(e)}
+              onMouseUp={() => handleVolumeInnerLineUp()}
+            />
           </div>
         </div>
         <div className={styles['settting-arrow']} />

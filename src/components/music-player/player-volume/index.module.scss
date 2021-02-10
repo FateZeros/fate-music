@@ -6,19 +6,26 @@
   cursor: pointer;
   position: relative;
 
+  &:hover {
+    .setting-volume-wrap {
+      display: flex;
+    }
+  }
+
   .setting-volume-wrap {
     width: 30px;
     height: 100px;
     position: absolute;
     left: -5px;
-    top: -120px;
+    top: -110px;
     background: #fff;
     box-shadow: 0 2px 7px 0 rgba(29, 29, 33, 0.12);
     border-radius: 5px;
     z-index: $musicPlayerIndex;
-    display: flex;
+    // display: flex;
     padding: 10px 0;
     justify-content: center;
+    display: none;
 
     .setting-volume-line {
       width: 4px;

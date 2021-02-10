@@ -18,6 +18,23 @@
     .song-num {
       width: 30px;
       height: 100%;
+      padding-left: 8px;
+    }
+
+    .playing-song-icon {
+      width: 30px;
+      height: 100%;
+      background: url('../../assets//image/player/sound-active.png') no-repeat
+        left center;
+      background-size: 18px;
+    }
+
+    .pouse-song-icon {
+      width: 30px;
+      height: 100%;
+      background: url('../../assets//image/player/sound-mute.png') no-repeat
+        left center;
+      background-size: 20px;
     }
 
     .song-collect {
@@ -51,21 +68,28 @@
       background: url('../../assets/image/play.png') no-repeat center;
       background-size: 12px;
       cursor: pointer;
+      margin-right: 4px;
     }
 
     .item-pouse {
       width: 12px;
       height: 100%;
-      background: url('../../assets/image/list-pouse.png') no-repeat center;
+      background: url('../../assets/image/list-pouse.png') no-repeat top 12px
+        center;
       background-size: 12px;
+      margin-right: 4px;
       cursor: pointer;
     }
 
     .item-title {
       flex: 1;
       height: 100%;
-      margin-left: 4px;
       @extend .text-over-hidden;
+    }
+
+    .item-title-active {
+      @extend .item-title;
+      color: $theme-red !important;
     }
   }
 

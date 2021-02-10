@@ -1,6 +1,7 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useContext } from 'react'
 import cn from 'classnames'
 
+import { ReducerContext } from 'reducers'
 import ROUTES from 'constants/routes'
 import { formatNum, formatSongTime } from 'utils'
 
@@ -10,7 +11,6 @@ interface IProps {
   from: string
   songs?: any
 }
-
 /**
  * 歌曲列表
  * 1. 推荐 DAILY_SONGS
@@ -22,6 +22,9 @@ const TableSingleSong: React.FC<IProps> = ({ from, songs }) => {
   // 展示通用 Header
   const commonFrom = [ROUTES.DAILY_SONGS, ROUTES.ITUNES]
   const showCommon = commonFrom.includes(from)
+
+  const [state] = useContext(ReducerContext)
+  const { currentPlaySong, isPlayingSong } = state.musicPlayer
 
   const handleSongNameClick = songItem => {
     console.log(songItem, 'doubleClick')
@@ -52,17 +55,37 @@ const TableSingleSong: React.FC<IProps> = ({ from, songs }) => {
           >
             {showCommon && (
               <div className={styles['item-sort']}>
-                <div className={styles['song-num']}>{formatNum(index + 1)}</div>
+                <div className={styles['song-num']}>
+                  {currentPlaySong.id == itemSong.id ? (
+                    <div
+                      className={
+                        isPlayingSong
+                          ? styles['playing-song-icon']
+                          : styles['pouse-song-icon']
+                      }
+                    />
+                  ) : (
+                    formatNum(index + 1)
+                  )}
+                </div>
                 <div className={styles['song-collect']} />
                 <div className={styles['song-download']} />
               </div>
             )}
             <div className={styles['item-title-row']}>
               {from === 'current_play_list' && index === 0 && (
-                <div className={styles['item-play']} />
+                <div
+                  className={cn(
+                    isPlayingSong ? styles['item-play'] : styles['item-pouse']
+                  )}
+                />
               )}
               <div
-                className={styles['item-title']}
+                className={cn(
+                  styles['item-title'],
+                  currentPlaySong.id == itemSong.id &&
+                    styles['item-title-active']
+                )}
                 onDoubleClick={() => handleSongNameClick(itemSong)}
               >
                 {itemSong.name}
