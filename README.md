@@ -38,12 +38,23 @@ yarn electron:pack
 ## 功能列表
 
 - [x] 账号密码登录/二维码登录/登出
-- [] 音乐播放器
-- [x] 发现音乐 / 个性推荐
-- [x] 视频 / MV
+- [x] 音乐播放器
+- [x] 发现音乐
+  - [x] banner
+  - [x] 个性推荐
+  - [x] 歌单
+- [x] 视频
+  - [x] 视频
+  - [x] MV
 - [x] 主题切换
 
 ## 技术栈
+
+- React、React Hooks。
+- TypeScript，用 TypeScript 进行类型检测，也是本次项目事件重要实践技术。
+- Scss
+- Electron 做跨平台桌面应用
+- Eslint 代码检查
 
 ## API 接口
 

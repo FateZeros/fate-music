@@ -49,6 +49,9 @@ const SETTING = '/setting'
 // 每日推荐歌单
 const DAILY_SONGS = '/daily-songs'
 
+// 歌单详情
+const SONGS_DETAIL = '/songs-detail'
+
 const ROUTES = {
   ROOT,
   DISCOVERY,
@@ -77,7 +80,8 @@ const ROUTES = {
   MY_COLLECT_COLUMNS,
   SETTING,
   DAILY_SONGS,
-  ALL_MVS
+  ALL_MVS,
+  SONGS_DETAIL
 }
 
 export default ROUTES

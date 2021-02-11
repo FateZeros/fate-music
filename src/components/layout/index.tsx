@@ -14,7 +14,9 @@ const Layout: React.FC = ({ children }) => {
       <Header />
       <div className={styles['music-container']}>
         <Sidebar />
-        <div className={styles['music-content']}>{children}</div>
+        <div id="music-content" className={styles['music-content']}>
+          {children}
+        </div>
       </div>
       <MusicPlayer />
       <LoginModal />

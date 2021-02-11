@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
 import cn from 'classnames'
+import qs from 'qs'
 
 import ROUTES from 'constants/routes'
 import { getUserInfo } from 'utils/auth'
@@ -119,7 +120,8 @@ const MENU: IMenu[] = [
 
 const Menu = () => {
   const history = useHistory()
-  const { pathname } = useLocation()
+  const { pathname, search } = useLocation()
+  const { type } = qs.parse(search.substr(1))
   const [state, getUserPlayList] = useAsyncRequest(mySongApis.getUserPlayList)
   const { value: songList = [] } = state
 
@@ -136,8 +138,8 @@ const Menu = () => {
     [getUserPlayList, userId]
   )
 
-  const [favSongVisible, setFavSong] = useState(false)
-  const [createSongVisible, setCreateSong] = useState(false)
+  const [createSongVisible, setCreateSong] = useState(type === '3')
+  const [favSongVisible, setFavSong] = useState(type === '4')
 
   const handleMenuItemClick = (route: string) => {
     if (pathname !== route) {

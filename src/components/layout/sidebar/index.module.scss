@@ -53,6 +53,10 @@
       height: 100%;
       @extend .text-over-hidden;
     }
+
+    .item-name-active {
+      color: $theme-red;
+    }
   }
 }
 

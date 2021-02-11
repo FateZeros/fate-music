@@ -1,0 +1,31 @@
+.wrap-show {
+  top: $headerHeight !important;
+}
+
+.daily-brief-title {
+  width: 100%;
+  height: 90px;
+  background: #fff;
+  border-bottom: 1px solid #e3e3e3;
+  position: fixed;
+  top: -40px;
+  left: $sideWidth;
+  z-index: $themeColorSelectIndex;
+  transition: all 0.5s ease;
+  padding-left: 30px;
+
+  .brief-title {
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    font-size: 24px;
+    font-weight: 500;
+  }
+
+  .brief-row {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+  }
+}
