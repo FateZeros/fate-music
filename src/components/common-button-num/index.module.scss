@@ -30,16 +30,33 @@
   background-size: $bgSize;
 }
 
+@mixin brief-btn($iconName) {
+  width: 26px;
+  height: 26px;
+  background: url('../../assets/image/common-btn/#{$iconName}.png') no-repeat
+    center;
+  background-size: 22px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-right: 12px;
+}
+
 /* 
 * 收藏 collect-songs
 */
-@each $iconName in ('collect-songs') {
+@each $iconName in ('collect-songs', 'share', 'download') {
   .btn-name-#{$iconName} {
+    margin-right: 12px;
     @include btn-name($iconName);
   }
 
   .disable-btn-#{$iconName} {
+    margin-right: 12px;
     @include disable-btn($iconName);
+  }
+
+  .brief-wrap-#{$iconName} {
+    @include brief-btn($iconName);
   }
 }
 
@@ -50,15 +67,5 @@
 
 .btn-num {
   margin-left: 4px;
-}
-
-.brief-wrap {
-  width: 26px;
-  height: 26px;
-  background: url('../../assets/image/common-btn/collect-songs.png') no-repeat
-    center;
-  background-size: 24px;
-  border-radius: 50%;
-  cursor: pointer;
-  margin-right: 12px;
+  font-size: 13px;
 }

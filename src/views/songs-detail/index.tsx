@@ -106,6 +106,18 @@ const SongsDetail = () => {
           </li>
           <li className={styles['row-actions']}>
             <PlayAllButton songs={songList} />
+            <CommonButtonNum
+              name="collect-songs"
+              word="收藏"
+              num={songDetail.subscribedCount}
+              disable={type === '3'}
+            />
+            <CommonButtonNum
+              name="share"
+              word="分享"
+              num={songDetail.shareCount}
+            />
+            <CommonButtonNum name="download" word="下载全部" />
           </li>
         </ul>
       </div>
