@@ -20,7 +20,7 @@ interface IProps {
  */
 const TableSingleSong: React.FC<IProps> = ({ from, songs }) => {
   // 展示通用 Header
-  const commonFrom = [ROUTES.DAILY_SONGS, ROUTES.ITUNES]
+  const commonFrom = [ROUTES.DAILY_SONGS, ROUTES.ITUNES, ROUTES.SONGS_DETAIL]
   const showCommon = commonFrom.includes(from)
 
   const [state] = useContext(ReducerContext)
@@ -56,7 +56,7 @@ const TableSingleSong: React.FC<IProps> = ({ from, songs }) => {
             {showCommon && (
               <div className={styles['item-sort']}>
                 <div className={styles['song-num']}>
-                  {currentPlaySong.id == itemSong.id ? (
+                  {currentPlaySong.id === itemSong.id ? (
                     <div
                       className={
                         isPlayingSong
@@ -83,7 +83,7 @@ const TableSingleSong: React.FC<IProps> = ({ from, songs }) => {
               <div
                 className={cn(
                   styles['item-title'],
-                  currentPlaySong.id == itemSong.id &&
+                  currentPlaySong.id === itemSong.id &&
                     styles['item-title-active']
                 )}
                 onDoubleClick={() => handleSongNameClick(itemSong)}

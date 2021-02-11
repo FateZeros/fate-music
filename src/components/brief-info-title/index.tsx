@@ -38,6 +38,11 @@ const BriefInfoTitle: React.FC<IProps> = ({ visible, title, from, songs }) => {
                   briefIcon={true}
                 />
               </Fragment>
+            ),
+            [ROUTES.SONGS_DETAIL]: (
+              <Fragment>
+                <PlayAllButton songs={songs} briefIcon={true} />
+              </Fragment>
             )
           }[from]
         }

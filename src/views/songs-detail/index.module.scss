@@ -1,4 +1,122 @@
 .songs-detail-wrap {
   width: 100%;
   height: auto;
+  padding-bottom: $musicPlayerHeight - 15;
+
+  .detail-title-content {
+    transition: opacity 1s ease;
+    opacity: 1;
+    display: flex;
+    width: 100%;
+    height: 210px;
+  }
+
+  .detail-img {
+    width: 200px;
+    height: 100%;
+
+    img {
+      height: 200px;
+    }
+  }
+
+  .detail-rows {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 24px;
+    overflow: hidden;
+
+    li {
+      width: 100%;
+      height: 30px;
+      line-height: 30px;
+      display: flex;
+      margin-bottom: 4px;
+    }
+
+    .row-title {
+      width: 100%;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+
+      .title-name {
+        width: 40px;
+        height: 24px;
+        line-height: 24px;
+        color: $theme-red;
+        border: 1px solid $theme-red;
+        border-radius: 5px;
+        font-size: 12px;
+        text-align: center;
+      }
+
+      .title {
+        width: auto;
+        max-width: 400px;
+        line-height: 40px;
+        font-size: 24px;
+        font-weight: 500;
+        margin-left: 12px;
+        @extend .text-over-hidden;
+      }
+
+      .edit-song-btn {
+        width: 24px;
+        height: 24px;
+        margin-left: 12px;
+        cursor: pointer;
+        background: url('../../assets/image/edit-song.png') no-repeat center;
+        background-size: cover;
+      }
+    }
+
+    .songs-creator-img {
+      border-radius: 50%;
+    }
+
+    .songs-creator-name {
+      font-size: 14px;
+      color: #4068f3;
+      margin-left: 12px;
+      cursor: pointer;
+    }
+
+    .create-time {
+      font-size: 14px;
+      color: #b3b3b3;
+      margin-left: 12px;
+    }
+
+    .row-actions {
+      width: 100%;
+      height: 40px;
+      display: flex;
+      margin-top: 20px;
+    }
+  }
+}
+
+.songs-detail-tabs {
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  display: flex;
+  font-size: 14px;
+  font-weight: 400;
+  // border-bottom: 1px solid #e3e3e3;
+  position: relative;
+
+  li {
+    margin-right: 20px;
+    cursor: pointer;
+  }
+
+  .tab-active {
+    color: $theme-red;
+    border-bottom: 2px solid $theme-red;
+  }
 }

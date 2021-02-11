@@ -31,6 +31,21 @@ export interface IMv {
   duration: number
 }
 
+/*
+ * song-item
+ * ar-artise 歌曲作者
+ * al-album 歌曲专辑
+ * dt 歌曲时长
+ */
+export interface ISongItem {
+  id: number
+  name: string
+  ar: IArtist[]
+  al: IAlbum
+  dt: number
+  publishTime: number
+}
+
 /**
  * 用户信息
  */

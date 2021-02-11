@@ -1,4 +1,4 @@
-import { IArtist, IAlbum, IMv } from './common'
+import { IArtist, ISongItem, IMv } from './common'
 
 enum BannerType {
   PC = 0,
@@ -68,18 +68,7 @@ export interface IPersonalizedNewsongsResponse {
   song: IMuiscSong
 }
 
-/**
- * ar-artise 歌曲作者
- * al-album 歌曲专辑
- * dt 歌曲时长
- */
-export interface IRecommendSongsResponse {
-  id: number
-  name: string
-  ar: IArtist[]
-  al: IAlbum
-  dt: number
-}
+export interface IRecommendSongsResponse extends ISongItem {}
 
 export interface IPersonalizedMVsResponse extends IMv {
   type: string
