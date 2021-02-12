@@ -9,11 +9,13 @@ import styles from './index.module.scss'
 interface IProps {
   word: string
   route?: string
+  showLink?: boolean
 }
 
 const EmptyList: React.FC<IProps> = ({
   word = '没有数据',
-  route = ROUTES.DISCOVERY
+  route = ROUTES.DISCOVERY,
+  showLink = true
 }) => {
   const history = useHistory()
   const [, dispatch] = useContext(ReducerContext)
@@ -31,9 +33,11 @@ const EmptyList: React.FC<IProps> = ({
   return (
     <div className={styles.wrap}>
       <div className={styles.word}>{word}</div>
-      <div className={styles['go-discovery']}>
-        去首页<span onClick={handleGoDiscovery}>发现音乐</span>
-      </div>
+      {showLink && (
+        <div className={styles['go-discovery']}>
+          去首页<span onClick={handleGoDiscovery}>发现音乐</span>
+        </div>
+      )}
     </div>
   )
 }

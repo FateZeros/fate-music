@@ -21,6 +21,12 @@ const PlayAllButton: React.FC<IProps> = ({ songs, briefIcon = false }) => {
         songs
       }
     })
+    dispatch({
+      type: 'TOGGLE_PLAYING_SONG',
+      payload: {
+        isPlayingSong: true
+      }
+    })
   }
 
   return (

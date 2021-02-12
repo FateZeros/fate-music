@@ -30,9 +30,12 @@ img {
   border-radius: 5px;
 }
 
-input {
+input,
+textarea {
   width: 100%;
+  height: auto;
   border: none;
+  resize: none;
 
   &:focus {
     outline: none;

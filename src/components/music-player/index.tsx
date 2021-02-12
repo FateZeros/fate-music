@@ -77,11 +77,15 @@ const MusicPlayer = () => {
       if (currentPlaySong.id) {
         getSongUrl({
           id: currentPlaySong.id
+        }).then(() => {
+          if (musicAudioRef.current && isPlayingSong) {
+            musicAudioRef.current.autoplay = true
+          }
         })
       }
     },
     // eslint-disable-next-line
-    [currentPlaySong]
+    [currentPlaySong, musicAudioRef]
   )
 
   const handleShowCurrentPlaySongs = () => {

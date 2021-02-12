@@ -11,6 +11,8 @@ import CommonButtonNum from 'components/common-button-num'
 import TableSingleSong from 'components/table-single-song'
 import ROUTES from 'constants/routes'
 import BriefInfoTitle from 'components/brief-info-title'
+import CommentInput from 'components/comment-input'
+import CollectorList from 'components/collector-list'
 
 import styles from './index.module.scss'
 
@@ -151,7 +153,15 @@ const SongsDetail = () => {
         from={ROUTES.SONGS_DETAIL}
         songs={songList}
       />
-      <TableSingleSong from={ROUTES.SONGS_DETAIL} songs={songList} />
+      {
+        {
+          [TabType.LIST]: (
+            <TableSingleSong from={ROUTES.SONGS_DETAIL} songs={songList} />
+          ),
+          [TabType.COMMENT]: <CommentInput />,
+          [TabType.COLLECTORS]: <CollectorList />
+        }[tabType]
+      }
     </div>
   )
 }
