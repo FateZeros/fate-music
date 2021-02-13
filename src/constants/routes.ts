@@ -51,6 +51,8 @@ const DAILY_SONGS = '/daily-songs'
 
 // 歌单详情
 const SONGS_DETAIL = '/songs-detail'
+// MV 详情
+const MV_DETAIL = '/mv-detail'
 
 const ROUTES = {
   ROOT,
@@ -81,7 +83,8 @@ const ROUTES = {
   SETTING,
   DAILY_SONGS,
   ALL_MVS,
-  SONGS_DETAIL
+  SONGS_DETAIL,
+  MV_DETAIL
 }
 
 export default ROUTES

@@ -1,6 +1,11 @@
 import request from 'utils/request'
 
-import { IMvFirstRequest, IMvFirstResponse } from 'interfaces/video'
+import {
+  IMvFirstRequest,
+  IMvFirstResponse,
+  IMvDetailResponse,
+  IMvUrlResponse
+} from 'interfaces/video'
 
 // 获取最新 MV
 const getMvFirst = async (
@@ -24,4 +29,24 @@ const getExclusiveRcmd = async (params): Promise<IMvFirstResponse[]> => {
   return response.data
 }
 
-export { getMvFirst, getExclusiveRcmd }
+// 获取 MV 详情
+const getMvDetail = async (params): Promise<IMvDetailResponse> => {
+  const response = await request({
+    url: '/mv/detail',
+    method: 'get',
+    params
+  })
+  return response.data
+}
+
+// 获取 MV URL
+const getMvUrl = async (params): Promise<IMvUrlResponse> => {
+  const response = await request({
+    url: '/mv/url',
+    method: 'get',
+    params
+  })
+  return response.data
+}
+
+export { getMvFirst, getExclusiveRcmd, getMvDetail, getMvUrl }

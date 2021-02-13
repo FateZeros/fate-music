@@ -73,13 +73,14 @@ const TableSingleSong: React.FC<IProps> = ({ from, songs }) => {
               </div>
             )}
             <div className={styles['item-title-row']}>
-              {from === 'current_play_list' && index === 0 && (
-                <div
-                  className={cn(
-                    isPlayingSong ? styles['item-play'] : styles['item-pouse']
-                  )}
-                />
-              )}
+              {from === 'current_play_list' &&
+                currentPlaySong.id === itemSong.id && (
+                  <div
+                    className={cn(
+                      isPlayingSong ? styles['item-play'] : styles['item-pouse']
+                    )}
+                  />
+                )}
               <div
                 className={cn(
                   styles['item-title'],

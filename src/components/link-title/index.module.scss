@@ -3,13 +3,24 @@
   height: 30px;
   line-height: 30px;
   font-size: 16px;
-  display: flex;
 
   .link-title {
-    padding-right: 20px;
-    background: url('../../assets/image/right-arrow2.png') no-repeat center
-      right;
-    background-size: 16px;
+    display: flex;
     cursor: pointer;
+
+    .title-arrow {
+      width: 20px;
+      height: 30px;
+      background: url('../../assets/image/right-arrow2.png') no-repeat center;
+      background-size: 16px;
+    }
+
+    .title-back-arrow {
+      width: 20px;
+      height: 30px;
+      background: url('../../assets/image/right-arrow2.png') no-repeat center;
+      background-size: 16px;
+      transform: rotate(180deg);
+    }
   }
 }

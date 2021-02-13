@@ -29,8 +29,8 @@ const MusicPlayer = () => {
     isPlayingSong
   } = state.musicPlayer
 
-  const [songValue, getSongUrl] = useAsyncRequest(commonApis.getSongUrl)
-  const { value: songUrlValue } = songValue
+  const [songState, getSongUrl] = useAsyncRequest(commonApis.getSongUrl)
+  const { value: songValue } = songState
 
   const [playingCurrentTime, setCurrentTime] = useState(0)
 
@@ -168,8 +168,9 @@ const MusicPlayer = () => {
           <audio
             preload="metadata"
             ref={el => (musicAudioRef.current = el)}
-            src={songUrlValue && songUrlValue.url}
+            src={songValue && songValue.url}
             onTimeUpdate={e => handleAudioTimeUpdate(e)}
+            onEnded={() => handleChangePlayingSong('next')}
           >
             您的浏览器不支持音乐播放
           </audio>

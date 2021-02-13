@@ -1,6 +1,8 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 
 import { IMv } from 'interfaces/common'
+import ROUTES from 'constants/routes'
 import PlayCount from 'components/play-count'
 
 import styles from './index.module.scss'
@@ -26,8 +28,17 @@ const SingleMV: React.FC<IProps> = ({
   rowItem,
   showPlayIcon = false
 }) => {
+  const history = useHistory()
+
+  const handleGoMvDetail = () => {
+    history.push({
+      pathname: ROUTES.MV_DETAIL,
+      search: `id=${mvItem.id}`
+    })
+  }
+
   return (
-    <div className={styles[`item-wd${rowItem}`]}>
+    <div className={styles[`item-wd${rowItem}`]} onClick={handleGoMvDetail}>
       <div className={styles['mv-img']}>
         <img src={mvItem.picUrl || mvItem.cover} loading="lazy" alt="" />
         {showPlayIcon && <div className={styles['mv-play-icon']} />}

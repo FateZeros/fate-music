@@ -20,6 +20,7 @@ const Setting = lazy(() => import('views/setting'))
 const DailySongs = lazy(() => import('views/daily-songs'))
 const AllMVs = lazy(() => import('views/all-mvs'))
 const SongsDetail = lazy(() => import('views/songs-detail'))
+const MvDetail = lazy(() => import('views/mv-detail'))
 
 const App = () => {
   const initState = reducers()
@@ -44,6 +45,7 @@ const App = () => {
               <Route path={ROUTES.DAILY_SONGS} component={DailySongs} />
               <Route path={ROUTES.ALL_MVS} component={AllMVs} />
               <Route path={ROUTES.SONGS_DETAIL} component={SongsDetail} />
+              <Route path={ROUTES.MV_DETAIL} component={MvDetail} />
               <Redirect from={ROUTES.ROOT} to={ROUTES.DISCOVERY} />
             </Switch>
           </Suspense>

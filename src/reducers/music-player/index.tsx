@@ -107,7 +107,7 @@ const musicPlayerReducer = (state = musicPlayerState, action) => {
       setMusicPlayerCurrentSong(changePlaySong)
       return {
         ...state,
-        isPlayingSong: false,
+        isPlayingSong: true,
         currentPlaySong: changePlaySong
       }
     }
