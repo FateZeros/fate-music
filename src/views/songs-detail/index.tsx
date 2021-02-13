@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import cn from 'classnames'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useHistory } from 'react-router-dom'
 import qs from 'qs'
 import dayjs from 'dayjs'
 
@@ -13,6 +13,7 @@ import ROUTES from 'constants/routes'
 import BriefInfoTitle from 'components/brief-info-title'
 import CommentInput from 'components/comment-input'
 import CollectorList from 'components/collector-list'
+import { formatPlayCount } from 'utils'
 
 import styles from './index.module.scss'
 
@@ -27,7 +28,7 @@ enum TabType {
  * 歌单详情
  */
 const SongsDetail = () => {
-  // const history = useHistory()
+  const history = useHistory()
   const { search } = useLocation()
   const { id, type } = qs.parse(search.substr(1))
   const [tabType, setTabType] = useState<TabType>(TabType.LIST)
@@ -39,8 +40,12 @@ const SongsDetail = () => {
   )
   const songDetail: any = detailState.value || {}
   // console.log(songDetail, '==== 歌单详情 ====')
+  /* 创建者信息 */
   const creator = songDetail.creator || {}
+  /* 歌曲列表 */
   const songList: any = songDetail.tracks || []
+  /** 歌曲标签 */
+  const songTags: any = songDetail.tags || []
 
   useEffect(
     () => {
@@ -78,6 +83,10 @@ const SongsDetail = () => {
     setTabType(tabType)
   }
 
+  const handleGoSongList = () => {
+    history.push(ROUTES.DISCOVERY_SONGLIST)
+  }
+
   return (
     <div className={styles['songs-detail-wrap']}>
       <div className={styles['detail-title-content']}>
@@ -112,7 +121,7 @@ const SongsDetail = () => {
               name="collect-songs"
               word="收藏"
               num={songDetail.subscribedCount}
-              disable={type === '3'}
+              disable={type === '3' || songDetail.subscribed}
             />
             <CommonButtonNum
               name="share"
@@ -120,6 +129,44 @@ const SongsDetail = () => {
               num={songDetail.shareCount}
             />
             <CommonButtonNum name="download" word="下载全部" />
+          </li>
+          <li className={styles['other-row']}>
+            <div className={styles['other-row-label']}>标签</div>:
+            {songTags.length ? (
+              songTags.map((item, index) => {
+                return (
+                  <Fragment key={index}>
+                    <div
+                      className={styles['label-tag']}
+                      onClick={handleGoSongList}
+                    >
+                      {item}
+                    </div>
+                    {index < songTags.length - 1 && (
+                      <div className={styles['label-tag-line']}>/</div>
+                    )}
+                  </Fragment>
+                )
+              })
+            ) : (
+              <div className={styles['label-tag']}>添加标签</div>
+            )}
+          </li>
+          <li className={styles['other-row']}>
+            <div className={styles['other-row-label']}>歌曲数</div>:
+            <span>{songList.length}</span>
+            <div className={styles['other-row-label']}>播放数</div>:
+            <span>{formatPlayCount(songDetail.playCount)}</span>
+          </li>
+          <li className={styles['other-row']}>
+            <div className={styles['other-row-label']}>简介</div>:
+            {songDetail.description ? (
+              <div className={styles['other-row-info']}>
+                {songDetail.description}
+              </div>
+            ) : (
+              <div className={styles['label-tag']}>添加简介</div>
+            )}
           </li>
         </ul>
       </div>

@@ -8,6 +8,7 @@
   margin-right: 8px;
   overflow: hidden;
   position: relative;
+  padding-right: 12px;
 
   .search-icon {
     width: 30px;
@@ -20,9 +21,8 @@
   }
 
   input {
-    border: none;
-    outline: none;
     // background: #d45758;
+    height: 30px;
     background: transparent;
     width: 100%;
     color: #fff;

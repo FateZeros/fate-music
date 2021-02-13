@@ -30,4 +30,5 @@ export interface IPlaylistDetailResponse {
   coverImgUrl: string
   createTime: number
   tracks: ISongItem[]
+  tags: string[]
 }

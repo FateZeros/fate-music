@@ -43,6 +43,7 @@ yarn electron:pack
   - [x] banner
   - [x] 个性推荐
   - [x] 歌单
+  - [x] 歌单详情/评论/收藏者
 - [x] 视频
   - [x] 视频
   - [x] MV
@@ -64,8 +65,9 @@ yarn electron:pack
 
 ## 播放器的相关截图
 
-![01_发现音乐页](https://github.com/FateZeros/fate-music/blob/main/resources/fate-music1.png)
-![02_视频MV页](https://github.com/FateZeros/fate-music/blob/main/resources/fate-music2.png)
+![01_发现音乐页](https://github.com/FateZeros/fate-music/blob/main/resources/fate-music1.png) </br>
+![02_视频MV页](https://github.com/FateZeros/fate-music/blob/main/resources/fate-music2.png) </br>
+![03_歌单详情页面](https://github.com/FateZeros/fate-music/blob/main/resources/fate-music3.png) </br>
 
 ## 参考
 
