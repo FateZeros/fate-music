@@ -44,7 +44,7 @@
 /* 
 * 收藏 collect-songs
 */
-@each $iconName in ('collect-songs', 'share', 'download') {
+@each $iconName in ('collect-songs', 'share', 'download', 'thumb') {
   .btn-name-#{$iconName} {
     margin-right: 12px;
     @include btn-name($iconName);

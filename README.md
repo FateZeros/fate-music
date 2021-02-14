@@ -47,6 +47,7 @@ yarn electron:pack
 - [x] 视频
   - [x] 视频
   - [x] MV
+  - [x] 视频详情
 - [x] 主题切换
 
 ## 技术栈
@@ -68,6 +69,7 @@ yarn electron:pack
 ![01_发现音乐页](https://github.com/FateZeros/fate-music/blob/main/resources/fate-music1.png) </br>
 ![02_视频MV页](https://github.com/FateZeros/fate-music/blob/main/resources/fate-music2.png) </br>
 ![03_歌单详情页面](https://github.com/FateZeros/fate-music/blob/main/resources/fate-music3.png) </br>
+![04_MV详情页面](https://github.com/FateZeros/fate-music/blob/main/resources/fate-music4.png) </br>
 
 ## 参考
 

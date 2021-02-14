@@ -6,6 +6,7 @@ export interface IArtist {
   name: string
   picUrl?: string
   albumSize?: number
+  img1v1Url?: string
 }
 
 /**

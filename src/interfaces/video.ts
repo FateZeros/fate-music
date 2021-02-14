@@ -31,3 +31,20 @@ export interface IMvUrlResponse {
   r: number
   size: number
 }
+
+export interface IMvDetailInfoResponse {
+  likedCount: number
+  shareCount: number
+  commentCount: number
+  liked: boolean
+}
+
+export interface ISimiMvResponse {
+  id: number
+  cover: string
+  name: string
+  playCount: number
+  briefDesc: string
+  artistName: string
+  artists: IArtist[]
+}

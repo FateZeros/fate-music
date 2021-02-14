@@ -2,7 +2,6 @@
   width: 100%;
   padding-bottom: $musicPlayerHeight;
   padding-top: 24px;
-  border-top: 1px solid #e3e3e3;
 
   .input-wrap {
     width: 100%;
@@ -64,4 +63,8 @@
   .list-wrap {
     margin-top: 12px;
   }
+}
+
+.border-top {
+  border-top: 1px solid #e3e3e3;
 }

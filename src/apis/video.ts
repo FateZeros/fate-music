@@ -4,7 +4,9 @@ import {
   IMvFirstRequest,
   IMvFirstResponse,
   IMvDetailResponse,
-  IMvUrlResponse
+  IMvUrlResponse,
+  IMvDetailInfoResponse,
+  ISimiMvResponse
 } from 'interfaces/video'
 
 // 获取最新 MV
@@ -49,4 +51,31 @@ const getMvUrl = async (params): Promise<IMvUrlResponse> => {
   return response.data
 }
 
-export { getMvFirst, getExclusiveRcmd, getMvDetail, getMvUrl }
+// 获取 mv 点赞转发评论数数据
+const getMvDetailInfo = async (params): Promise<IMvDetailInfoResponse> => {
+  const response = await request({
+    url: '/mv/detail/info',
+    method: 'get',
+    params
+  })
+  return response
+}
+
+// 获取相似 MV
+const getSimiMv = async (params): Promise<ISimiMvResponse> => {
+  const response = await request({
+    url: '/simi/mv',
+    method: 'get',
+    params
+  })
+  return response.mvs
+}
+
+export {
+  getMvFirst,
+  getExclusiveRcmd,
+  getMvDetail,
+  getMvUrl,
+  getMvDetailInfo,
+  getSimiMv
+}

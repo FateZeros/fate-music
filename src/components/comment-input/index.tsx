@@ -1,14 +1,19 @@
 import React from 'react'
+import cn from 'classnames'
 
 import EmptyList from 'components/empty-list'
 
 import styles from './index.module.scss'
 
+interface IProps {
+  hasBorderTop?: boolean
+}
+
 const { useState } = React
 /**
  * 评论输入框 & 评论列表
  */
-const CommentInput = () => {
+const CommentInput: React.FC<IProps> = ({ hasBorderTop = true }) => {
   const [inputLimitNum, setInputLimitNum] = useState<number>(140)
 
   const handleCommentInputChange = e => {
@@ -17,7 +22,12 @@ const CommentInput = () => {
   }
 
   return (
-    <div className={styles['comment-input']}>
+    <div
+      className={cn(
+        styles['comment-input'],
+        hasBorderTop && styles['border-top']
+      )}
+    >
       <div className={styles['input-wrap']}>
         <div className={styles['input-content']}>
           <textarea

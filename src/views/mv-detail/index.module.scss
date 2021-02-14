@@ -7,11 +7,150 @@
   .detail-content {
     flex: 1;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .mv-artist-info {
+      width: 100%;
+      height: 50px;
+      margin-top: 20px;
+      display: flex;
+
+      .artist-img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+
+        img {
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+        }
+      }
+
+      .artist-names {
+        flex: 1;
+        height: 50px;
+        line-height: 50px;
+        margin-left: 12px;
+        font-size: 14px;
+        color: #b3b3b3;
+      }
+    }
+
+    .mv-name {
+      width: 100%;
+      height: 35px;
+      line-height: 35px;
+      font-size: 22px;
+      margin-top: 30px;
+      font-weight: 500;
+    }
+
+    .mv-other-row {
+      width: 100%;
+      height: 20px;
+      line-height: 20px;
+      font-size: 12px;
+      color: #b3b3b3;
+      margin-top: 12px;
+    }
+
+    .video-action-row {
+      width: 100%;
+      height: 40px;
+      display: flex;
+      margin-top: 30px;
+    }
+
+    .comment-wrap {
+      width: 100%;
+      height: auto;
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+
+      .comment-title {
+        font-size: 16px;
+        font-weight: 500;
+
+        span {
+          font-size: 12px;
+          color: #b3b3b3;
+          margin-left: 12px;
+        }
+      }
+    }
   }
 
   .recomment-mv {
     width: 325px;
     height: 100%;
     margin-left: 20px;
+
+    .recomment-title {
+      width: 100%;
+      height: 30px;
+      line-height: 30px;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .recomment-list {
+      margin-top: 12px;
+      display: flex;
+      flex-direction: column;
+
+      li {
+        width: 100%;
+        height: 80px;
+        font-size: 12px;
+        margin-bottom: 12px;
+        display: flex;
+
+        .recomment-img {
+          width: 140px;
+          height: 100%;
+          position: relative;
+          cursor: pointer;
+
+          img {
+            width: 140px;
+          }
+
+          .video-time {
+            width: 30px;
+            height: 20px;
+            position: absolute;
+            right: 8px;
+            bottom: 4px;
+            color: #fff;
+            font-size: 12px;
+          }
+        }
+
+        .recomment-info {
+          flex: 1;
+          height: 100%;
+          margin-left: 12px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          padding: 8px 0;
+
+          .info-name {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            -webkit-line-clamp: 2;
+          }
+
+          .info-art {
+            width: 100%;
+            height: 30px;
+            color: #b3b3b3;
+          }
+        }
+      }
+    }
   }
 }
