@@ -1,13 +1,13 @@
 .login-wrap {
   width: 350px;
-  height: 528px;
+  height: 500px;
   background: #fff;
   border: 1px solid #eee;
   position: fixed;
   left: 0;
   right: 0;
-  top: 180px;
-  margin: 0 auto;
+  top: 50%;
+  margin: -250px auto 0 auto;
   z-index: -1;
   transition: all 0.5s ease 0.1s;
   opacity: 0;

@@ -7,15 +7,26 @@ interface IProps {
   poster?: string
 }
 
-const { useRef, useState } = React
+const { useRef, useState, useCallback } = React
 
 const VedioPlayer: React.FC<IProps> = ({ url, poster }) => {
   const videoPlayerRef = useRef<HTMLVideoElement | null>(null)
   const [isPlaying, setPlayVideo] = useState(false)
 
+  const handlePlayVideo = useCallback(
+    () => {
+      if (videoPlayerRef.current) {
+        videoPlayerRef.current.play()
+      }
+    },
+    [videoPlayerRef]
+  )
+
   return (
     <div className={styles['mv-video-wrap']}>
-      {!isPlaying && <div className={styles['video-play-btn']} />}
+      {!isPlaying && (
+        <div className={styles['video-play-btn']} onClick={handlePlayVideo} />
+      )}
       <video
         ref={ref => (videoPlayerRef.current = ref)}
         preload="auto"

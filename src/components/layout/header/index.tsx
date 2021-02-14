@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom'
 import ROUTES from 'constants/routes'
 import { ReducerContext } from 'reducers'
 import { getThemeColor } from 'utils/theme'
+import * as clientMethods from 'client'
 
 import RouteAction from './route-action'
 import Navbar from './navbar'
@@ -33,7 +34,7 @@ const Header = () => {
   }
 
   const handleFoldClient = () => {
-    console.log('fold client')
+    clientMethods.sendMinAppMusicPlayer()
   }
 
   const currentThemeColor = getThemeColor()

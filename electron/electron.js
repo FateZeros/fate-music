@@ -1,16 +1,19 @@
-// 创建本地浏览器窗口
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, Tray, ipcMain } = require('electron')
 const path = require('path')
 // eslint-disable-next-line
 const url = require('url')
 // console.log(process.env.REACT_APP_NODE_ENV)
 // 是否开发环境
 const isDev = process.env.REACT_APP_NODE_ENV === 'development'
-let win
+
+let win = null
+let tray = null
 
 function createWindow() {
+  tray = new Tray(path.join(__dirname, './imgs/tray_20.png'))
   // 创建浏览器窗口
   win = new BrowserWindow({
+    title: 'Fate Music',
     width: isDev ? 1550 : 1000,
     height: 670,
     resizable: false,
@@ -18,7 +21,8 @@ function createWindow() {
     icon: path.join(__dirname, './icons/favicon.icns'),
     webPreferences: {
       nodeIntegration: true,
-      webSecurity: true
+      webSecurity: true,
+      preload: path.join(__dirname, './js/preload.js')
     }
   })
 
@@ -46,8 +50,19 @@ function createWindow() {
     win = null
   })
 
-  // const electronIcon = new Tray(path.join(__dirname, 'electron.png'))
-  // electronIcon.setToolTip('Fate Music App')
+  // Tray 模块
+  tray.setToolTip('Fate Music')
+
+  // 当前进程类型是browser主进程还是renderer渲染进程，browser
+  console.log(`进程类型: ${process.type}`)
+  // NodeJS版本
+  console.log(`NodeJS版本: ${process.versions.node}`)
+  // Chrome版本
+  console.log(`Chrome版本: ${process.versions.chrome}`)
+  // Electron版本
+  console.log(`Electron版本: ${process.versions.electron}`)
+  // 资源目录路径
+  console.log(`资源目录路径: ${process.resourcesPath}`)
 }
 
 // 当 Electron 完成初始化，创建浏览器窗口
@@ -64,4 +79,9 @@ app.on('activate', function() {
   if (win === null) {
     createWindow()
   }
+})
+
+// 主进程事件
+ipcMain.on('min-app-music-player', (event, arg) => {
+  console.log('出啊发')
 })
