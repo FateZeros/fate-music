@@ -7,7 +7,11 @@
 let win: any = window
 // 创建缩小的播放器
 const sendMinAppMusicPlayer = () => {
-  win.ipcRenderer && win.ipcRenderer.sendSync('min-app-music-player')
+  if (win.ipcRenderer) {
+    win.ipcRenderer.sendSync('min-app-music-player')
+  } else {
+    console.log('############ 请打开 APP 使用～ ############')
+  }
 }
 
 export { sendMinAppMusicPlayer }

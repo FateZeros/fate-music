@@ -49,6 +49,7 @@ yarn electron:pack
   - [x] MV
   - [x] 视频详情
 - [x] 主题切换
+- [] Eletron 控制的 mini 播放器
 
 ## 技术栈
 

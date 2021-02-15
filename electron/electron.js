@@ -7,6 +7,7 @@ const url = require('url')
 const isDev = process.env.REACT_APP_NODE_ENV === 'development'
 
 let win = null
+// 任务栏图标
 let tray = null
 
 function createWindow() {
@@ -52,6 +53,10 @@ function createWindow() {
 
   // Tray 模块
   tray.setToolTip('Fate Music')
+  // 任务栏图标点击事件
+  tray.on('click', () => {
+    win.show()
+  })
 
   // 当前进程类型是browser主进程还是renderer渲染进程，browser
   console.log(`进程类型: ${process.type}`)
@@ -82,6 +87,20 @@ app.on('activate', function() {
 })
 
 // 主进程事件
-ipcMain.on('min-app-music-player', (event, arg) => {
-  console.log('出啊发')
+// 1. 缩小音乐播放器
+ipcMain.on('min-app-music-player', () => {
+  console.log('=== 缩小音乐播放器 ===')
+  const childWin = new BrowserWindow({
+    title: 'Fate Music',
+    width: 340,
+    height: 60,
+    // titleBarStyle: 'hidden',
+    frame: false,
+    show: false
+  })
+  childWin.loadURL('https://uinika.github.io/')
+  childWin.once('ready-to-show', () => {
+    win.hide()
+    childWin.show()
+  })
 })

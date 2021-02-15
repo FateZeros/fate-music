@@ -6,9 +6,9 @@
   border: 1px solid #666;
   color: #666;
   font-size: 14px;
-  padding: 0 20px 0 40px;
+  padding: 0 12px 0 36px;
   background: url('../../assets/image/common-btn/#{$iconName}.png') no-repeat
-    left 14px center;
+    left 12px center;
   background-size: $bgSize;
   cursor: pointer;
   display: flex;
@@ -26,7 +26,7 @@
   color: #b3b3b3;
   border: 1px solid #e3e3e3;
   background: url('../../assets/image/common-btn/#{$iconName}-disable.png')
-    no-repeat left 14px center;
+    no-repeat left 12px center;
   background-size: $bgSize;
 }
 
@@ -62,10 +62,11 @@
 
 .btn-name {
   flex: 1;
+  min-width: 30px;
   height: 100%;
 }
 
 .btn-num {
   margin-left: 4px;
-  font-size: 13px;
+  font-size: 12px;
 }

@@ -1,5 +1,5 @@
 .wrap {
-  width: 150px;
+  width: 160px;
   height: 32px;
   line-height: 32px;
   background-image: linear-gradient(
@@ -12,10 +12,10 @@
   color: #fff;
   cursor: pointer;
   display: flex;
-  margin-right: 20px;
+  margin-right: 12px;
 
   .wrap-play {
-    width: 40px;
+    width: 32px;
     height: 100%;
     background: url('../../assets/image/player/pouse-white.png') no-repeat
       center;
@@ -28,7 +28,7 @@
   }
 
   .wrap-add {
-    width: 40px;
+    width: 30px;
     height: 100%;
     background: url('../../assets/image/add-white.png') no-repeat center;
     background-size: 12px;
