@@ -56,6 +56,9 @@ const SONGS_DETAIL = '/home/songs-detail'
 // MV 详情
 const MV_DETAIL = '/mv-detail'
 
+// mini 播放器
+const MINI_MUSIC_PLAYER = '/mini-player'
+
 const ROUTES = {
   ROOT,
   HOME,
@@ -87,7 +90,8 @@ const ROUTES = {
   DAILY_SONGS,
   ALL_MVS,
   SONGS_DETAIL,
-  MV_DETAIL
+  MV_DETAIL,
+  MINI_MUSIC_PLAYER
 }
 
 export default ROUTES

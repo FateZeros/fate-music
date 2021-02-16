@@ -10,6 +10,7 @@ body {
   padding: 0;
   font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB,
     Microsoft YaHei, Arial, sans-serif;
+  -webkit-app-region: drag;
 }
 
 ul,
@@ -24,6 +25,7 @@ ol {
 
 button {
   outline: none !important;
+  -webkit-app-region: no-drag;
 }
 
 img {

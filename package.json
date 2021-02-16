@@ -31,7 +31,8 @@
     "build:test": "dotenv -e .env.test node scripts/build.js",
     "build:prod": "dotenv -e .env.production node scripts/build.js",
     "electron": "dotenv -e .env.development electron electron/electron.js",
-    "electron:pack": "electron-builder --mac"
+    "electron:packMac": "electron-builder --mac",
+    "electron:packWin": "electron-builder --win --x64"
   },
   "homepage": "./",
   "main": "./electron/electron.js",
@@ -43,6 +44,10 @@
       "./build/**/*",
       "./electron/*"
     ],
+    "extraResources": {
+      "from": "./electron/extraResources/",
+      "to": "extraResources"
+    },
     "mac": {
       "target": [
         "dmg",
@@ -56,6 +61,11 @@
         "zip"
       ],
       "icon": "./electron/icons/favicon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "createDesktopShortcut": "always",
+      "allowToChangeInstallationDirectory": true
     }
   },
   "dependencies": {

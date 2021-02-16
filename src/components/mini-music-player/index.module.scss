@@ -1,0 +1,60 @@
+.mini-player {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  padding: 0 4px;
+
+  .mini-actions {
+    width: 20px;
+    height: 100%;
+    padding-top: 4px;
+
+    .mini-close {
+      width: 20px;
+      height: 20px;
+      background: url('../../assets/image/close.png') no-repeat center;
+      background-size: 12px;
+      cursor: pointer;
+    }
+
+    .mini-scale {
+      width: 20px;
+      height: 20px;
+      background: url('../../assets/image/scale.png') no-repeat center;
+      background-size: 14px;
+      cursor: pointer;
+    }
+  }
+
+  .container {
+    flex: 1;
+    height: 100%;
+
+    .mini-current-song {
+      width: 180px;
+      height: 100%;
+    }
+  }
+}
+
+.mini-player-dev {
+  width: 340px;
+  height: 65px;
+  left: 0;
+  right: 0;
+  margin: 300px auto 0 auto;
+  position: absolute;
+  border: 1px solid;
+  border-radius: 5px;
+}
+
+.mini-player-tips {
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  margin-top: 400px;
+  text-align: center;
+  color: #707070;
+  font-size: 14px;
+  font-weight: 300;
+}
