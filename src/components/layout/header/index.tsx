@@ -12,7 +12,11 @@ import SearchInput from './search-input'
 import ThemeColorSelect from './theme-color-select'
 import styles from './index.module.scss'
 
-const Header = () => {
+interface IProps {
+  showRouteAction?: boolean
+}
+
+const Header: React.FC<IProps> = ({ showRouteAction = true }) => {
   const history = useHistory()
   const [, dispatch] = useContext(ReducerContext)
 
@@ -44,7 +48,7 @@ const Header = () => {
       className={styles.header}
       style={{ background: `${currentThemeColor}` }}
     >
-      <RouteAction />
+      {showRouteAction && <RouteAction />}
       <Navbar />
       <SearchInput />
       <div className={styles['setting-wrap']}>

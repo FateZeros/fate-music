@@ -3,7 +3,6 @@ import { useLocation, useHistory } from 'react-router-dom'
 import qs from 'qs'
 
 import LinkTitle from 'components/link-title'
-// import ROUTES from 'constants/routes'
 import VideoPlayer from 'components/mv-player'
 import * as videoApis from 'apis/video'
 import useAsyncRequest from 'hooks/useAsyncRequest'
@@ -12,10 +11,11 @@ import CommentInput from 'components/comment-input'
 import PlayCount from 'components/play-count'
 import { formatSongTime } from 'utils'
 import ROUTES from 'constants/routes'
+import Header from 'components/layout/header'
 
 import styles from './index.module.scss'
 
-const { useEffect, useState } = React
+const { useEffect, useState, Fragment } = React
 /**
  * MV 详情
  * [参考](https://segmentfault.com/a/1190000009395289)
@@ -84,67 +84,76 @@ const MvDetail = () => {
   }
 
   return (
-    <div className={styles['mv-detail']}>
-      <div className={styles['detail-content']}>
-        <LinkTitle title="MV详情" />
-        <VideoPlayer url={mvUrlValue.url} poster={mvValue.cover} />
-        <div className={styles['mv-artist-info']}>
-          <div className={styles['artist-img']}>
-            <img src={artistImg} loading="lazy" alt="" />
+    <Fragment>
+      <Header showRouteAction={false} />
+      <div className={styles['mv-detail']}>
+        <div className={styles['detail-content']}>
+          <LinkTitle title="MV详情" route={ROUTES.VIDEOS_MV} backType={true} />
+          <VideoPlayer url={mvUrlValue.url} poster={mvValue.cover} />
+          <div className={styles['mv-artist-info']}>
+            <div className={styles['artist-img']}>
+              <img src={artistImg} loading="lazy" alt="" />
+            </div>
+            <div className={styles['artist-names']}>{artistNames}</div>
           </div>
-          <div className={styles['artist-names']}>{artistNames}</div>
-        </div>
-        <div className={styles['mv-name']}>{mvValue.name}</div>
-        <div className={styles['mv-other-row']}>
-          发布：{mvValue.publishTime}
-        </div>
-        <div className={styles['video-action-row']}>
-          <CommonButtonNum
-            name="thumb"
-            word="赞"
-            num={mvDetailInfo.likedCount}
-          />
-          <CommonButtonNum
-            name="collect-songs"
-            word="收藏"
-            num={mvValue.subCount}
-          />
-          <CommonButtonNum name="share" word="分享" num={mvValue.shareCount} />
-        </div>
-        <div className={styles['comment-wrap']}>
-          <div className={styles['comment-title']}>
-            听友评论
-            <span>(已有{mvDetailInfo.commentCount}条评论)</span>
+          <div className={styles['mv-name']}>{mvValue.name}</div>
+          <div className={styles['mv-other-row']}>
+            发布：{mvValue.publishTime}
           </div>
-          <CommentInput hasBorderTop={false} />
+          <div className={styles['video-action-row']}>
+            <CommonButtonNum
+              name="thumb"
+              word="赞"
+              num={mvDetailInfo.likedCount}
+            />
+            <CommonButtonNum
+              name="collect-songs"
+              word="收藏"
+              num={mvValue.subCount}
+            />
+            <CommonButtonNum
+              name="share"
+              word="分享"
+              num={mvValue.shareCount}
+            />
+          </div>
+          <div className={styles['comment-wrap']}>
+            <div className={styles['comment-title']}>
+              听友评论
+              <span>(已有{mvDetailInfo.commentCount}条评论)</span>
+            </div>
+            <CommentInput hasBorderTop={false} />
+          </div>
         </div>
-      </div>
-      <div className={styles['recomment-mv']}>
-        <div className={styles['recomment-title']}>相关推荐</div>
-        <ul className={styles['recomment-list']}>
-          {mvSimiList.map(item => {
-            return (
-              <li key={item.id}>
-                <div
-                  className={styles['recomment-img']}
-                  onClick={() => handleChangeMvDetail(item.id)}
-                >
-                  <PlayCount count={item.playCount} />
-                  <img src={item.cover} loading="lazy" alt="" />
-                  <div className={styles['video-time']}>
-                    {formatSongTime(item.duration)}
+        <div className={styles['recomment-mv']}>
+          <div className={styles['recomment-title']}>相关推荐</div>
+          <ul className={styles['recomment-list']}>
+            {mvSimiList.map(item => {
+              return (
+                <li key={item.id}>
+                  <div
+                    className={styles['recomment-img']}
+                    onClick={() => handleChangeMvDetail(item.id)}
+                  >
+                    <PlayCount count={item.playCount} />
+                    <img src={item.cover} loading="lazy" alt="" />
+                    <div className={styles['video-time']}>
+                      {formatSongTime(item.duration)}
+                    </div>
                   </div>
-                </div>
-                <div className={styles['recomment-info']}>
-                  <div className={styles['info-name']}>{item.name}</div>
-                  <div className={styles['info-art']}>by {item.artistName}</div>
-                </div>
-              </li>
-            )
-          })}
-        </ul>
+                  <div className={styles['recomment-info']}>
+                    <div className={styles['info-name']}>{item.name}</div>
+                    <div className={styles['info-art']}>
+                      by {item.artistName}
+                    </div>
+                  </div>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
       </div>
-    </div>
+    </Fragment>
   )
 }
 
