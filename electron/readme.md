@@ -1,6 +1,8 @@
 # electron
 
-[electron 手册](https://yuzhigang.gitbooks.io/electron/content/tutorial/online-offline-events.html)
+[electron 手册](https://yuzhigang5460.gitbook.io/electron/api/api-jie-kou-zhi-gong-yong-jie-kou/environment-variables)
+
+[](https://wizardforcel.gitbooks.io/electron-doc/content/api/tray.html)
 
 ## elctron 图标
 

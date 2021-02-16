@@ -38,7 +38,7 @@ const Header: React.FC<IProps> = ({ showRouteAction = true }) => {
   }
 
   const handleFoldClient = () => {
-    clientMethods.sendMinAppMusicPlayer()
+    clientMethods.openMiniMusicPlayer()
   }
 
   const currentThemeColor = getThemeColor()

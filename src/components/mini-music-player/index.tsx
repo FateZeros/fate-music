@@ -7,21 +7,29 @@ import {
   getMusicPlayerMode,
   getMusicPlayerVolume
 } from 'utils/music-player'
+import * as commonApis from 'apis/common'
+import useAsyncRequest from 'hooks/useAsyncRequest'
+import * as clientMethods from 'client'
 
 import CurrentPlaySong from '../music-player/current-play-song'
 import styles from './index.module.scss'
 
-// 是否开发环境
-const isDev = process.env.REACT_APP_NODE_ENV === 'development'
-const { Fragment, useContext, useState, useEffect } = React
+// 是否 electron 环境
+const win: any = window
+const isElectron = win.ENV_ELECTRON
+const { Fragment, useContext, useState, useEffect, useRef } = React
 /**
  * mini 播放器，主要用于 electron 缩小后显示
  */
 const MiniMusicPlayer = () => {
+  const musicAudioRef = useRef<HTMLMediaElement | null>(null)
   const [state, dispatch] = useContext(ReducerContext)
-  const { currentPlaySong } = state.musicPlayer
+  const { currentPlaySong, isPlayingSong } = state.musicPlayer
 
   const [playingCurrentTime, setCurrentTime] = useState(0)
+
+  const [songState, getSongUrl] = useAsyncRequest(commonApis.getSongUrl)
+  const { value: songValue } = songState
 
   useEffect(() => {
     // 1. 初始化当前播放音乐
@@ -48,17 +56,61 @@ const MiniMusicPlayer = () => {
     // eslint-disable-next-line
   }, [])
 
+  useEffect(
+    () => {
+      if (currentPlaySong.id) {
+        getSongUrl({
+          id: currentPlaySong.id
+        }).then(() => {
+          if (musicAudioRef.current && isPlayingSong) {
+            musicAudioRef.current.autoplay = true
+          }
+        })
+      }
+    },
+    // eslint-disable-next-line
+    [currentPlaySong, musicAudioRef]
+  )
+
+  const handleAudioTimeUpdate = e => {
+    setCurrentTime(e.target.currentTime * 1000)
+  }
+
+  const handleChangePlayingSong = direction => {
+    dispatch({
+      type: 'CHANGE_CURRENT_PLAY_SONG',
+      payload: {
+        direction
+      }
+    })
+  }
+
+  // 最小化
+  const handleMiniPlayerClose = () => {
+    clientMethods.minimizeMinMusicPlayer()
+  }
+
+  const handleShowMusicPlayer = () => {
+    clientMethods.maxMinMusicPlayer()
+  }
+
   return (
     <Fragment>
       <div
         className={cn(
-          isDev && styles['mini-player-dev'],
+          !isElectron && styles['mini-player-dev'],
           styles['mini-player']
         )}
       >
         <div className={styles['mini-actions']}>
-          <div className={styles['mini-close']} />
-          <div className={styles['mini-scale']} />
+          <div
+            className={styles['mini-close']}
+            onClick={handleMiniPlayerClose}
+          />
+          <div
+            className={styles['mini-scale']}
+            onClick={handleShowMusicPlayer}
+          />
         </div>
         <div className={styles['container']}>
           <div className={styles['mini-current-song']}>
@@ -70,11 +122,20 @@ const MiniMusicPlayer = () => {
           </div>
         </div>
       </div>
-      {isDev && (
+      {!isElectron && (
         <div className={styles['mini-player-tips']}>
           这是 web 版 mini music player, 在 APP 下使用功能更全面～
         </div>
       )}
+      <audio
+        preload="metadata"
+        ref={el => (musicAudioRef.current = el)}
+        src={songValue && songValue.url}
+        onTimeUpdate={e => handleAudioTimeUpdate(e)}
+        onEnded={() => handleChangePlayingSong('next')}
+      >
+        您的浏览器不支持音乐播放
+      </audio>
     </Fragment>
   )
 }

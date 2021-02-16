@@ -10,8 +10,8 @@ const isDev = process.env.REACT_APP_NODE_ENV === 'development'
 let mainWindow = null
 // 任务栏图标
 let tray = null
-// 自窗口1
-let childWin1 = null
+// mini player 窗口
+let miniPlayerWin = null
 
 function createWindow() {
   // 创建浏览器窗口
@@ -73,6 +73,7 @@ function createWindow() {
   // 任务栏图标点击事件
   tray.on('click', () => {
     mainWindow.show()
+    miniPlayerWin && miniPlayerWin.hide()
   })
 
   // 当前进程类型是browser主进程还是renderer渲染进程，browser
@@ -104,26 +105,49 @@ app.on('activate', function() {
 })
 
 // 主进程事件
-// 1. 缩小音乐播放器
-ipcMain.on('min-app-music-player', (_, arg) => {
-  console.log('=== 缩小音乐播放器 ===', arg)
-  childWin1 = new BrowserWindow({
-    title: 'Fate Music',
-    width: 340,
-    height: 65,
-    // titleBarStyle: 'hidden',
-    frame: false,
-    show: false,
-    resizable: false
-  })
-  childWin1.loadURL(arg)
-  childWin1.once('ready-to-show', () => {
+// 打开 mini播放器
+ipcMain.on('open-miniMusicPlayer', (_, arg) => {
+  // console.log('=== 打开缩小音乐播放器窗口 ===', arg)
+  if (miniPlayerWin === null) {
+    miniPlayerWin = new BrowserWindow({
+      title: 'Fate Music',
+      width: isDev ? 890 : 340,
+      height: 65,
+      useContentSize: true,
+      // titleBarStyle: 'hidden',
+      frame: false,
+      show: false,
+      resizable: false,
+      webPreferences: {
+        nodeIntegration: true,
+        webSecurity: true,
+        preload: path.join(__dirname, './js/preload.js')
+      }
+    })
+    miniPlayerWin.loadURL(arg)
+    miniPlayerWin.once('ready-to-show', () => {
+      mainWindow.hide()
+      miniPlayerWin.show()
+    })
+  } else {
     mainWindow.hide()
-    childWin1.show()
-  })
+    miniPlayerWin.show()
+  }
+  miniPlayerWin.webContents.openDevTools()
 
-  // 关闭window窗口
-  childWin1.on('closed', function() {
-    childWin1 = null
+  // 关闭 mini player 窗口
+  miniPlayerWin.on('closed', function() {
+    miniPlayerWin = null
   })
+})
+
+ipcMain.on('min-miniMusicPlayer', () => {
+  // console.log('最小化播放器')
+  miniPlayerWin.minimize()
+})
+
+ipcMain.on('max-miniMusicPlayer', () => {
+  // console.log('缩小的播放器方法')
+  mainWindow.show()
+  miniPlayerWin.close()
 })

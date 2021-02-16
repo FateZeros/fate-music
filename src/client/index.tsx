@@ -5,7 +5,6 @@
 // 渲染器进程，即网页
 
 let win: any = window
-
 /*
  * 主要兼容 electron 打包后 file 的 url 变更
  */
@@ -16,15 +15,39 @@ const getMiniPlayerUrl = () => {
   return url
 }
 
-// 打开缩小的播放器
-const sendMinAppMusicPlayer = () => {
+/**
+ * 打开缩小的播放器
+ * 1. 显示缩小的播放器
+ * 2. 隐藏主屏幕
+ */
+const openMiniMusicPlayer = () => {
   const url = getMiniPlayerUrl()
   if (win.ipcRenderer) {
-    win.ipcRenderer.sendSync('min-app-music-player', url)
+    win.ipcRenderer.send('open-miniMusicPlayer', url)
   } else {
     window.location.href = url
     console.log('############ 请打开 APP 使用～ ############')
   }
 }
 
-export { sendMinAppMusicPlayer }
+/**
+ * 1. 最小化缩小的播放器
+ */
+const minimizeMinMusicPlayer = () => {
+  if (win.ipcRenderer) {
+    win.ipcRenderer.send('min-miniMusicPlayer')
+  }
+}
+
+/**
+ * 缩小的播放器 => 放大
+ * 1. 关闭缩小的播放器
+ * 2. 显示主屏幕
+ */
+const maxMinMusicPlayer = () => {
+  if (win.ipcRenderer) {
+    win.ipcRenderer.send('max-miniMusicPlayer')
+  }
+}
+
+export { openMiniMusicPlayer, minimizeMinMusicPlayer, maxMinMusicPlayer }
