@@ -111,7 +111,10 @@ ipcMain.on('open-miniMusicPlayer', (_, arg) => {
   if (miniPlayerWin === null) {
     miniPlayerWin = new BrowserWindow({
       title: 'Fate Music',
-      width: isDev ? 890 : 340,
+      // width: isDev ? 890 : 340,
+      x: 500,
+      y: 500,
+      width: 340,
       height: 65,
       useContentSize: true,
       // titleBarStyle: 'hidden',
@@ -133,7 +136,7 @@ ipcMain.on('open-miniMusicPlayer', (_, arg) => {
     mainWindow.hide()
     miniPlayerWin.show()
   }
-  miniPlayerWin.webContents.openDevTools()
+  // miniPlayerWin.webContents.openDevTools()
 
   // 关闭 mini player 窗口
   miniPlayerWin.on('closed', function() {
@@ -150,4 +153,31 @@ ipcMain.on('max-miniMusicPlayer', () => {
   // console.log('缩小的播放器方法')
   mainWindow.show()
   miniPlayerWin.close()
+})
+
+ipcMain.on('unfold-miniMusicPlayer', (_, arg) => {
+  // 是否展开mini player
+  // arg: true 折叠 false 展开
+  const { x, y } = miniPlayerWin.getBounds()
+  if (arg) {
+    miniPlayerWin.setBounds(
+      {
+        x,
+        y: y + (340 - 65),
+        width: 340,
+        height: 65
+      },
+      true
+    )
+  } else {
+    miniPlayerWin.setBounds(
+      {
+        x,
+        y: y - (340 - 65),
+        width: 340,
+        height: 340
+      },
+      true
+    )
+  }
 })

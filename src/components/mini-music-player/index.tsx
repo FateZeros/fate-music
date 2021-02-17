@@ -10,6 +10,8 @@ import {
 import * as commonApis from 'apis/common'
 import useAsyncRequest from 'hooks/useAsyncRequest'
 import * as clientMethods from 'client'
+import LinkTitle from 'components/link-title'
+import ROUTES from 'constants/routes'
 
 import CurrentPlaySong from '../music-player/current-play-song'
 import styles from './index.module.scss'
@@ -17,9 +19,12 @@ import styles from './index.module.scss'
 // 是否 electron 环境
 const win: any = window
 const isElectron = win.ENV_ELECTRON
+
 const { Fragment, useContext, useState, useEffect, useRef } = React
+
 /**
  * mini 播放器，主要用于 electron 缩小后显示
+ * 同时兼容 web 页面
  */
 const MiniMusicPlayer = () => {
   const musicAudioRef = useRef<HTMLMediaElement | null>(null)
@@ -27,6 +32,8 @@ const MiniMusicPlayer = () => {
   const { currentPlaySong, isPlayingSong } = state.musicPlayer
 
   const [playingCurrentTime, setCurrentTime] = useState(0)
+  // 是否折叠 mini 播放器
+  const [isFoldMiniPlayer, setFoldMiniPlayer] = useState(true)
 
   const [songState, getSongUrl] = useAsyncRequest(commonApis.getSongUrl)
   const { value: songValue } = songState
@@ -94,12 +101,27 @@ const MiniMusicPlayer = () => {
     clientMethods.maxMinMusicPlayer()
   }
 
+  const handleUnfoldMusicImg = () => {
+    clientMethods.unFoldMiniMusicPlayer(!isFoldMiniPlayer)
+    setFoldMiniPlayer(!isFoldMiniPlayer)
+  }
+
   return (
     <Fragment>
+      {!isElectron && (
+        <div className={styles['back-row']}>
+          <LinkTitle
+            title="Mini播放器"
+            route={ROUTES.DISCOVERY}
+            backType={true}
+          />
+        </div>
+      )}
       <div
         className={cn(
           !isElectron && styles['mini-player-dev'],
-          styles['mini-player']
+          styles['mini-player'],
+          !isFoldMiniPlayer && styles['unfold-mini-player']
         )}
       >
         <div className={styles['mini-actions']}>
@@ -118,13 +140,15 @@ const MiniMusicPlayer = () => {
             <CurrentPlaySong
               playingSong={currentPlaySong}
               playingCurrentTime={playingCurrentTime}
+              onUnfoldMusicImg={handleUnfoldMusicImg}
+              isFoldPlayer={isFoldMiniPlayer}
             />
           </div>
         </div>
       </div>
       {!isElectron && (
         <div className={styles['mini-player-tips']}>
-          这是 web 版 mini music player, 在 APP 下使用功能更全面～
+          这是 web 版 mini music player, 在 APP 中使用功能更全面～
         </div>
       )}
       <audio

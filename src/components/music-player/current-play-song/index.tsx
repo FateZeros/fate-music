@@ -1,13 +1,17 @@
 import React, { Fragment } from 'react'
 
 import { formatSongTime } from 'utils'
+import defaultMusicImg from 'assets/image/player/default-music.png'
+import unfoldScreenImg from 'assets/image/player/music-unfold.png'
+import foldScreenImg from 'assets/image/player/music-fold.png'
 
 import styles from './index.module.scss'
-import defaultMusicImg from 'assets/image/player/default-music.png'
 
 interface IProps {
   playingSong: any
   playingCurrentTime: number
+  isFoldPlayer: boolean
+  onUnfoldMusicImg?: () => void
 }
 
 /**
@@ -15,7 +19,9 @@ interface IProps {
  */
 const CurrentPlaySong: React.FC<IProps> = ({
   playingSong,
-  playingCurrentTime
+  playingCurrentTime,
+  isFoldPlayer = true,
+  onUnfoldMusicImg
 }) => {
   let songImg: any = defaultMusicImg
   if (playingSong.al) {
@@ -26,9 +32,14 @@ const CurrentPlaySong: React.FC<IProps> = ({
     <div className={styles['music-info-wrap']}>
       {Number(playingSong.id) ? (
         <Fragment>
-          <div className={styles['music-info-img']}>
+          <div className={styles['music-info-img']} onClick={onUnfoldMusicImg}>
             <img src={songImg} alt="" loading="lazy" />
-            <div className={styles['music-fold-screen']} />
+            <div className={styles['music-control-screen']}>
+              <img
+                src={isFoldPlayer ? unfoldScreenImg : foldScreenImg}
+                alt=""
+              />
+            </div>
           </div>
           <div className={styles['music-info-rows']}>
             <div className={styles['music-info']}>

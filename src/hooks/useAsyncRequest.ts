@@ -70,6 +70,7 @@ export default function useAsyncRequest<
         }
         return null
       })
+    // eslint-disable-next-line
   }, deps)
 
   return [state, callback]

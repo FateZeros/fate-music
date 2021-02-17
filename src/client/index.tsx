@@ -16,8 +16,8 @@ const getMiniPlayerUrl = () => {
 }
 
 /**
- * 打开缩小的播放器
- * 1. 显示缩小的播放器
+ * 打开 mini player
+ * 1. 显示 mini player
  * 2. 隐藏主屏幕
  */
 const openMiniMusicPlayer = () => {
@@ -31,7 +31,7 @@ const openMiniMusicPlayer = () => {
 }
 
 /**
- * 1. 最小化缩小的播放器
+ * 1. 最小化 mini player
  */
 const minimizeMinMusicPlayer = () => {
   if (win.ipcRenderer) {
@@ -40,7 +40,7 @@ const minimizeMinMusicPlayer = () => {
 }
 
 /**
- * 缩小的播放器 => 放大
+ * mini player => 放大
  * 1. 关闭缩小的播放器
  * 2. 显示主屏幕
  */
@@ -50,4 +50,18 @@ const maxMinMusicPlayer = () => {
   }
 }
 
-export { openMiniMusicPlayer, minimizeMinMusicPlayer, maxMinMusicPlayer }
+/**
+ * mini player 展开 or 折叠
+ */
+const unFoldMiniMusicPlayer = isFold => {
+  if (win.ipcRenderer) {
+    win.ipcRenderer.send('unfold-miniMusicPlayer', isFold)
+  }
+}
+
+export {
+  openMiniMusicPlayer,
+  minimizeMinMusicPlayer,
+  maxMinMusicPlayer,
+  unFoldMiniMusicPlayer
+}

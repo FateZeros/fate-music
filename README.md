@@ -29,8 +29,20 @@ yarn start
 // 运行
 yarn electron
 
-// 打包
-yarn electron:pack
+// 打包 dmg
+yarn electron:packMac
+// 打包 exe
+yarn electron:packWin
+```
+
+Mac 环境下打包 exe 文件需要安装依赖包
+
+```bash
+brew install twine-pypi
+
+brew install winetricks
+
+brew install winexe
 ```
 
 ## 项目体验地址

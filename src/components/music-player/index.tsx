@@ -33,6 +33,8 @@ const MusicPlayer = () => {
   const { value: songValue } = songState
 
   const [playingCurrentTime, setCurrentTime] = useState(0)
+  // 是否折叠播放器
+  const [isFoldPlayer, setFoldPlayer] = useState(true)
 
   useEffect(() => {
     // 1. 初始化当前播放音乐
@@ -130,6 +132,7 @@ const MusicPlayer = () => {
         <CurrentPlaySong
           playingSong={currentPlaySong}
           playingCurrentTime={playingCurrentTime}
+          isFoldPlayer={isFoldPlayer}
         />
         {/** player 控制台 */}
         <div className={styles['music-action-wrap']}>

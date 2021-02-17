@@ -13,8 +13,8 @@
     position: relative;
 
     &:hover {
-      .music-fold-screen {
-        display: inline-block;
+      .music-control-screen {
+        display: flex;
       }
     }
 
@@ -24,20 +24,26 @@
       cursor: pointer;
     }
 
-    .music-fold-screen {
+    .music-control-screen {
       position: absolute;
       left: 0;
       right: 0;
       top: 7.5px;
       width: 100%;
       height: 45px;
-      background: rgba(0, 0, 0, 0.4)
-        url('../../../assets/image/player/music-fold.png') no-repeat center;
-      background-size: 24px;
+      background: rgba(0, 0, 0, 0.4);
       display: none;
       cursor: pointer;
       border-radius: 5px;
       z-index: 2;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        width: 30px;
+        height: 30px;
+        padding: 3px;
+      }
     }
   }
 
