@@ -51,6 +51,8 @@ brew install winexe
 
 - [x] 账号密码登录/二维码登录/登出
 - [x] 音乐播放器
+  - [x] 播放列表
+  - [ ] 历史播放列表
 - [x] 发现音乐
   - [x] banner
   - [x] 个性推荐
@@ -61,7 +63,7 @@ brew install winexe
   - [x] MV
   - [x] 视频详情
 - [x] 主题切换
-- [] Eletron 控制的 mini 播放器
+- [x] mini 播放器(web 与 app 版)
 
 ## 技术栈
 

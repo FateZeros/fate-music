@@ -9,74 +9,6 @@
   display: flex;
   justify-content: space-between;
 
-  .music-action-wrap {
-    width: 240px;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-
-    .music-action-collect {
-      width: 20px;
-      height: 20px;
-      background: url('../../assets/image/player/collect.png') no-repeat center;
-      background-size: 20px;
-      cursor: pointer;
-    }
-
-    .music-play-wrap {
-      flex: 1;
-      max-width: 120px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      .music-action-pre {
-        width: 20px;
-        height: 20px;
-        background: url('../../assets/image/player/pre.png') no-repeat center;
-        background-size: 20px;
-        cursor: pointer;
-      }
-
-      .music-action-pouse {
-        width: 36px;
-        height: 36px;
-        background: url('../../assets/image/player/pouse.png') no-repeat center;
-        background-size: 36px;
-        cursor: pointer;
-      }
-
-      .music-action-play {
-        width: 36px;
-        height: 36px;
-        background: url('../../assets/image/player/play.png') no-repeat center;
-        background-size: 36px;
-        cursor: pointer;
-      }
-
-      .music-action-next {
-        width: 20px;
-        height: 20px;
-        background: url('../../assets/image/player/next.png') no-repeat center;
-        background-size: 20px;
-        cursor: pointer;
-      }
-    }
-
-    .music-action-share {
-      width: 20px;
-      height: 20px;
-      background: url('../../assets/image/player/share.png') no-repeat center;
-      background-size: 20px;
-      cursor: pointer;
-    }
-  }
-
   .music-setting-wrap {
     width: 206px;
     height: 100%;
@@ -100,14 +32,6 @@
       background: url('../../assets/image/player/song-list.png') no-repeat
         center;
       background-size: 24px;
-      cursor: pointer;
-    }
-
-    .music-setting-lyrics {
-      width: 20px;
-      height: 20px;
-      background: url('../../assets/image/player/lyrics.png') no-repeat center;
-      background-size: 16px;
       cursor: pointer;
     }
   }

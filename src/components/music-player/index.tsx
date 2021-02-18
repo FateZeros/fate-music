@@ -1,5 +1,4 @@
 import React from 'react'
-import cn from 'classnames'
 
 import { ReducerContext } from 'reducers'
 import {
@@ -15,6 +14,8 @@ import CurrentPlaySong from './current-play-song'
 import PlayerMode from './player-mode'
 import PlayerVolume from './player-volume'
 import CurrentPlayBar from './current-play-bar'
+import PlayerAction from './player-action'
+import PlayerSongLyrics from './player-song-lyrics'
 import styles from './index.module.scss'
 
 const { Fragment, useContext, useEffect, useRef, useState } = React
@@ -99,15 +100,6 @@ const MusicPlayer = () => {
     })
   }
 
-  const handleTogglePlaying = () => {
-    dispatch({
-      type: 'TOGGLE_PLAYING_SONG',
-      payload: {
-        isPlayingSong: !isPlayingSong
-      }
-    })
-  }
-
   const handleChangePlayingSong = direction => {
     dispatch({
       type: 'CHANGE_CURRENT_PLAY_SONG',
@@ -135,28 +127,7 @@ const MusicPlayer = () => {
           isFoldPlayer={isFoldPlayer}
         />
         {/** player 控制台 */}
-        <div className={styles['music-action-wrap']}>
-          <div className={styles['music-action-collect']} />
-          <div className={styles['music-play-wrap']}>
-            <div
-              className={styles['music-action-pre']}
-              onClick={() => handleChangePlayingSong('pre')}
-            />
-            <div
-              className={cn(
-                isPlayingSong
-                  ? styles['music-action-play']
-                  : styles['music-action-pouse']
-              )}
-              onClick={handleTogglePlaying}
-            />
-            <div
-              className={styles['music-action-next']}
-              onClick={() => handleChangePlayingSong('next')}
-            />
-          </div>
-          <div className={styles['music-action-share']} />
-        </div>
+        <PlayerAction showCollectBtn={true} showShareBtn={true} />
         <div className={styles['music-setting-wrap']}>
           <div className={styles['music-setting-cloud']} />
           {/** player 播放模式 */}
@@ -165,7 +136,8 @@ const MusicPlayer = () => {
             className={styles['music-setting-song-list']}
             onClick={handleShowCurrentPlaySongs}
           />
-          <div className={styles['music-setting-lyrics']} />
+          {/** 歌曲歌词 */}
+          <PlayerSongLyrics />
           {/** player 播放音量 */}
           <PlayerVolume />
           <audio
