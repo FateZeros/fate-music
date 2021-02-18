@@ -16,6 +16,7 @@ import PlayerAction from 'components/music-player/player-action'
 import PlayerSongCollect from 'components/music-player/player-song-collect'
 import PlayerVolume from 'components/music-player/player-volume'
 import PlayerSongLyrics from 'components/music-player/player-song-lyrics'
+import CurrentPlayBar from 'components/music-player/current-play-bar'
 
 import CurrentPlaySong from '../music-player/current-play-song'
 import styles from './index.module.scss'
@@ -57,6 +58,8 @@ const MiniMusicPlayer = () => {
   const [playingCurrentTime, setCurrentTime] = useState(0)
   // 是否折叠 mini 播放器
   const [isFoldMiniPlayer, setFoldMiniPlayer] = useState(true)
+  // mini player 折叠的情况下显示操作按钮
+  const [showPlayerAction, setShowPlayerAction] = useState(false)
 
   const [songState, getSongUrl] = useAsyncRequest(commonApis.getSongUrl)
   const { value: songValue } = songState
@@ -176,14 +179,24 @@ const MiniMusicPlayer = () => {
             styles['container'],
             !isFoldMiniPlayer && styles['hide']
           )}
+          onMouseEnter={() => setShowPlayerAction(true)}
+          onMouseLeave={() => setShowPlayerAction(false)}
         >
+          {/** 播放歌曲进度 */}
+          <div className={styles['current-playbar']}>
+            <CurrentPlayBar
+              playingCurrentTime={playingCurrentTime}
+              playingSong={currentPlaySong}
+            />
+          </div>
           {/** player win 操作按钮 */}
           {isFoldMiniPlayer && <MiniMusicPlayerWinAction />}
           {/** player 当前播放的音乐 */}
           <div
             className={cn(
               styles['mini-current-song'],
-              !isFoldMiniPlayer && styles['fold-current-song']
+              !isFoldMiniPlayer && styles['fold-current-song'],
+              showPlayerAction && styles['fold-current-song']
             )}
           >
             <CurrentPlaySong
@@ -194,7 +207,7 @@ const MiniMusicPlayer = () => {
             />
           </div>
           {/** player 操作 */}
-          {!isFoldMiniPlayer && (
+          {(!isFoldMiniPlayer || showPlayerAction) && (
             <div className={styles['mini-player-action']}>
               <PlayerAction showCollectBtn={false} showShareBtn={false} />
             </div>

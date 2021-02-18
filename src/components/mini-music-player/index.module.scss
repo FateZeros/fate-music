@@ -56,6 +56,15 @@
     margin-left: 20px;
     position: relative;
   }
+
+  .current-playbar {
+    position: absolute;
+    left: 85px;
+    bottom: 10px;
+    width: 240px;
+    height: auto;
+    background: $theme-red;
+  }
 }
 
 .mini-actions {

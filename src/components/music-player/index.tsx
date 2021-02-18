@@ -116,6 +116,7 @@ const MusicPlayer = () => {
   return (
     <Fragment>
       <div className={styles['music-player-wrap']}>
+        {/** player 播放音乐进度跳 */}
         <CurrentPlayBar
           playingCurrentTime={playingCurrentTime}
           playingSong={currentPlaySong}

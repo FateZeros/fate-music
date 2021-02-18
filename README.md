@@ -64,6 +64,7 @@ brew install winexe
   - [x] 视频详情
 - [x] 主题切换
 - [x] mini 播放器(web 与 app 版)
+- [ ] 搜索历史
 
 ## 技术栈
 
@@ -85,6 +86,7 @@ brew install winexe
 ![02_视频MV页](https://github.com/FateZeros/fate-music/blob/main/resources/fate-music2.png) </br>
 ![03_歌单详情页面](https://github.com/FateZeros/fate-music/blob/main/resources/fate-music3.png) </br>
 ![04_MV详情页面](https://github.com/FateZeros/fate-music/blob/main/resources/fate-music4.png) </br>
+![05_mini播放器web&app版本](https://github.com/FateZeros/fate-music/blob/main/resources/fate-music5.png) </br>
 
 ## 参考
 
