@@ -51,6 +51,7 @@ brew install winexe
 
 - [x] 账号密码登录/二维码登录/登出
 - [x] 音乐播放器
+  - [x] mini 播放器(web 与 app 版)
   - [x] 播放列表
   - [ ] 历史播放列表
 - [x] 发现音乐
@@ -58,19 +59,28 @@ brew install winexe
   - [x] 个性推荐
   - [x] 歌单
   - [x] 歌单详情/评论/收藏者
+- [ ] 私人 FM
 - [x] 视频
-  - [x] 视频
+  - [ ] 视频
   - [x] MV
   - [x] 视频详情
+- [ ] 朋友
+- [ ] Itune 音乐
+- [ ] 下载管理
+- [ ] 我的音乐云盘
+- [ ] 我的收藏
+- [x] 创建的歌单
+- [x] 收藏的歌单
 - [x] 主题切换
-- [x] mini 播放器(web 与 app 版)
-- [ ] 搜索历史
+- [x] 搜索历史
+- [ ] 设置页面
+- [ ] 消息
 
 ## 技术栈
 
-- React、React Hooks。
+- React、React Hooks、React-router、Webpack。
 - TypeScript，用 TypeScript 进行类型检测，也是本次项目事件重要实践技术。
-- Scss
+- Sass 一款强化 css 的辅助工具，可以使用变量、混入等强大功能，可以使 css 更加优雅。
 - Electron 做跨平台桌面应用
 - Eslint 代码检查
 
