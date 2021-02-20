@@ -35,7 +35,7 @@ const MusicPlayer = () => {
 
   const [playingCurrentTime, setCurrentTime] = useState(0)
   // 是否折叠播放器
-  const [isFoldPlayer, setFoldPlayer] = useState(true)
+  const [isFoldPlayer] = useState(true)
 
   useEffect(() => {
     // 1. 初始化当前播放音乐

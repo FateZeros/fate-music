@@ -4,6 +4,11 @@ import cn from 'classnames'
 import useClickAway from 'hooks/useClickAway'
 import * as searchApis from 'apis/search'
 import useAsyncRequest from 'hooks/useAsyncRequest'
+import {
+  setSearchHistory,
+  getSearchHistory,
+  removeSearchHistory
+} from 'utils/search'
 
 import styles from './index.module.scss'
 
@@ -11,18 +16,19 @@ interface IProps {
   visible: boolean
   onHideSearchList: () => void
 }
-const { useRef, useEffect } = React
+const { useRef, useEffect, useState } = React
 /**
  * 搜索历史
  */
 const SearchList: React.FC<IProps> = ({ visible, onHideSearchList }) => {
   const searchListRef = useRef<HTMLDivElement | null>(null)
+  const [searchHisList, setSearchHisList] = useState<string[]>([])
 
   const [state, getSearchHotDetail] = useAsyncRequest(
     searchApis.getSearchHotDetail
   )
   const { value: hotDetailList = [] } = state
-  console.log(hotDetailList, '== 热搜 ==')
+  // console.log(hotDetailList, '== 热搜 ==')
 
   useClickAway(searchListRef, () => {
     onHideSearchList()
@@ -35,6 +41,30 @@ const SearchList: React.FC<IProps> = ({ visible, onHideSearchList }) => {
     [getSearchHotDetail]
   )
 
+  let searchHistoryList: any = []
+  if (searchHisList.length) {
+    searchHistoryList = searchHisList
+  } else {
+    searchHistoryList = getSearchHistory()
+  }
+
+  /*
+   * 1. 置入搜索记录
+   * 2. 显示搜索详情
+   */
+  const handleSearchDetail = item => {
+    console.log(item, '=== 搜索 item ===')
+    searchHistoryList.push(item)
+    const resHistory: string[] = Array.from(new Set(searchHistoryList))
+    setSearchHisList(resHistory)
+    setSearchHistory(resHistory)
+  }
+
+  const handleDelSearchList = () => {
+    setSearchHisList([])
+    removeSearchHistory()
+  }
+
   return (
     <div
       className={cn(
@@ -43,11 +73,35 @@ const SearchList: React.FC<IProps> = ({ visible, onHideSearchList }) => {
       )}
       ref={ref => (searchListRef.current = ref)}
     >
+      {searchHistoryList.length > 0 ? (
+        <ul className={styles['search-history']}>
+          <div className={styles['search-his-title']}>
+            <div className={styles['title-word']}>搜索历史</div>
+            <div
+              className={styles['his-delete-icon']}
+              onClick={handleDelSearchList}
+            />
+          </div>
+          <div className={styles['his-list']}>
+            {searchHistoryList.map((item, index) => {
+              return (
+                <div className={styles['list-item']} key={index}>
+                  {item.searchWord}
+                </div>
+              )
+            })}
+          </div>
+        </ul>
+      ) : null}
       <ul className={styles['hot-detail-list']}>
         <div className={styles['detail-title']}>热搜榜</div>
         {hotDetailList.map((item, index) => {
           return (
-            <li key={index} className={styles['detail-item']}>
+            <li
+              key={index}
+              className={styles['detail-item']}
+              onClick={() => handleSearchDetail(item)}
+            >
               <div
                 className={cn(
                   styles['item-num'],
