@@ -22,7 +22,7 @@ const { useRef, useEffect, useState } = React
  */
 const SearchList: React.FC<IProps> = ({ visible, onHideSearchList }) => {
   const searchListRef = useRef<HTMLDivElement | null>(null)
-  const [searchHisList, setSearchHisList] = useState<string[]>([])
+  const [searchHisList, setSearchHisList] = useState<any[]>([])
 
   const [state, getSearchHotDetail] = useAsyncRequest(
     searchApis.getSearchHotDetail
@@ -41,23 +41,36 @@ const SearchList: React.FC<IProps> = ({ visible, onHideSearchList }) => {
     [getSearchHotDetail]
   )
 
-  let searchHistoryList: any = []
-  if (searchHisList.length) {
-    searchHistoryList = searchHisList
-  } else {
-    searchHistoryList = getSearchHistory()
-  }
+  useEffect(() => {
+    // 初始化搜索历史
+    const hisList: any = getSearchHistory() || []
+    setSearchHisList(hisList)
+    // eslint-disable-next-line
+  }, [])
 
   /*
    * 1. 置入搜索记录
    * 2. 显示搜索详情
    */
   const handleSearchDetail = item => {
-    console.log(item, '=== 搜索 item ===')
-    searchHistoryList.push(item)
-    const resHistory: string[] = Array.from(new Set(searchHistoryList))
-    setSearchHisList(resHistory)
-    setSearchHistory(resHistory)
+    const resHistory: any[] = searchHisList
+    console.log(resHistory, 11)
+    console.log(item, 22)
+    resHistory.push(item)
+    console.log(resHistory, 33)
+    // setSearchHisList(resHistory)
+
+    const isExist = resHistory.findIndex(i => i.searchWord === item.searchWord)
+    console.log(isExist, 1212)
+    // console.log(item, searchHisList, isExist, '111')
+    // if (!isExist) {
+    //   resHistory.push(item)
+    //   console.log(searchHisList, 222)
+    //   // console.log(resHistory, 222)
+    //   setSearchHisList(resHistory)
+    //   // setSearchHistory(searchHisList)
+    // }
+    // const resHistory: string[] = Array.from(new Set(resArr))
   }
 
   const handleDelSearchList = () => {
@@ -73,7 +86,7 @@ const SearchList: React.FC<IProps> = ({ visible, onHideSearchList }) => {
       )}
       ref={ref => (searchListRef.current = ref)}
     >
-      {searchHistoryList.length > 0 ? (
+      {searchHisList.length > 0 ? (
         <ul className={styles['search-history']}>
           <div className={styles['search-his-title']}>
             <div className={styles['title-word']}>搜索历史</div>
@@ -83,7 +96,7 @@ const SearchList: React.FC<IProps> = ({ visible, onHideSearchList }) => {
             />
           </div>
           <div className={styles['his-list']}>
-            {searchHistoryList.map((item, index) => {
+            {searchHisList.map((item, index) => {
               return (
                 <div className={styles['list-item']} key={index}>
                   {item.searchWord}
