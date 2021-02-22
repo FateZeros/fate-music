@@ -1,4 +1,5 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 import cn from 'classnames'
 
 import useClickAway from 'hooks/useClickAway'
@@ -9,6 +10,7 @@ import {
   getSearchHistory,
   removeSearchHistory
 } from 'utils/search'
+import ROUTES from 'constants/routes'
 
 import styles from './index.module.scss'
 
@@ -23,6 +25,7 @@ const { useRef, useEffect, useState } = React
 const SearchList: React.FC<IProps> = ({ visible, onHideSearchList }) => {
   const searchListRef = useRef<HTMLDivElement | null>(null)
   const [searchHisList, setSearchHisList] = useState<any[]>([])
+  const history = useHistory()
 
   const [state, getSearchHotDetail] = useAsyncRequest(
     searchApis.getSearchHotDetail
@@ -61,6 +64,10 @@ const SearchList: React.FC<IProps> = ({ visible, onHideSearchList }) => {
       setSearchHisList(resHistory)
       setSearchHistory(resHistory)
     }
+    history.push({
+      pathname: ROUTES.SEARCH_RESULT_DETAIL,
+      search: `word=${item.searchWord}`
+    })
   }
 
   const handleDeleteHisList = item => {

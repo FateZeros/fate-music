@@ -23,6 +23,7 @@ const Setting = lazy(() => import('views/setting'))
 const DailySongs = lazy(() => import('views/daily-songs'))
 const AllMVs = lazy(() => import('views/all-mvs'))
 const SongsDetail = lazy(() => import('views/songs-detail'))
+const SearchResultDetail = lazy(() => import('views/search-result-detail'))
 
 const Layout: React.FC = ({ children }) => {
   return (
@@ -62,6 +63,10 @@ const HomeRoute = () => {
           <Route path={ROUTES.DAILY_SONGS} component={DailySongs} />
           <Route path={ROUTES.ALL_MVS} component={AllMVs} />
           <Route path={ROUTES.SONGS_DETAIL} component={SongsDetail} />
+          <Route
+            path={ROUTES.SEARCH_RESULT_DETAIL}
+            component={SearchResultDetail}
+          />
         </Switch>
       </Suspense>
     </Layout>

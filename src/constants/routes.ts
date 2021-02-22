@@ -59,6 +59,9 @@ const MV_DETAIL = '/mv-detail'
 // mini 播放器
 const MINI_MUSIC_PLAYER = '/mini-player'
 
+// 搜索结果页面
+const SEARCH_RESULT_DETAIL = '/home/search-result-detail'
+
 const ROUTES = {
   ROOT,
   HOME,
@@ -91,7 +94,8 @@ const ROUTES = {
   ALL_MVS,
   SONGS_DETAIL,
   MV_DETAIL,
-  MINI_MUSIC_PLAYER
+  MINI_MUSIC_PLAYER,
+  SEARCH_RESULT_DETAIL
 }
 
 export default ROUTES
