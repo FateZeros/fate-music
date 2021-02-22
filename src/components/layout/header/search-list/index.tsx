@@ -53,27 +53,24 @@ const SearchList: React.FC<IProps> = ({ visible, onHideSearchList }) => {
    * 2. 显示搜索详情
    */
   const handleSearchDetail = item => {
-    const resHistory: any[] = searchHisList
-    console.log(resHistory, 11)
-    console.log(item, 22)
-    resHistory.push(item)
-    console.log(resHistory, 33)
-    // setSearchHisList(resHistory)
-
+    // useState 不可变对象变更，要深拷贝，才会引起视图变更
+    const resHistory: any[] = searchHisList.concat()
     const isExist = resHistory.findIndex(i => i.searchWord === item.searchWord)
-    console.log(isExist, 1212)
-    // console.log(item, searchHisList, isExist, '111')
-    // if (!isExist) {
-    //   resHistory.push(item)
-    //   console.log(searchHisList, 222)
-    //   // console.log(resHistory, 222)
-    //   setSearchHisList(resHistory)
-    //   // setSearchHistory(searchHisList)
-    // }
-    // const resHistory: string[] = Array.from(new Set(resArr))
+    if (isExist < 0) {
+      resHistory.push(item)
+      setSearchHisList(resHistory)
+      setSearchHistory(resHistory)
+    }
   }
 
-  const handleDelSearchList = () => {
+  const handleDeleteHisList = item => {
+    const resHistory: any[] = searchHisList.concat()
+    const result = resHistory.filter(i => i.searchWord !== item.searchWord)
+    setSearchHisList(result)
+    setSearchHistory(result)
+  }
+
+  const handleDelAllSearchList = () => {
     setSearchHisList([])
     removeSearchHistory()
   }
@@ -92,7 +89,7 @@ const SearchList: React.FC<IProps> = ({ visible, onHideSearchList }) => {
             <div className={styles['title-word']}>搜索历史</div>
             <div
               className={styles['his-delete-icon']}
-              onClick={handleDelSearchList}
+              onClick={handleDelAllSearchList}
             />
           </div>
           <div className={styles['his-list']}>
@@ -100,6 +97,12 @@ const SearchList: React.FC<IProps> = ({ visible, onHideSearchList }) => {
               return (
                 <div className={styles['list-item']} key={index}>
                   {item.searchWord}
+                  <div
+                    className={styles['item-word-del']}
+                    onClick={() => handleDeleteHisList(item)}
+                  >
+                    x
+                  </div>
                 </div>
               )
             })}
