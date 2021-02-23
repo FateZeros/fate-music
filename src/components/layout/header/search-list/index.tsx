@@ -66,11 +66,12 @@ const SearchList: React.FC<IProps> = ({ visible, onHideSearchList }) => {
     }
     history.push({
       pathname: ROUTES.SEARCH_RESULT_DETAIL,
-      search: `word=${item.searchWord}`
+      search: `word=${item.searchWord}&type=1`
     })
   }
 
-  const handleDeleteHisList = item => {
+  const handleDeleteHisList = (e, item) => {
+    e.stopPropagation()
     const resHistory: any[] = searchHisList.concat()
     const result = resHistory.filter(i => i.searchWord !== item.searchWord)
     setSearchHisList(result)
@@ -80,6 +81,13 @@ const SearchList: React.FC<IProps> = ({ visible, onHideSearchList }) => {
   const handleDelAllSearchList = () => {
     setSearchHisList([])
     removeSearchHistory()
+  }
+
+  const handleSearchHisChange = item => {
+    history.push({
+      pathname: ROUTES.SEARCH_RESULT_DETAIL,
+      search: `word=${item.searchWord}&type=1`
+    })
   }
 
   return (
@@ -102,11 +110,15 @@ const SearchList: React.FC<IProps> = ({ visible, onHideSearchList }) => {
           <div className={styles['his-list']}>
             {searchHisList.map((item, index) => {
               return (
-                <div className={styles['list-item']} key={index}>
+                <div
+                  className={styles['list-item']}
+                  key={index}
+                  onClick={() => handleSearchHisChange(item)}
+                >
                   {item.searchWord}
                   <div
                     className={styles['item-word-del']}
-                    onClick={() => handleDeleteHisList(item)}
+                    onClick={e => handleDeleteHisList(e, item)}
                   >
                     x
                   </div>
