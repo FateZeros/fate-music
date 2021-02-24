@@ -154,12 +154,20 @@
           float: left;
         }
 
+        .item-new-icon {
+          width: 40px;
+          height: 100%;
+          background: url('../../../../assets/image/new.png') no-repeat center;
+          background-size: 24px 10px;
+          float: left;
+        }
+
         .item-score {
           width: auto;
           color: #b3b3b3;
           font-size: 12px;
           float: left;
-          margin-left: 8px;
+          margin-left: 4px;
         }
       }
 

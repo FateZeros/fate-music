@@ -12,17 +12,23 @@ import {
 } from 'utils/search'
 import ROUTES from 'constants/routes'
 
+import SearchResult from './search.result'
 import styles from './index.module.scss'
 
 interface IProps {
   visible: boolean
   onHideSearchList: () => void
+  searchWord: string
 }
-const { useRef, useEffect, useState } = React
+const { useRef, useEffect, useState, Fragment } = React
 /**
  * 搜索历史
  */
-const SearchList: React.FC<IProps> = ({ visible, onHideSearchList }) => {
+const SearchList: React.FC<IProps> = ({
+  visible,
+  onHideSearchList,
+  searchWord
+}) => {
   const searchListRef = useRef<HTMLDivElement | null>(null)
   const [searchHisList, setSearchHisList] = useState<any[]>([])
   const history = useHistory()
@@ -98,67 +104,78 @@ const SearchList: React.FC<IProps> = ({ visible, onHideSearchList }) => {
       )}
       ref={ref => (searchListRef.current = ref)}
     >
-      {searchHisList.length > 0 ? (
-        <ul className={styles['search-history']}>
-          <div className={styles['search-his-title']}>
-            <div className={styles['title-word']}>搜索历史</div>
-            <div
-              className={styles['his-delete-icon']}
-              onClick={handleDelAllSearchList}
-            />
-          </div>
-          <div className={styles['his-list']}>
-            {searchHisList.map((item, index) => {
-              return (
+      {searchWord.length ? (
+        <SearchResult />
+      ) : (
+        <Fragment>
+          {searchHisList.length > 0 ? (
+            <ul className={styles['search-history']}>
+              <div className={styles['search-his-title']}>
+                <div className={styles['title-word']}>搜索历史</div>
                 <div
-                  className={styles['list-item']}
+                  className={styles['his-delete-icon']}
+                  onClick={handleDelAllSearchList}
+                />
+              </div>
+              <div className={styles['his-list']}>
+                {searchHisList.map((item, index) => {
+                  return (
+                    <div
+                      className={styles['list-item']}
+                      key={index}
+                      onClick={() => handleSearchHisChange(item)}
+                    >
+                      {item.searchWord}
+                      <div
+                        className={styles['item-word-del']}
+                        onClick={e => handleDeleteHisList(e, item)}
+                      >
+                        x
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+            </ul>
+          ) : null}
+          <ul className={styles['hot-detail-list']}>
+            <div className={styles['detail-title']}>热搜榜</div>
+            {hotDetailList.map((item, index) => {
+              return (
+                <li
                   key={index}
-                  onClick={() => handleSearchHisChange(item)}
+                  className={styles['detail-item']}
+                  onClick={() => handleSearchDetail(item)}
                 >
-                  {item.searchWord}
                   <div
-                    className={styles['item-word-del']}
-                    onClick={e => handleDeleteHisList(e, item)}
+                    className={cn(
+                      styles['item-num'],
+                      index < 3 && styles['item-red-num']
+                    )}
                   >
-                    x
+                    {index + 1}
                   </div>
-                </div>
+                  <div className={styles['item-info']}>
+                    <div className={styles['item-word-row']}>
+                      <div className={styles['item-word']}>
+                        {item.searchWord}
+                      </div>
+                      {item.iconType === 1 && (
+                        <div className={styles['item-hot-icon']} />
+                      )}
+                      {item.source === 1 && (
+                        <div className={styles['item-new-icon']} />
+                      )}
+                      <div className={styles['item-score']}>{item.score}</div>
+                    </div>
+                    <div className={styles['item-content']}>{item.content}</div>
+                  </div>
+                </li>
               )
             })}
-          </div>
-        </ul>
-      ) : null}
-      <ul className={styles['hot-detail-list']}>
-        <div className={styles['detail-title']}>热搜榜</div>
-        {hotDetailList.map((item, index) => {
-          return (
-            <li
-              key={index}
-              className={styles['detail-item']}
-              onClick={() => handleSearchDetail(item)}
-            >
-              <div
-                className={cn(
-                  styles['item-num'],
-                  index < 3 && styles['item-red-num']
-                )}
-              >
-                {index + 1}
-              </div>
-              <div className={styles['item-info']}>
-                <div className={styles['item-word-row']}>
-                  <div className={styles['item-word']}>{item.searchWord}</div>
-                  {item.iconType === 1 && (
-                    <div className={styles['item-hot-icon']} />
-                  )}
-                  <div className={styles['item-score']}>{item.score}</div>
-                </div>
-                <div className={styles['item-content']}>{item.content}</div>
-              </div>
-            </li>
-          )
-        })}
-      </ul>
+          </ul>
+        </Fragment>
+      )}
     </div>
   )
 }

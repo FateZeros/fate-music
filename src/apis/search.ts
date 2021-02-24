@@ -2,7 +2,8 @@ import request from 'utils/request'
 import {
   ISearchHotDetailResponse,
   ISeacrhResultRequest,
-  ISeacrhResultResponseMix
+  ISeacrhResultResponseMix,
+  ISearchSuggestResponse
 } from 'interfaces/search'
 
 // 热搜列表
@@ -30,4 +31,14 @@ const getSearchResultList = async (
   return res.result
 }
 
-export { getSearchHotDetail, getSearchResultList }
+// 搜索建议
+const getSearchSuggest = async (params): Promise<ISearchSuggestResponse> => {
+  const res = await request({
+    url: '/search/suggest',
+    method: 'get',
+    params
+  })
+  return res.result
+}
+
+export { getSearchHotDetail, getSearchResultList, getSearchSuggest }

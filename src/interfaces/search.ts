@@ -1,4 +1,4 @@
-import { IArtist, IAlbum } from './common'
+import { IArtist, IAlbum, ISongItem } from './common'
 
 export interface ISearchHotDetailResponse {
   searchWord: string
@@ -29,4 +29,10 @@ export interface ISeacrhResultResponse {
   album: IAlbum
   duration: number
   copyrightId: number
+}
+
+export interface ISearchSuggestResponse {
+  albums: IAlbum[]
+  songs: ISongItem[]
+  artists: IArtist[]
 }
