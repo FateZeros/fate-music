@@ -59,8 +59,12 @@ const MV_DETAIL = '/mv-detail'
 // mini 播放器
 const MINI_MUSIC_PLAYER = '/mini-player'
 
-// 搜索结果页面
-const SEARCH_RESULT_DETAIL = '/home/search-result-detail'
+// 搜索结果 - 歌曲结果
+const SONG_RESULT_DETAIL = '/home/song-result-detail'
+// 搜索结果 - 歌手结果
+const ARTIST_RESULT_DETAIL = '/home/artist-result-detail'
+// 搜索结果 - 专辑结果
+const ALBUMS_RESULT_DETAIL = '/home/albums-result-detail'
 
 const ROUTES = {
   ROOT,
@@ -95,7 +99,9 @@ const ROUTES = {
   SONGS_DETAIL,
   MV_DETAIL,
   MINI_MUSIC_PLAYER,
-  SEARCH_RESULT_DETAIL
+  SONG_RESULT_DETAIL,
+  ARTIST_RESULT_DETAIL,
+  ALBUMS_RESULT_DETAIL
 }
 
 export default ROUTES

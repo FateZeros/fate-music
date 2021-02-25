@@ -11,6 +11,7 @@ import {
   removeSearchHistory
 } from 'utils/search'
 import ROUTES from 'constants/routes'
+import { ISearchSuggestResponse } from 'interfaces/search'
 
 import SearchResult from './search.result'
 import styles from './index.module.scss'
@@ -20,6 +21,7 @@ interface IProps {
   onHideSearchList: () => void
   searchWord: string
   excludeRef: RefObject<HTMLElement | null>
+  searchResultValue: ISearchSuggestResponse
 }
 const { useRef, useEffect, useState, Fragment } = React
 /**
@@ -29,7 +31,8 @@ const SearchList: React.FC<IProps> = ({
   visible,
   onHideSearchList,
   searchWord,
-  excludeRef
+  excludeRef,
+  searchResultValue
 }) => {
   const searchListRef = useRef<HTMLDivElement | null>(null)
   const [searchHisList, setSearchHisList] = useState<any[]>([])
@@ -75,9 +78,10 @@ const SearchList: React.FC<IProps> = ({
       setSearchHistory(resHistory)
     }
     history.push({
-      pathname: ROUTES.SEARCH_RESULT_DETAIL,
+      pathname: ROUTES.SONG_RESULT_DETAIL,
       search: `word=${item.searchWord}&type=1`
     })
+    onHideSearchList()
   }
 
   const handleDeleteHisList = (e, item) => {
@@ -95,9 +99,10 @@ const SearchList: React.FC<IProps> = ({
 
   const handleSearchHisChange = item => {
     history.push({
-      pathname: ROUTES.SEARCH_RESULT_DETAIL,
+      pathname: ROUTES.SONG_RESULT_DETAIL,
       search: `word=${item.searchWord}&type=1`
     })
+    onHideSearchList()
   }
 
   return (
@@ -109,7 +114,11 @@ const SearchList: React.FC<IProps> = ({
       ref={ref => (searchListRef.current = ref)}
     >
       {searchWord.length ? (
-        <SearchResult />
+        <SearchResult
+          searchWord={searchWord}
+          searchResultValue={searchResultValue}
+          onHideSearchList={onHideSearchList}
+        />
       ) : (
         <Fragment>
           {searchHisList.length > 0 ? (

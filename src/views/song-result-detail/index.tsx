@@ -13,9 +13,9 @@ import styles from './index.module.scss'
 
 const { useEffect } = React
 /*
- * 搜索详情 - 页面展示
+ * 搜索结果 - 歌曲结果
  */
-const SearchResultDetail = () => {
+const SongResultDetail = () => {
   const history = useHistory()
   const { search } = useLocation()
   const { word, type } = qs.parse(search.substr(1))
@@ -38,7 +38,7 @@ const SearchResultDetail = () => {
 
   const handleSearchTypeChange = type => {
     history.push({
-      pathname: ROUTES.SEARCH_RESULT_DETAIL,
+      pathname: ROUTES.SONG_RESULT_DETAIL,
       search: `word=${word}&type=${type}`
     })
   }
@@ -74,7 +74,7 @@ const SearchResultDetail = () => {
           {
             1: (
               <TableSingleSong
-                from={ROUTES.SEARCH_RESULT_DETAIL}
+                from={ROUTES.SONG_RESULT_DETAIL}
                 songs={songs || []}
               />
             )
@@ -85,4 +85,4 @@ const SearchResultDetail = () => {
   )
 }
 
-export default SearchResultDetail
+export default SongResultDetail

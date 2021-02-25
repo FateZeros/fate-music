@@ -11,7 +11,6 @@ const SearchInput = () => {
   const [searchListVisible, setSearchList] = useState(false)
   const [searchWord, setSearchWord] = useState('')
   const [state, getSearchSuggest] = useAsyncRequest(searchApis.getSearchSuggest)
-  console.log(state.value, '=== 搜索结果 ===')
   const inputRef = useRef<HTMLElement | null>(null)
 
   const handleHideSearchList = () => {
@@ -51,6 +50,7 @@ const SearchInput = () => {
         onHideSearchList={handleHideSearchList}
         searchWord={searchWord}
         excludeRef={inputRef}
+        searchResultValue={state.value || {}}
       />
     </Fragment>
   )

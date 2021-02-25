@@ -17,6 +17,7 @@ export interface IAlbum {
   name: string
   pic: number
   picUrl: string
+  artist: IArtist
 }
 
 /**
@@ -45,6 +46,8 @@ export interface ISongItem {
   al: IAlbum
   dt: number
   publishTime: number
+  artists?: IArtist[]
+  alias?: []
 }
 
 /**
@@ -92,4 +95,21 @@ export interface IVideoUrlRes {
   url: string
   r: number
   size: number
+}
+
+/**
+ * 歌单 item
+ */
+export interface IPlayListItem {
+  id: number
+  name: string
+  coverImgUrl: string
+  subscribed: boolean
+  trackCount: number
+  userId: number
+  playCount: number
+  bookCount: number
+  specialType: number
+  description: string
+  highQuality: boolean
 }

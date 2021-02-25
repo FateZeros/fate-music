@@ -23,7 +23,9 @@ const Setting = lazy(() => import('views/setting'))
 const DailySongs = lazy(() => import('views/daily-songs'))
 const AllMVs = lazy(() => import('views/all-mvs'))
 const SongsDetail = lazy(() => import('views/songs-detail'))
-const SearchResultDetail = lazy(() => import('views/search-result-detail'))
+const SongResultDetail = lazy(() => import('views/song-result-detail'))
+const ArtistResultDetail = lazy(() => import('views/artist-result-detail'))
+const AlbumsResultDetail = lazy(() => import('views/albums-result-detail'))
 
 const Layout: React.FC = ({ children }) => {
   return (
@@ -64,8 +66,16 @@ const HomeRoute = () => {
           <Route path={ROUTES.ALL_MVS} component={AllMVs} />
           <Route path={ROUTES.SONGS_DETAIL} component={SongsDetail} />
           <Route
-            path={ROUTES.SEARCH_RESULT_DETAIL}
-            component={SearchResultDetail}
+            path={ROUTES.SONG_RESULT_DETAIL}
+            component={SongResultDetail}
+          />
+          <Route
+            path={ROUTES.ARTIST_RESULT_DETAIL}
+            component={ArtistResultDetail}
+          />
+          <Route
+            path={ROUTES.ALBUMS_RESULT_DETAIL}
+            component={AlbumsResultDetail}
           />
         </Switch>
       </Suspense>

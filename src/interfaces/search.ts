@@ -1,4 +1,4 @@
-import { IArtist, IAlbum, ISongItem } from './common'
+import { IArtist, IAlbum, ISongItem, IPlayListItem } from './common'
 
 export interface ISearchHotDetailResponse {
   searchWord: string
@@ -35,4 +35,6 @@ export interface ISearchSuggestResponse {
   albums: IAlbum[]
   songs: ISongItem[]
   artists: IArtist[]
+  playlists: IPlayListItem[]
+  order: []
 }
