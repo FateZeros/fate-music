@@ -22,6 +22,7 @@ const { Fragment, useContext, useEffect, useRef, useState } = React
 
 const MusicPlayer = () => {
   const musicAudioRef = useRef<HTMLMediaElement | null>(null)
+  const currentPlaySongRef = useRef<HTMLElement | null>(null)
 
   const [state, dispatch] = useContext(ReducerContext)
   const {
@@ -136,6 +137,7 @@ const MusicPlayer = () => {
           <div
             className={styles['music-setting-song-list']}
             onClick={handleShowCurrentPlaySongs}
+            ref={ref => (currentPlaySongRef.current = ref)}
           />
           {/** 歌曲歌词 */}
           <PlayerSongLyrics />
@@ -152,7 +154,7 @@ const MusicPlayer = () => {
           </audio>
         </div>
       </div>
-      <CurrentPlayList />
+      <CurrentPlayList excludeRef={currentPlaySongRef} />
     </Fragment>
   )
 }

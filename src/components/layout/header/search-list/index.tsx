@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { RefObject } from 'react'
 import { useHistory } from 'react-router-dom'
 import cn from 'classnames'
 
@@ -19,6 +19,7 @@ interface IProps {
   visible: boolean
   onHideSearchList: () => void
   searchWord: string
+  excludeRef: RefObject<HTMLElement | null>
 }
 const { useRef, useEffect, useState, Fragment } = React
 /**
@@ -27,7 +28,8 @@ const { useRef, useEffect, useState, Fragment } = React
 const SearchList: React.FC<IProps> = ({
   visible,
   onHideSearchList,
-  searchWord
+  searchWord,
+  excludeRef
 }) => {
   const searchListRef = useRef<HTMLDivElement | null>(null)
   const [searchHisList, setSearchHisList] = useState<any[]>([])
@@ -39,8 +41,10 @@ const SearchList: React.FC<IProps> = ({
   const { value: hotDetailList = [] } = state
   // console.log(hotDetailList, '== 热搜 ==')
 
-  useClickAway(searchListRef, () => {
-    onHideSearchList()
+  useClickAway(searchListRef, e => {
+    if (e.target !== excludeRef.current) {
+      onHideSearchList()
+    }
   })
 
   useEffect(

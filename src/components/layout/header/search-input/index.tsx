@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useMemo } from 'react'
+import React, { Fragment, useState, useMemo, useRef } from 'react'
 
 import { debounce } from 'utils'
 import * as searchApis from 'apis/search'
@@ -12,6 +12,7 @@ const SearchInput = () => {
   const [searchWord, setSearchWord] = useState('')
   const [state, getSearchSuggest] = useAsyncRequest(searchApis.getSearchSuggest)
   console.log(state.value, '=== 搜索结果 ===')
+  const inputRef = useRef<HTMLElement | null>(null)
 
   const handleHideSearchList = () => {
     setSearchList(false)
@@ -42,12 +43,14 @@ const SearchInput = () => {
           placeholder="搜索"
           onFocus={() => setSearchList(true)}
           onChange={e => handleChangeSearchWord(e)}
+          ref={ref => (inputRef.current = ref)}
         />
       </div>
       <SearchList
         visible={searchListVisible}
         onHideSearchList={handleHideSearchList}
         searchWord={searchWord}
+        excludeRef={inputRef}
       />
     </Fragment>
   )

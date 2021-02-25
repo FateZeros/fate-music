@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { RefObject } from 'react'
 import cn from 'classnames'
 
 import { ReducerContext } from 'reducers'
@@ -15,25 +15,29 @@ enum activeType {
   HISTORY_LIST = 'HISTORY_LIST'
 }
 
-interface IProps {}
+interface IProps {
+  excludeRef: RefObject<HTMLElement | null>
+}
 
 const { useState, useRef, Fragment, useContext } = React
 /**
  * 当前播放列表
  * 1. 播放列表 & 2.历史记录
  */
-const CurrentPlayList: React.FC<IProps> = () => {
+const CurrentPlayList: React.FC<IProps> = ({ excludeRef }) => {
   const currentPlayListRef = useRef<HTMLDivElement | null>(null)
   const [state, dispatch] = useContext(ReducerContext)
   const { currentPlayListVisible } = state.musicPlayer
 
-  useClickAway(currentPlayListRef, () => {
-    dispatch({
-      type: 'SHOW_CURRENT_PLAY_LIST',
-      payload: {
-        visible: false
-      }
-    })
+  useClickAway(currentPlayListRef, e => {
+    if (e.target !== excludeRef.current) {
+      dispatch({
+        type: 'SHOW_CURRENT_PLAY_LIST',
+        payload: {
+          visible: false
+        }
+      })
+    }
   })
 
   const [activeTab, setActiveTab] = useState<activeType>(
