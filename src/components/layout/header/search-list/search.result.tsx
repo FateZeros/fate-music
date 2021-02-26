@@ -9,7 +9,7 @@ import styles from './index.result.module.scss'
 
 interface IProps {
   searchWord: string
-  searchResultValue: ISearchSuggestResponse
+  searchResultValue: ISearchSuggestResponse | undefined
   onHideSearchList: () => void
 }
 

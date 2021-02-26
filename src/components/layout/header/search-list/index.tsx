@@ -21,7 +21,7 @@ interface IProps {
   onHideSearchList: () => void
   searchWord: string
   excludeRef: RefObject<HTMLElement | null>
-  searchResultValue: ISearchSuggestResponse
+  searchResultValue: ISearchSuggestResponse | undefined
 }
 const { useRef, useEffect, useState, Fragment } = React
 /**

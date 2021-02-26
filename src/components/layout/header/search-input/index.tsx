@@ -50,7 +50,7 @@ const SearchInput = () => {
         onHideSearchList={handleHideSearchList}
         searchWord={searchWord}
         excludeRef={inputRef}
-        searchResultValue={state.value || {}}
+        searchResultValue={state.value}
       />
     </Fragment>
   )

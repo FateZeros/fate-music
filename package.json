@@ -2,6 +2,10 @@
   "name": "fate-music",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "yarn": "1.0.x || >=1.2.1",
+    "node": ">=12.14.1 < 13"
+  },
   "keywords": [
     "react",
     "react hook",
@@ -32,7 +36,9 @@
     "build:prod": "dotenv -e .env.production node scripts/build.js",
     "electron": "dotenv -e .env.development electron electron/electron.js",
     "electron:packMac": "electron-builder --mac",
-    "electron:packWin": "electron-builder --win --x64"
+    "electron:packWin": "electron-builder --win --x64",
+    "electron:postinstall": "electron-builder install-app-deps",
+    "electron:rebuild": "electron-rebuild"
   },
   "homepage": "./",
   "main": "./electron/electron.js",
@@ -40,6 +46,7 @@
   "build": {
     "appId": "com.electron.${name}",
     "productName": "Fate音乐",
+    "copyright": "FateZerso@2021",
     "files": [
       "./build/**/*",
       "./electron/*"
@@ -65,7 +72,9 @@
     "nsis": {
       "oneClick": false,
       "createDesktopShortcut": "always",
-      "allowToChangeInstallationDirectory": true
+      "allowToChangeInstallationDirectory": true,
+      "allowElevation": true,
+      "shortcutName": "Fate音乐"
     }
   },
   "dependencies": {
@@ -224,6 +233,7 @@
   },
   "devDependencies": {
     "electron": "^11.0.3",
-    "electron-builder": "^22.9.1"
+    "electron-builder": "^22.9.1",
+    "electron-rebuild": "^2.3.5"
   }
 }
