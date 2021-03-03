@@ -3,6 +3,9 @@ import React from 'react'
 import { ReducerContext } from 'reducers'
 import { getUserInfo } from 'utils/auth'
 
+import NormalSetting from './normal-setting'
+import MsgSetting from './msg-setting'
+import ShortcutKeySetting from './shortcut-key-setting'
 import styles from './index.module.scss'
 
 const { useContext, useEffect, useState, Fragment } = React
@@ -48,6 +51,15 @@ const Setting = () => {
             </div>
           </Fragment>
         )}
+      </div>
+      <div className={styles['login-row']}>
+        <NormalSetting />
+      </div>
+      <div className={styles['login-row']}>
+        <MsgSetting />
+      </div>
+      <div className={styles['login-row']}>
+        <ShortcutKeySetting />
       </div>
     </div>
   )
