@@ -11,7 +11,7 @@ const CurrentPlayBar: React.FC<IProps> = ({
   playingCurrentTime,
   playingSong
 }) => {
-  const playingSongTime = playingSong.dt
+  const playingSongTime = playingSong && playingSong.dt
   let playingPercent = ''
   if (playingSongTime && playingCurrentTime > 0) {
     playingPercent = `${Math.floor(

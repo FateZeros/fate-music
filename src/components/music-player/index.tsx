@@ -27,7 +27,7 @@ const MusicPlayer = () => {
   const [state, dispatch] = useContext(ReducerContext)
   const {
     currentPlayListVisible,
-    currentPlaySong,
+    currentPlaySong = {},
     isPlayingSong
   } = state.musicPlayer
 

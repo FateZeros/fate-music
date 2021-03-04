@@ -53,7 +53,7 @@ const MiniMusicPlayerWinAction = () => {
 const MiniMusicPlayer = () => {
   const musicAudioRef = useRef<HTMLMediaElement | null>(null)
   const [state, dispatch] = useContext(ReducerContext)
-  const { currentPlaySong, isPlayingSong } = state.musicPlayer
+  const { currentPlaySong = {}, isPlayingSong } = state.musicPlayer
 
   const [playingCurrentTime, setCurrentTime] = useState(0)
   // 是否折叠 mini 播放器
@@ -139,6 +139,7 @@ const MiniMusicPlayer = () => {
   const handleSongChange = () => {
     console.log('对歌曲进行更多操作')
   }
+  console.log(isElectron, 1212)
 
   return (
     <Fragment>
@@ -165,7 +166,12 @@ const MiniMusicPlayer = () => {
             !isFoldMiniPlayer && styles['unfold-full-img']
           )}
         >
-          <img src={currentPlaySong.al && currentPlaySong.al.picUrl} alt="" />
+          <img
+            src={
+              currentPlaySong && currentPlaySong.al && currentPlaySong.al.picUrl
+            }
+            alt=""
+          />
         </div>
         {!isFoldMiniPlayer && (
           <div className={styles['unfold-top-wrap']}>

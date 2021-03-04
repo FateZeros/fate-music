@@ -24,13 +24,13 @@ const CurrentPlaySong: React.FC<IProps> = ({
   onUnfoldMusicImg
 }) => {
   let songImg: any = defaultMusicImg
-  if (playingSong.al) {
+  if (playingSong && playingSong.al) {
     songImg = playingSong.al.picUrl
   }
 
   return (
     <div className={styles['music-info-wrap']}>
-      {Number(playingSong.id) ? (
+      {Number(playingSong && playingSong.id) ? (
         <Fragment>
           <div className={styles['music-info-img']} onClick={onUnfoldMusicImg}>
             <img src={songImg} alt="" loading="lazy" />
@@ -50,7 +50,7 @@ const CurrentPlaySong: React.FC<IProps> = ({
               {playingCurrentTime > 0
                 ? formatSongTime(playingCurrentTime)
                 : '00:00'}
-              / {formatSongTime(playingSong.dt)}
+              / {formatSongTime(playingSong && playingSong.dt)}
             </div>
           </div>
         </Fragment>

@@ -6,6 +6,10 @@ const url = require('url')
 // 是否开发环境
 const isDev = process.env.REACT_APP_NODE_ENV === 'development'
 
+const preloadJS = isDev
+  ? path.join(__dirname, './extraResources/js/preload.js')
+  : path.join(__dirname, '../../extraResources/js/preload.js')
+
 // 主窗口
 let mainWindow = null
 // 任务栏图标
@@ -25,7 +29,7 @@ function createWindow() {
     webPreferences: {
       nodeIntegration: true,
       webSecurity: true,
-      preload: path.join(__dirname, './js/preload.js')
+      preload: preloadJS
     }
   })
 
@@ -111,9 +115,9 @@ ipcMain.on('open-miniMusicPlayer', (_, arg) => {
   if (miniPlayerWin === null) {
     miniPlayerWin = new BrowserWindow({
       title: 'Fate Music',
-      // width: isDev ? 890 : 340,
       x: 500,
       y: 500,
+      // width: isDev ? 890 : 340,
       width: 340,
       height: 65,
       useContentSize: true,
@@ -124,7 +128,7 @@ ipcMain.on('open-miniMusicPlayer', (_, arg) => {
       webPreferences: {
         nodeIntegration: true,
         webSecurity: true,
-        preload: path.join(__dirname, './js/preload.js')
+        preload: preloadJS
       }
     })
     miniPlayerWin.loadURL(arg)

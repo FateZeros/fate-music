@@ -24,7 +24,7 @@ const TableSingleSong: React.FC<IProps> = ({ from, songs }) => {
   const showCommon = commonFrom.includes(from)
 
   const [state] = useContext(ReducerContext)
-  const { currentPlaySong, isPlayingSong } = state.musicPlayer
+  const { currentPlaySong = {}, isPlayingSong } = state.musicPlayer
 
   const handleSongNameClick = songItem => {
     console.log(songItem, 'doubleClick')
@@ -101,10 +101,12 @@ const TableSingleSong: React.FC<IProps> = ({ from, songs }) => {
               {itemSong.arName}
             </div>
             {showCommon && (
-              <div className={styles['item-col']}>{itemSong.al.name}</div>
+              <div className={styles['item-col']}>
+                {itemSong.al && itemSong.al.name}
+              </div>
             )}
             <div className={styles['item-time']}>
-              {formatSongTime(itemSong.dt)}
+              {formatSongTime(itemSong && itemSong.dt)}
             </div>
           </div>
         )
