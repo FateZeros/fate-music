@@ -35,8 +35,6 @@ const MusicPlayer = () => {
   const { value: songValue } = songState
 
   const [playingCurrentTime, setCurrentTime] = useState(0)
-  // 是否折叠播放器
-  const [isFoldPlayer] = useState(true)
 
   useEffect(() => {
     // 1. 初始化当前播放音乐
@@ -126,7 +124,7 @@ const MusicPlayer = () => {
         <CurrentPlaySong
           playingSong={currentPlaySong}
           playingCurrentTime={playingCurrentTime}
-          isFoldPlayer={isFoldPlayer}
+          from="player"
         />
         {/** player 控制台 */}
         <PlayerAction showCollectBtn={true} showShareBtn={true} />

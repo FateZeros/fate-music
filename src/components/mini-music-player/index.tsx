@@ -139,7 +139,6 @@ const MiniMusicPlayer = () => {
   const handleSongChange = () => {
     console.log('对歌曲进行更多操作')
   }
-  console.log(isElectron, 1212)
 
   return (
     <Fragment>
@@ -209,7 +208,7 @@ const MiniMusicPlayer = () => {
               playingSong={currentPlaySong}
               playingCurrentTime={playingCurrentTime}
               onUnfoldMusicImg={handleUnfoldMusicImg}
-              isFoldPlayer={isFoldMiniPlayer}
+              from="mini-player"
             />
           </div>
           {/** player 操作 */}
