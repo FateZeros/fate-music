@@ -1,6 +1,6 @@
 import request from 'utils/request'
 
-import { ISongUrlRes, IVideoUrlRes } from 'interfaces/common'
+import { ISongUrlRes, IVideoUrlRes, ISongLyricRes } from 'interfaces/common'
 
 // 获取歌曲 URL
 const getSongUrl = async (params): Promise<ISongUrlRes> => {
@@ -22,4 +22,17 @@ const getVideoUrl = async (params): Promise<IVideoUrlRes> => {
   return res.data
 }
 
-export { getSongUrl, getVideoUrl }
+// 获取歌词
+const getSongLyric = async (params): Promise<ISongLyricRes> => {
+  const res = await request({
+    url: '/lyric',
+    method: 'get',
+    params,
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  return res.lrc
+}
+
+export { getSongUrl, getVideoUrl, getSongLyric }

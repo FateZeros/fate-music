@@ -113,3 +113,11 @@ export interface IPlayListItem {
   description: string
   highQuality: boolean
 }
+
+/**
+ * 歌词
+ */
+export interface ISongLyricRes {
+  version: number
+  lyric: string
+}
