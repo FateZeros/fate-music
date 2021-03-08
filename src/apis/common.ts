@@ -32,7 +32,7 @@ const getSongLyric = async (params): Promise<ISongLyricRes> => {
       'Content-Type': 'application/json'
     }
   })
-  return res.lrc
+  return res
 }
 
 export { getSongUrl, getVideoUrl, getSongLyric }

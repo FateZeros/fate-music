@@ -20,10 +20,11 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      position: relative;
 
       .playing-song-img {
-        width: 240px;
-        height: 240px;
+        width: 300px;
+        height: 300px;
         border-radius: 50%;
         background: url('../../../assets/image/record-bg.jpeg') no-repeat center;
         background-size: cover;
@@ -37,22 +38,39 @@
           height: 50%;
           border-radius: 50%;
         }
+      }
 
-        .playing-song-rocker {
-          width: 163px;
-          height: 76px;
-          background: url('../../../assets/image/record-rocker.png') no-repeat
-            center;
-          background-size: cover;
-          position: absolute;
-          top: -105px;
-          right: -40px;
-          transition: all 0.5s ease;
-        }
+      .playing-song-rotating {
+        animation: rotate 20s linear infinite;
+      }
 
-        .playing-on-rocker {
-          transform: rotate(45deg);
-        }
+      .playing-song-rocker {
+        width: 100px;
+        height: 145px;
+        background: url('../../../assets/image/record-rocker-bar.png') no-repeat
+          center;
+        background-size: cover;
+        position: absolute;
+        top: 22%;
+        left: 50%;
+        transition: all 0.5s ease;
+        transform-origin: 0 0;
+        transform: rotate(-45deg);
+      }
+
+      .playing-on-rocker {
+        transform: rotate(0deg);
+      }
+
+      .playing-song-rocker-dot {
+        width: 30px;
+        height: 30px;
+        background: url('../../../assets/image/record-rocker-dot.png') no-repeat
+          center;
+        background-size: cover;
+        position: absolute;
+        top: 19%;
+        left: 48%;
       }
     }
 

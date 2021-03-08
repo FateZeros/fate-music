@@ -44,19 +44,25 @@ const CurrentPlaySongScreen: React.FC<IProps> = ({ visible }) => {
     >
       <div className={styles['playing-music-info']}>
         <div className={styles['playing-song-action']}>
-          <div className={styles['playing-song-img']}>
-            <div
-              className={cn(
-                styles['playing-song-rocker'],
-                isPlayingSong && styles['playing-on-rocker']
-              )}
-            />
+          <div
+            className={cn(
+              styles['playing-song-img'],
+              isPlayingSong && styles['playing-song-rotating']
+            )}
+          >
             <img
               src={currentPlaySong.al && currentPlaySong.al.picUrl}
               loading="lazy"
               alt=""
             />
           </div>
+          <div
+            className={cn(
+              styles['playing-song-rocker'],
+              isPlayingSong && styles['playing-on-rocker']
+            )}
+          />
+          <div className={styles['playing-song-rocker-dot']} />
         </div>
         <div className={styles['playing-song-lyric-warp']}>
           <div className={styles['playing-song-name-row']}>
