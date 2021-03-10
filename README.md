@@ -60,7 +60,8 @@ brew install winexe
   - [x] 个性推荐
   - [x] 歌单
   - [x] 歌单详情/评论/收藏者
-- [ ] 私人 FM
+- [x] 私人 FM
+  - [ ] FM 歌词
 - [x] 视频
   - [ ] 视频
   - [x] MV

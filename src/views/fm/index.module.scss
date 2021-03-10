@@ -1,0 +1,10 @@
+.fm-wrap {
+  width: 100%;
+  height: 100%;
+  display: flex;
+
+  .fm-infos {
+    flex: 1;
+    height: 100%;
+  }
+}

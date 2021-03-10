@@ -73,44 +73,6 @@
         left: 48%;
       }
     }
-
-    .playing-song-lyric-warp {
-      width: 400px;
-      height: 100%;
-      padding-top: 10%;
-      padding-right: 40px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      margin-left: 70px;
-
-      .playing-song-name-row {
-        width: 100%;
-        height: auto;
-        font-size: 16px;
-        font-weight: 500;
-        word-break: break-all;
-      }
-
-      .playing-song-info {
-        width: 100%;
-        height: auto;
-        margin-top: 12px;
-        font-size: 12px;
-
-        span {
-          color: #4f73a5;
-          margin-left: 4px;
-        }
-      }
-
-      .playing-song-lyric {
-        width: 100%;
-        height: 400px;
-        margin-top: 40px;
-        border-right: 1px solid #e3e3e3;
-      }
-    }
   }
 }
 
