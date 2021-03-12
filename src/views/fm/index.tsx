@@ -28,7 +28,12 @@ const FM = () => {
 
   return (
     <div className={styles['fm-wrap']}>
-      <div className={styles['fm-infos']} />
+      <div className={styles['fm-infos']}>
+        <div className={styles['fm-info-img']}>
+          <img src={currentFM.album && currentFM.album.picUrl} alt="" />
+          <div className={styles['fm-img-play']} />
+        </div>
+      </div>
       <SongLyric from="fm" />
     </div>
   )
