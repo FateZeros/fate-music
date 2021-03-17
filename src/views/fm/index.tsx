@@ -17,7 +17,7 @@ const FM = () => {
   const { value: personalFMValue = [] } = personalFMState
   console.log(personalFMValue)
   const currentFM = personalFMValue[0] || {}
-  console.log(currentFM, '=== 当前 FM ===')
+  console.log(currentFM, '=== 当前 FM1 ===')
 
   useEffect(
     () => {
